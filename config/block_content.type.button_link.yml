@@ -1,8 +1,0 @@
-uuid: d1c14e6f-e220-4cfe-93d9-c12746cb93a8
-langcode: en
-status: true
-dependencies: {  }
-id: button_link
-label: 'Button link'
-revision: false
-description: null
