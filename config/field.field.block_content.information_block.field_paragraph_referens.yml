@@ -1,0 +1,40 @@
+uuid: 84a999c9-d5f8-4541-90e2-8c05f24be98c
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.information_block
+    - field.storage.block_content.field_paragraph_referens
+    - paragraphs.paragraphs_type.text_card
+  module:
+    - entity_reference_revisions
+id: block_content.information_block.field_paragraph_referens
+field_name: field_paragraph_referens
+entity_type: block_content
+bundle: information_block
+label: 'Paragraph referens'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      text_card: text_card
+    negate: 0
+    target_bundles_drag_drop:
+      icon_card:
+        weight: 5
+        enabled: false
+      item:
+        weight: 6
+        enabled: false
+      point_about:
+        weight: 7
+        enabled: false
+      text_card:
+        weight: 8
+        enabled: true
+field_type: entity_reference_revisions

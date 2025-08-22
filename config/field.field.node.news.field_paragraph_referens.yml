@@ -1,0 +1,49 @@
+uuid: 332e2224-ae74-42b8-8f70-def8f92be6c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_paragraph_referens
+    - node.type.news
+    - paragraphs.paragraphs_type.two_columns
+  module:
+    - entity_reference_revisions
+id: node.news.field_paragraph_referens
+field_name: field_paragraph_referens
+entity_type: node
+bundle: news
+label: 'Paragraph referens'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      two_columns: two_columns
+    negate: 0
+    target_bundles_drag_drop:
+      icon_card:
+        weight: 9
+        enabled: false
+      item:
+        weight: 10
+        enabled: false
+      news_view:
+        weight: 8
+        enabled: false
+      point_about:
+        weight: 11
+        enabled: false
+      simple_text:
+        weight: 12
+        enabled: false
+      text_card:
+        weight: 13
+        enabled: false
+      two_columns:
+        weight: 14
+        enabled: true
+field_type: entity_reference_revisions

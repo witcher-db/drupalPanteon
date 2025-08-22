@@ -1,0 +1,31 @@
+uuid: 9428819c-9e6c-4c3c-b134-a4f39b9a0451
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.point_about.field_lebel
+    - field.field.paragraph.point_about.field_paragraph_image
+    - paragraphs.paragraphs_type.point_about
+id: paragraph.point_about.default
+targetEntityType: paragraph
+bundle: point_about
+mode: default
+content:
+  field_lebel:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_paragraph_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

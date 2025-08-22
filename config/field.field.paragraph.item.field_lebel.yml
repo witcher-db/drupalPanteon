@@ -1,0 +1,19 @@
+uuid: a149aba7-ec67-47ac-93b1-89dbe720ed28
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_lebel
+    - paragraphs.paragraphs_type.item
+id: paragraph.item.field_lebel
+field_name: field_lebel
+entity_type: paragraph
+bundle: item
+label: 'Paragraph label'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

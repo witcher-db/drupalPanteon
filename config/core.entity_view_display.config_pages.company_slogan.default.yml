@@ -1,0 +1,21 @@
+uuid: 995f8505-61dd-4c54-82b9-581747a77172
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.company_slogan
+    - field.field.config_pages.company_slogan.field_text_field
+id: config_pages.company_slogan.default
+targetEntityType: config_pages
+bundle: company_slogan
+mode: default
+content:
+  field_text_field:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

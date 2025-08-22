@@ -1,0 +1,29 @@
+uuid: e6654f73-dff3-4a30-abc1-258c8675abf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.info_taxonomy
+    - field.storage.block_content.field_info_taxonomy
+    - taxonomy.vocabulary.info
+id: block_content.info_taxonomy.field_info_taxonomy
+field_name: field_info_taxonomy
+entity_type: block_content
+bundle: info_taxonomy
+label: 'Info taxonomy'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      info: info
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

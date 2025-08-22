@@ -1,0 +1,21 @@
+uuid: 1a4f4982-9c42-4629-af72-8a63325f6fcb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_team_member
+    - node.type.person
+id: node.person.field_team_member
+field_name: field_team_member
+entity_type: node
+bundle: person
+label: 'Team member'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

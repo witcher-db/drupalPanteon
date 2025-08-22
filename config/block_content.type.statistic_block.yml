@@ -1,0 +1,8 @@
+uuid: 8f857509-e0f7-42d8-a7cb-12eb47a7ed41
+langcode: en
+status: true
+dependencies: {  }
+id: statistic_block
+label: 'Statistic block '
+revision: false
+description: null

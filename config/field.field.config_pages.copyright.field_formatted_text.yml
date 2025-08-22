@@ -1,0 +1,28 @@
+uuid: 690b6893-628b-4a90-8b03-6810e510442e
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.copyright
+    - field.storage.config_pages.field_formatted_text
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.restricted_html
+  module:
+    - text
+id: config_pages.copyright.field_formatted_text
+field_name: field_formatted_text
+entity_type: config_pages
+bundle: copyright
+label: 'Formatted text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+    - restricted_html
+    - full_html
+field_type: text

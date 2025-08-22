@@ -1,0 +1,30 @@
+uuid: 5fd833ed-bf12-4211-9f78-b997276ecceb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_view_reference
+    - paragraphs.paragraphs_type.news_view
+  module:
+    - viewsreference
+id: paragraph.news_view.field_paragraph_view_reference
+field_name: field_paragraph_view_reference
+entity_type: paragraph
+bundle: news_view
+label: 'Paragraph view reference'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+  plugin_types:
+    block: block
+  preselect_views:
+    latest_news: latest_news
+  enabled_settings: {  }
+field_type: viewsreference

@@ -1,0 +1,19 @@
+uuid: 2c1225f6-da29-4f1d-a53f-ba43c50067a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.text_with_button
+    - field.storage.block_content.field_short_text
+id: block_content.text_with_button.field_short_text
+field_name: field_short_text
+entity_type: block_content
+bundle: text_with_button
+label: 'Short text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

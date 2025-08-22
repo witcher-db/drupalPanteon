@@ -1,0 +1,27 @@
+uuid: c0e42683-0023-4167-9f1d-3780933ac4ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.button_link
+    - field.field.block_content.button_link.field_button_link
+  module:
+    - link
+id: block_content.button_link.default
+targetEntityType: block_content
+bundle: button_link
+mode: default
+content:
+  field_button_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

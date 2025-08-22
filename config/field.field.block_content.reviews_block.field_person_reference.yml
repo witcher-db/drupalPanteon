@@ -1,0 +1,29 @@
+uuid: ff133589-9dab-45a9-b4ea-3bf46a7a4bc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.reviews_block
+    - field.storage.block_content.field_person_reference
+    - node.type.person
+id: block_content.reviews_block.field_person_reference
+field_name: field_person_reference
+entity_type: block_content
+bundle: reviews_block
+label: 'Person reference'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      person: person
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

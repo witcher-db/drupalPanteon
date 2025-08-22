@@ -1,0 +1,54 @@
+uuid: 68653b20-0e8d-4108-bc4c-295cda8d601a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.page_hero
+    - field.field.block_content.page_hero.field_button_link
+    - field.field.block_content.page_hero.field_info_taxonomy_referens
+    - field.field.block_content.page_hero.field_text_body
+    - field.field.block_content.page_hero.field_text_header
+  module:
+    - link
+id: block_content.page_hero.default
+targetEntityType: block_content
+bundle: page_hero
+mode: default
+content:
+  field_button_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_info_taxonomy_referens:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_text_body:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_text_header:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

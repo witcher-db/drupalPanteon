@@ -1,0 +1,8 @@
+uuid: 62e01730-7c36-4850-aef6-d9c8bfc2037f
+langcode: en
+status: true
+dependencies: {  }
+id: reviews_block
+label: 'Reviews block'
+revision: false
+description: null

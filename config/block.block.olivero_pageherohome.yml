@@ -1,0 +1,25 @@
+uuid: 45cc78b9-b7a5-4427-8aa4-9a8f4022cfec
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:page_hero:5406a1e6-07a7-4eea-aec4-bd4688283d1c'
+  module:
+    - block_content
+  theme:
+    - olivero
+id: olivero_pageherohome
+theme: olivero
+region: hero
+weight: 0
+provider: null
+plugin: 'block_content:5406a1e6-07a7-4eea-aec4-bd4688283d1c'
+settings:
+  id: 'block_content:5406a1e6-07a7-4eea-aec4-bd4688283d1c'
+  label: 'Page hero home'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

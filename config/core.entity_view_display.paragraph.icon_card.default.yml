@@ -1,0 +1,40 @@
+uuid: a2e0cb67-0c31-4996-b22d-b71f8f34c03e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.icon_card.field_lebel
+    - field.field.paragraph.icon_card.field_paragraph_image
+    - field.field.paragraph.icon_card.field_text_paragraph
+    - paragraphs.paragraphs_type.icon_card
+id: paragraph.icon_card.default
+targetEntityType: paragraph
+bundle: icon_card
+mode: default
+content:
+  field_lebel:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_paragraph_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_text_paragraph:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

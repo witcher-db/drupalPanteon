@@ -1,0 +1,34 @@
+uuid: c7cc3130-f78b-482b-bd14-f0b49520cdb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.point_about.field_lebel
+    - field.field.paragraph.point_about.field_paragraph_image
+    - paragraphs.paragraphs_type.point_about
+id: paragraph.point_about.default
+targetEntityType: paragraph
+bundle: point_about
+mode: default
+content:
+  field_lebel:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_paragraph_image:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,24 @@
+uuid: b777aef6-7ff9-41bb-b469-8a70fb37ca7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_text_body
+    - filter.format.basic_html
+    - paragraphs.paragraphs_type.simple_text
+  module:
+    - text
+id: paragraph.simple_text.field_paragraph_text_body
+field_name: field_paragraph_text_body
+entity_type: paragraph
+bundle: simple_text
+label: 'Paragraph text body'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

@@ -1,0 +1,22 @@
+uuid: f1d9278a-08a3-4306-9969-3d7e46af759f
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.info_taxonomy
+    - field.field.block_content.info_taxonomy.field_info_taxonomy
+id: block_content.info_taxonomy.default
+targetEntityType: block_content
+bundle: info_taxonomy
+mode: default
+content:
+  field_info_taxonomy:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

@@ -1,0 +1,10 @@
+uuid: 1924511b-5e09-48a2-a466-1aefcabd4e0e
+langcode: en
+status: true
+dependencies: {  }
+id: news_view
+label: 'News view'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

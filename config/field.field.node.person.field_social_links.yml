@@ -1,0 +1,23 @@
+uuid: 345fb732-7efc-4a68-b7c6-10b0b437cdbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_social_links
+    - node.type.person
+  module:
+    - link
+id: node.person.field_social_links
+field_name: field_social_links
+entity_type: node
+bundle: person
+label: 'Social links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 16
+field_type: link

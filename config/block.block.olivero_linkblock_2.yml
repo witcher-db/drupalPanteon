@@ -1,0 +1,25 @@
+uuid: 6f49ae70-2ac4-4f23-969d-395180244830
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:social_link:866eabd4-40c9-427c-a306-4043bf45a377'
+  module:
+    - block_content
+  theme:
+    - olivero
+id: olivero_linkblock_2
+theme: olivero
+region: footer_bottom
+weight: -4
+provider: null
+plugin: 'block_content:866eabd4-40c9-427c-a306-4043bf45a377'
+settings:
+  id: 'block_content:866eabd4-40c9-427c-a306-4043bf45a377'
+  label: Links
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

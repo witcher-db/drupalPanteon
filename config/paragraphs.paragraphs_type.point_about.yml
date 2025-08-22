@@ -1,0 +1,10 @@
+uuid: a2a12777-5bc8-4d2a-ac9a-4ffc1910b46a
+langcode: en
+status: true
+dependencies: {  }
+id: point_about
+label: 'Point about'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

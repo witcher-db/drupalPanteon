@@ -1,0 +1,10 @@
+uuid: 8d31d223-613f-468d-8bc8-8506907cdb7b
+langcode: en
+status: true
+dependencies: {  }
+id: text_card
+label: 'Text card'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

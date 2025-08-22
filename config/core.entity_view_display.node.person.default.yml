@@ -1,0 +1,80 @@
+uuid: a241e4d5-72cc-4825-946f-adc2c5a5f6e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.person.field_profile_photo
+    - field.field.node.person.field_quantity_of_stars
+    - field.field.node.person.field_short_text
+    - field.field.node.person.field_social_links
+    - field.field.node.person.field_social_links_icons
+    - field.field.node.person.field_subtitle
+    - field.field.node.person.field_team_member
+    - field.field.node.person.field_title
+    - node.type.person
+  module:
+    - link
+    - user
+id: node.person.default
+targetEntityType: node
+bundle: person
+mode: default
+content:
+  field_profile_photo:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_short_text:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_social_links:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_social_links_icons:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_subtitle:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_quantity_of_stars: true
+  field_team_member: true
+  links: true

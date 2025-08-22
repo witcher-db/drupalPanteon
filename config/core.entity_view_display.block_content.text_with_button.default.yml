@@ -1,0 +1,45 @@
+uuid: a2d89946-1935-408b-9ffb-fd2d6156a8c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.text_with_button
+    - field.field.block_content.text_with_button.field_button_link
+    - field.field.block_content.text_with_button.field_label
+    - field.field.block_content.text_with_button.field_short_text
+  module:
+    - link
+id: block_content.text_with_button.default
+targetEntityType: block_content
+bundle: text_with_button
+mode: default
+content:
+  field_button_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_label:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_short_text:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }
