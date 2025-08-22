@@ -11,7 +11,7 @@ dependencies:
 id: olivero_headerinfoblock_2
 theme: olivero
 region: footer_top
-weight: -2
+weight: -1
 provider: null
 plugin: 'block_content:cedc4785-63c2-4464-955b-970db414ea52'
 settings:
