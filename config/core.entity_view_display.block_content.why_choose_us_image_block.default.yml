@@ -1,0 +1,32 @@
+uuid: 39a62f9b-9dd0-4947-882f-9ca3fb26d813
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.why_choose_us_image_block
+    - field.field.block_content.why_choose_us_image_block.field_media_image
+    - field.field.block_content.why_choose_us_image_block.field_taxonomy_reference
+id: block_content.why_choose_us_image_block.default
+targetEntityType: block_content
+bundle: why_choose_us_image_block
+mode: default
+content:
+  field_media_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_taxonomy_reference:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

@@ -1,0 +1,44 @@
+uuid: db4f89ef-0d93-4221-9770-68c41cc01cd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_right_column
+    - paragraphs.paragraphs_type.two_columns
+  module:
+    - entity_reference_revisions
+id: paragraph.two_columns.field_right_column
+field_name: field_right_column
+entity_type: paragraph
+bundle: two_columns
+label: 'Right column'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 0
+    target_bundles_drag_drop:
+      icon_card:
+        weight: 8
+        enabled: false
+      item:
+        weight: 9
+        enabled: false
+      point_about:
+        weight: 10
+        enabled: false
+      simple_text:
+        weight: 7
+        enabled: false
+      text_card:
+        weight: 11
+        enabled: false
+      two_columns:
+        weight: 12
+        enabled: false
+field_type: entity_reference_revisions

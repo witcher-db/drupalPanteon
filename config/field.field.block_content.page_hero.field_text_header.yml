@@ -1,0 +1,19 @@
+uuid: f50178c7-42bb-4ab0-aa2f-1c16a5b2998a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.page_hero
+    - field.storage.block_content.field_text_header
+id: block_content.page_hero.field_text_header
+field_name: field_text_header
+entity_type: block_content
+bundle: page_hero
+label: 'Text header'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,17 @@
+uuid: 4a5f0235-8120-4b80-820c-f9ecc79faab4
+langcode: en
+status: true
+dependencies: {  }
+id: company_slogan
+label: 'Company slogan'
+token: false
+context:
+  show_warning: true
+  group:
+    language: false
+  fallback:
+    language: ''
+menu:
+  path: ''
+  weight: 0
+  description: ''

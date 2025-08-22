@@ -1,0 +1,22 @@
+uuid: 68ba6632-1fe6-49d3-84f7-9d748e41c35d
+langcode: en
+status: true
+dependencies:
+  module:
+    - config_pages
+  theme:
+    - olivero
+id: olivero_config_pages_2
+theme: olivero
+region: footer_bottom
+weight: 0
+provider: null
+plugin: config_pages_block
+settings:
+  id: config_pages_block
+  label: '[current-date:html_year]ConfigPages Block'
+  label_display: '0'
+  provider: config_pages
+  config_page_type: copyright
+  config_page_view_mode: full
+visibility: {  }

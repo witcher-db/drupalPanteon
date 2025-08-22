@@ -1,0 +1,24 @@
+uuid: b0928956-f4e3-45cb-beee-8594328fd290
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.multi_paragraph_block
+    - field.field.block_content.multi_paragraph_block.field_multi_paragraph
+  module:
+    - entity_reference_revisions
+id: block_content.multi_paragraph_block.default
+targetEntityType: block_content
+bundle: multi_paragraph_block
+mode: default
+content:
+  field_multi_paragraph:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

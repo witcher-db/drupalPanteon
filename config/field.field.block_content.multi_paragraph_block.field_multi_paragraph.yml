@@ -1,0 +1,37 @@
+uuid: 68ae3fc9-e241-4e25-b3d1-96b10f6bd026
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.multi_paragraph_block
+    - field.storage.block_content.field_multi_paragraph
+    - paragraphs.paragraphs_type.icon_card
+  module:
+    - entity_reference_revisions
+id: block_content.multi_paragraph_block.field_multi_paragraph
+field_name: field_multi_paragraph
+entity_type: block_content
+bundle: multi_paragraph_block
+label: 'Multi paragraph'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      icon_card: icon_card
+    negate: 0
+    target_bundles_drag_drop:
+      icon_card:
+        weight: 4
+        enabled: true
+      item:
+        weight: 5
+        enabled: false
+      text_card:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

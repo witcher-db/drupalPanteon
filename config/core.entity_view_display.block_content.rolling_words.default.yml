@@ -1,0 +1,21 @@
+uuid: d445bef3-555b-464c-888e-9dfe7479a828
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.rolling_words
+    - field.field.block_content.rolling_words.field_text_slider
+id: block_content.rolling_words.default
+targetEntityType: block_content
+bundle: rolling_words
+mode: default
+content:
+  field_text_slider:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

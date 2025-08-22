@@ -1,0 +1,19 @@
+uuid: cd983306-a3e6-4c6d-a6d9-050de7ab535f
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.page_hero
+    - field.storage.block_content.field_text_body
+id: block_content.page_hero.field_text_body
+field_name: field_text_body
+entity_type: block_content
+bundle: page_hero
+label: 'Text body'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

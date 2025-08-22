@@ -1,0 +1,46 @@
+uuid: edea6efe-10af-4562-9c81-267fe79d9e1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_left_column
+    - paragraphs.paragraphs_type.simple_text
+    - paragraphs.paragraphs_type.two_columns
+  module:
+    - entity_reference_revisions
+id: paragraph.two_columns.field_left_column
+field_name: field_left_column
+entity_type: paragraph
+bundle: two_columns
+label: 'Left column'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      simple_text: simple_text
+    negate: 0
+    target_bundles_drag_drop:
+      icon_card:
+        weight: 7
+        enabled: false
+      item:
+        weight: 8
+        enabled: false
+      point_about:
+        weight: 9
+        enabled: false
+      simple_text:
+        weight: 7
+        enabled: true
+      text_card:
+        weight: 10
+        enabled: false
+      two_columns:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

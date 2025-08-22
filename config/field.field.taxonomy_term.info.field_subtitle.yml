@@ -1,0 +1,19 @@
+uuid: 23ba32bd-6fb4-460d-b3bd-9cfa52cee05a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_subtitle
+    - taxonomy.vocabulary.info
+id: taxonomy_term.info.field_subtitle
+field_name: field_subtitle
+entity_type: taxonomy_term
+bundle: info
+label: Subtitle
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

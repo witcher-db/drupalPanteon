@@ -1,0 +1,8 @@
+uuid: 87fe7c6e-72b1-4cf0-a70a-8f2f7d09da3f
+langcode: en
+status: true
+dependencies: {  }
+id: partners_logos
+label: 'Partners logos'
+revision: false
+description: null

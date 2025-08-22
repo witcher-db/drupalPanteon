@@ -1,0 +1,42 @@
+uuid: ae311889-5a08-48fc-a021-10a37c143d0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.why_choose_us_image_block
+    - field.field.block_content.why_choose_us_image_block.field_media_image
+    - field.field.block_content.why_choose_us_image_block.field_taxonomy_reference
+id: block_content.why_choose_us_image_block.default
+targetEntityType: block_content
+bundle: why_choose_us_image_block
+mode: default
+content:
+  field_media_image:
+    type: entity_reference_autocomplete
+    weight: 28
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_taxonomy_reference:
+    type: entity_reference_autocomplete
+    weight: 27
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

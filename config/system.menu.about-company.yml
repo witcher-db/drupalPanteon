@@ -1,0 +1,8 @@
+uuid: 57a2ddad-459b-4ae7-a9ea-d8efa0d0cde3
+langcode: en
+status: true
+dependencies: {  }
+id: about-company
+label: 'About company'
+description: ''
+locked: false

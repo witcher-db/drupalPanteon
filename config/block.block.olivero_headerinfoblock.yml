@@ -1,0 +1,25 @@
+uuid: fce08ed0-c18d-4921-bbfb-5eb95a9e1e9d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:info_taxonomy:cedc4785-63c2-4464-955b-970db414ea52'
+  module:
+    - block_content
+  theme:
+    - olivero
+id: olivero_headerinfoblock
+theme: olivero
+region: header
+weight: -2
+provider: null
+plugin: 'block_content:cedc4785-63c2-4464-955b-970db414ea52'
+settings:
+  id: 'block_content:cedc4785-63c2-4464-955b-970db414ea52'
+  label: 'Header info block'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

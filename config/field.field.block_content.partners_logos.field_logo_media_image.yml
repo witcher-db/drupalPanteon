@@ -1,0 +1,29 @@
+uuid: 01ce2d68-3168-4154-ab7c-0ac4f742b99b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.partners_logos
+    - field.storage.block_content.field_logo_media_image
+    - media.type.partners_logos
+id: block_content.partners_logos.field_logo_media_image
+field_name: field_logo_media_image
+entity_type: block_content
+bundle: partners_logos
+label: 'Logo media image'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      partners_logos: partners_logos
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

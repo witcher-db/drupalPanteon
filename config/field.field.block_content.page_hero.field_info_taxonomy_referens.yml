@@ -1,0 +1,29 @@
+uuid: 49187c78-7066-442f-afbb-1319988ebb3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.info_taxonomy
+    - block_content.type.page_hero
+    - field.storage.block_content.field_info_taxonomy_referens
+id: block_content.page_hero.field_info_taxonomy_referens
+field_name: field_info_taxonomy_referens
+entity_type: block_content
+bundle: page_hero
+label: 'Info taxonomy referens'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block_content'
+  handler_settings:
+    target_bundles:
+      info_taxonomy: info_taxonomy
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

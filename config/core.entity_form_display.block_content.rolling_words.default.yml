@@ -1,0 +1,29 @@
+uuid: fe73e126-6972-4a18-8de9-c20b95236851
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.rolling_words
+    - field.field.block_content.rolling_words.field_text_slider
+id: block_content.rolling_words.default
+targetEntityType: block_content
+bundle: rolling_words
+mode: default
+content:
+  field_text_slider:
+    type: string_textfield
+    weight: 26
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

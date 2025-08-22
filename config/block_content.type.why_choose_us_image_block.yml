@@ -1,0 +1,8 @@
+uuid: d215055b-9c2a-4e7b-a8da-8e6e18165fc5
+langcode: en
+status: true
+dependencies: {  }
+id: why_choose_us_image_block
+label: 'Why Choose Us image block'
+revision: false
+description: null

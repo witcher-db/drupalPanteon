@@ -1,0 +1,31 @@
+uuid: 81670811-fb20-4403-b292-20db9c601fc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.reviews_block
+    - field.field.block_content.reviews_block.field_person_reference
+id: block_content.reviews_block.default
+targetEntityType: block_content
+bundle: reviews_block
+mode: default
+content:
+  field_person_reference:
+    type: entity_reference_autocomplete
+    weight: 26
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

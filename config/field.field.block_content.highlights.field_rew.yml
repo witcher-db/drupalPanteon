@@ -1,0 +1,31 @@
+uuid: e42c4fc8-27a2-4e5c-b640-6ad395846fa0
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.highlights
+    - field.storage.block_content.field_rew
+    - paragraphs.paragraphs_type.text_card
+  module:
+    - entity_reference_revisions
+id: block_content.highlights.field_rew
+field_name: field_rew
+entity_type: block_content
+bundle: highlights
+label: 'Highlights paragraphs'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      text_card: text_card
+    negate: 0
+    target_bundles_drag_drop:
+      text_card:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

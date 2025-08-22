@@ -1,0 +1,21 @@
+uuid: 81ea2ec6-1cad-4d3f-bf81-13729d312b7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.copyright
+    - core.entity_view_mode.config_pages.token
+    - field.field.config_pages.copyright.field_formatted_text
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: config_pages.copyright.token
+targetEntityType: config_pages
+bundle: copyright
+mode: token
+content: {  }
+hidden:
+  field_formatted_text: true

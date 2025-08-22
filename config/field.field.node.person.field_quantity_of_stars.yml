@@ -1,0 +1,21 @@
+uuid: 35887f20-ea72-40c2-9b59-d671ee357e29
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_quantity_of_stars
+    - node.type.person
+  module:
+    - options
+id: node.person.field_quantity_of_stars
+field_name: field_quantity_of_stars
+entity_type: node
+bundle: person
+label: 'Quantity of stars'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

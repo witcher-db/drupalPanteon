@@ -1,0 +1,19 @@
+uuid: f5b3b5ee-07b3-415e-8660-68a1ec8b530b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.partners_logos
+    - field.storage.block_content.field_short_text
+id: block_content.partners_logos.field_short_text
+field_name: field_short_text
+entity_type: block_content
+bundle: partners_logos
+label: 'Short text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: ac618c95-fee9-4510-a7f4-93f716ab55fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.rolling_words
+    - field.storage.block_content.field_text_slider
+id: block_content.rolling_words.field_text_slider
+field_name: field_text_slider
+entity_type: block_content
+bundle: rolling_words
+label: 'Text slider'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

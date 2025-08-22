@@ -1,0 +1,19 @@
+uuid: fba8b029-e021-40a8-99c0-07aad6c81616
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_lebel
+    - paragraphs.paragraphs_type.icon_card
+id: paragraph.icon_card.field_lebel
+field_name: field_lebel
+entity_type: paragraph
+bundle: icon_card
+label: 'Paragraph label'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

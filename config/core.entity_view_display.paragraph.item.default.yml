@@ -1,0 +1,30 @@
+uuid: 1a772c70-4315-4d25-97f8-fd354c920ba8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.item.field_lebel
+    - field.field.paragraph.item.field_subtitle
+    - paragraphs.paragraphs_type.item
+id: paragraph.item.default
+targetEntityType: paragraph
+bundle: item
+mode: default
+content:
+  field_lebel:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_subtitle:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

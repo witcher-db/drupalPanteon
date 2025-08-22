@@ -1,0 +1,19 @@
+uuid: bf778c54-57d8-4174-b44d-63cd9f3dcc6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_taxonomy_label_field
+    - node.type.news
+id: node.news.field_taxonomy_label_field
+field_name: field_taxonomy_label_field
+entity_type: node
+bundle: news
+label: 'Taxonomy label  field'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

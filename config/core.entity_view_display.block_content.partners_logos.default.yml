@@ -1,0 +1,31 @@
+uuid: c25f7a54-74b8-477a-8465-16871c68d22b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.partners_logos
+    - field.field.block_content.partners_logos.field_logo_media_image
+    - field.field.block_content.partners_logos.field_short_text
+id: block_content.partners_logos.default
+targetEntityType: block_content
+bundle: partners_logos
+mode: default
+content:
+  field_logo_media_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_short_text:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

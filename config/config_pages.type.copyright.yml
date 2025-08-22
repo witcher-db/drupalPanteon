@@ -1,0 +1,17 @@
+uuid: 6d27c855-45ff-4f94-ba66-c56839a5393c
+langcode: en
+status: true
+dependencies: {  }
+id: copyright
+label: Copyright
+token: false
+context:
+  show_warning: true
+  group:
+    language: false
+  fallback:
+    language: ''
+menu:
+  path: ''
+  weight: 0
+  description: ''
