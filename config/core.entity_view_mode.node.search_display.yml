@@ -1,0 +1,11 @@
+uuid: 78afd531-31c3-4282-8cec-a9b757f6baf1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.search_display
+label: 'Search display'
+description: null
+targetEntityType: node
+cache: true

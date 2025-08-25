@@ -1,0 +1,70 @@
+uuid: 76a39687-d55c-4a0d-a193-87db7b713006
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_display
+    - field.field.node.news.field_author
+    - field.field.node.news.field_featured
+    - field.field.node.news.field_image
+    - field.field.node.news.field_paragraph_referens
+    - field.field.node.news.field_published_date
+    - field.field.node.news.field_taxonomy_label_field
+    - field.field.node.news.field_taxonomy_reference
+    - field.field.node.news.field_title
+    - node.type.news
+  module:
+    - datetime
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.news.search_display
+targetEntityType: node
+bundle: news
+mode: search_display
+content:
+  field_author:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: compact
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_published_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: olivero_medium
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  addtoany: true
+  field_featured: true
+  field_paragraph_referens: true
+  field_taxonomy_label_field: true
+  field_taxonomy_reference: true
+  links: true
