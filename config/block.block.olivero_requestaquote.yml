@@ -11,7 +11,7 @@ dependencies:
 id: olivero_requestaquote
 theme: olivero
 region: primary_menu
-weight: 0
+weight: -4
 provider: null
 plugin: 'block_content:1254c925-fc76-49fb-90d7-edb076c229b0'
 settings:

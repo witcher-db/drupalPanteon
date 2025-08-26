@@ -9,7 +9,7 @@ dependencies:
 id: olivero_sitebranding
 theme: olivero
 region: primary_menu
-weight: -2
+weight: -7
 provider: null
 plugin: system_branding_block
 settings:

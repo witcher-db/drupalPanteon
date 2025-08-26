@@ -1,0 +1,59 @@
+uuid: 96e838fd-5f7e-4736-b38a-d8425da57183
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_display
+    - field.field.node.landing_page.layout_builder__layout
+    - node.type.landing_page
+  module:
+    - layout_builder
+    - layout_builder_restrictions
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+  layout_builder_restrictions:
+    allowed_block_categories:
+      - Announcements
+      - 'Config Pages'
+      - 'Content fields'
+      - 'Custom block types'
+      - 'Custom blocks'
+      - Devel
+      - Forms
+      - Help
+      - 'Inline blocks'
+      - 'Lists (Views)'
+      - Menus
+      - System
+      - User
+      - core
+    entity_view_mode_restriction:
+      allowed_layouts: {  }
+      denylisted_blocks: {  }
+      allowlisted_blocks: {  }
+      restricted_categories:
+        - Announcements
+        - 'Content fields'
+        - Devel
+        - Forms
+        - Help
+        - Menus
+        - User
+    entity_view_mode_restriction_by_region:
+      allowed_layouts: {  }
+id: node.landing_page.search_display
+targetEntityType: node
+bundle: landing_page
+mode: search_display
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  layout_builder__layout: true
