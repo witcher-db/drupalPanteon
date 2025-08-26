@@ -95,5 +95,4 @@
 
 # Ignore .env files as they are personal
 #/.env
-github2.*
-github2
+github.*
