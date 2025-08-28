@@ -66,4 +66,6 @@ theme:
   olivero: 0
   claro: 0
   stark: 0
+  bootstrap: 0
+  ts_theme: 0
 profile: standard

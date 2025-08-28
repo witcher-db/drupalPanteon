@@ -1,0 +1,23 @@
+uuid: f65a7c12-d2a6-4b09-9411-bfb7afa2aa84
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ts_theme
+id: ts_theme_sitebranding_2
+theme: ts_theme
+region: footer_top
+weight: -5
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

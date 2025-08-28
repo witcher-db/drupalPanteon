@@ -1,0 +1,23 @@
+uuid: f7be9db9-a4cf-433d-b104-4c111ad345b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.search
+  module:
+    - views
+  theme:
+    - ts_theme
+id: ts_theme_exposedformsearchsearch
+theme: ts_theme
+region: header_bottom
+weight: -5
+provider: null
+plugin: 'views_exposed_filter_block:search-search'
+settings:
+  id: 'views_exposed_filter_block:search-search'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility: {  }
