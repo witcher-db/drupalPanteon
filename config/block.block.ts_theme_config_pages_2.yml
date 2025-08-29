@@ -1,0 +1,22 @@
+uuid: 49b6f808-d695-499a-bdb9-c1e2e2a56921
+langcode: en
+status: true
+dependencies:
+  module:
+    - config_pages
+  theme:
+    - ts_theme
+id: ts_theme_config_pages_2
+theme: ts_theme
+region: footer_bottom
+weight: 0
+provider: null
+plugin: config_pages_block
+settings:
+  id: config_pages_block
+  label: '[current-date:html_year]ConfigPages Block'
+  label_display: '0'
+  provider: config_pages
+  config_page_type: copyright
+  config_page_view_mode: full
+visibility: {  }

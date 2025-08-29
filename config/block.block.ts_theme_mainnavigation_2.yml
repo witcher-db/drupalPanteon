@@ -1,0 +1,25 @@
+uuid: bf80f53e-3c89-4060-8d13-eb8081b31ce1
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - ts_theme
+id: ts_theme_mainnavigation_2
+theme: ts_theme
+region: footer_top
+weight: -3
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: Links
+  label_display: visible
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

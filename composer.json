@@ -35,7 +35,8 @@
         "drupal/viewsreference": "^2.0@beta",
         "drupal/better_exposed_filters": "^7.0",
         "drupal/facets": "^3.0",
-        "drupal/search_api": "^1.38"
+        "drupal/search_api": "^1.38",
+        "drupal/bootstrap": "^5.0"
     },
     "require-dev": {
         "drupal/core-dev": "^11"

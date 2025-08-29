@@ -1,0 +1,25 @@
+uuid: df94be75-36c6-41fd-b86d-ffc3d0f66f17
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - ts_theme
+id: ts_theme_mainnavigation
+theme: ts_theme
+region: header_bottom
+weight: -6
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

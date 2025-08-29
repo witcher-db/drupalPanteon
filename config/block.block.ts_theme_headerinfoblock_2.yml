@@ -1,0 +1,25 @@
+uuid: 56178abd-5524-4b56-ad99-f0a84872a25f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:info_taxonomy:cedc4785-63c2-4464-955b-970db414ea52'
+  module:
+    - block_content
+  theme:
+    - ts_theme
+id: ts_theme_headerinfoblock_2
+theme: ts_theme
+region: footer_top
+weight: -1
+provider: null
+plugin: 'block_content:cedc4785-63c2-4464-955b-970db414ea52'
+settings:
+  id: 'block_content:cedc4785-63c2-4464-955b-970db414ea52'
+  label: Contact
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,25 @@
+uuid: cde2efe8-cb1a-4e4c-b9f6-0f866af72e05
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.about-company
+  module:
+    - system
+  theme:
+    - ts_theme
+id: ts_theme_aboutcompany
+theme: ts_theme
+region: footer_top
+weight: -2
+provider: null
+plugin: 'system_menu_block:about-company'
+settings:
+  id: 'system_menu_block:about-company'
+  label: Company
+  label_display: visible
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

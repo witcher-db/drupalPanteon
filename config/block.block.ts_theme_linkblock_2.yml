@@ -1,0 +1,25 @@
+uuid: 61181726-5814-44fc-a27f-4de233acb997
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:social_link:866eabd4-40c9-427c-a306-4043bf45a377'
+  module:
+    - block_content
+  theme:
+    - ts_theme
+id: ts_theme_linkblock_2
+theme: ts_theme
+region: footer_bottom
+weight: -4
+provider: null
+plugin: 'block_content:866eabd4-40c9-427c-a306-4043bf45a377'
+settings:
+  id: 'block_content:866eabd4-40c9-427c-a306-4043bf45a377'
+  label: Links
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
