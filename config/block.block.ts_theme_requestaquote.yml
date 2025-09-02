@@ -1,0 +1,25 @@
+uuid: 0893bf8d-6e73-4507-810d-13990a9c1f4d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:button_link:1254c925-fc76-49fb-90d7-edb076c229b0'
+  module:
+    - block_content
+  theme:
+    - ts_theme
+id: ts_theme_requestaquote
+theme: ts_theme
+region: header_bottom
+weight: -4
+provider: null
+plugin: 'block_content:1254c925-fc76-49fb-90d7-edb076c229b0'
+settings:
+  id: 'block_content:1254c925-fc76-49fb-90d7-edb076c229b0'
+  label: 'Request a quote'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
