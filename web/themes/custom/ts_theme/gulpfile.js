@@ -29,16 +29,17 @@ let gulp = require('gulp'),
 
 const paths = {
   scss: {
-    src: './scss/style.scss',
-    dest: './css',
-    watch: './scss/**/*.scss',
+    src: './src/scss/style.scss',
+    dest: './dest/css',
+    watch: './src/scss/**/*.scss',
     bootstrap: './node_modules/bootstrap/scss/bootstrap.scss',
   },
   js: {
     bootstrap: './node_modules/bootstrap/dist/js/bootstrap.min.js',
     popper: './node_modules/@popperjs/core/dist/umd/popper.min.js',
     base: '../../contrib/bootstrap/js/base.js',
-    dest: './js',
+    src: './src/js/custom.js',
+    dest: './dest/js',
   },
 };
 
@@ -84,16 +85,13 @@ function styles() {
 // Move the javascript files into our js folder
 function js() {
   return gulp
-    .src([paths.js.bootstrap, paths.js.popper, paths.js.base])
+    .src([paths.js.bootstrap, paths.js.popper, paths.js.base, paths.js.src])
     .pipe(gulp.dest(paths.js.dest))
     .pipe(browserSync.stream());
 }
 
 // Static Server + watching scss/html files
 function serve() {
-  browserSync.init({
-    proxy: 'https://www.drupal.org',
-  });
 
   gulp
     .watch([paths.scss.watch, paths.scss.bootstrap], styles)
