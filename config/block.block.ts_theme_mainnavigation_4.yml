@@ -11,7 +11,7 @@ dependencies:
 id: ts_theme_mainnavigation_4
 theme: ts_theme
 region: mobile_header_bottom
-weight: 0
+weight: -9
 provider: null
 plugin: 'system_menu_block:main'
 settings:

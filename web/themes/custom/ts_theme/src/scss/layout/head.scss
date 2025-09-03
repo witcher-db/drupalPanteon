@@ -42,3 +42,9 @@
     border-top: none !important;
   }
 }
+
+@include media-breakpoint-down(lg) {
+  .container-xl {
+    --bs-gutter-x: 0;
+  }
+}

@@ -10,43 +10,48 @@ Description: Bootstrap 4 with Sass
 -------------------------------------------------*/
 
 body {
-    background: $body-bg;
+  background: $body-bg;
 }
 
+@include media-breakpoint-down(lg) {
+  .btn {
+    font-size: $font-size-sm !important;
+  }
+}
 
 /* COLORS
 --------------------------------------------------*/
 
 a {
-    color: $accent-shade;
+  color: $white;
 }
 
 .bg-inverse {
-    background: $primary-shade !important;
+  background: $primary-shade !important;
 }
 
 .site-footer {
-    background: $primary-shade !important;
+  background: $primary-shade !important;
 }
 
 .site-name-slogan a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .card-group img {
-    margin: 0;
-    width: 100%;
-    height: auto;
+  margin: 0;
+  width: 100%;
+  height: auto;
 }
 
 .card-group .field--type-image {
-    margin: 0
+  margin: 0
 }
 
 .slick {
-    width: 100%;
+  width: 100%;
 }
 
 .slick>div {
-    margin: 0 15px;
+  margin: 0 15px;
 }

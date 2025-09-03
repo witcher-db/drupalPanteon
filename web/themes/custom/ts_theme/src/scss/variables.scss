@@ -1,10 +1,10 @@
 /* VARIABLES */
 
 // colors
-$primary-shade: #f17c34;
+$primary-shade: #181923;
 $primary-light: tint-color($primary-shade, 37%);
 $primary-dark: shade-color($primary-shade, 12%);
-$accent-shade: #064771;
+$accent-shade: #f17c34;
 $accent-light: tint-color($accent-shade, 37%);
 $accent-dark: shade-color($accent-shade, 12%);
 // Reassign color vars to semantic color scheme
@@ -55,3 +55,8 @@ $enable-gradients: false;
 // Breadcrumbs (Works only on Bootstrap 5+)
 // $breadcrumb-divider: quote(">");
 $enable-caret: true;
+
+$btn-border-radius: 0;
+$nav-link-color: $white;
+$btn-padding-y: 16px;
+$btn-line-height: 14px;

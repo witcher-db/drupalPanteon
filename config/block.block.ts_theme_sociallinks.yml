@@ -11,7 +11,7 @@ dependencies:
 id: ts_theme_sociallinks
 theme: ts_theme
 region: header_top
-weight: 0
+weight: -9
 provider: null
 plugin: 'block_content:1a4ba372-8b62-430c-8e44-d6831818d120'
 settings:
