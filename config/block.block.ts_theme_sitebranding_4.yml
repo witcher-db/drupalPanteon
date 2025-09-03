@@ -1,0 +1,23 @@
+uuid: e794b48d-9911-4a66-8e51-91817e0883a4
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ts_theme
+id: ts_theme_sitebranding_4
+theme: ts_theme
+region: mobile_header_top
+weight: -9
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

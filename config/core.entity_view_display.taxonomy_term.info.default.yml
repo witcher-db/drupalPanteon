@@ -25,7 +25,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
   field_info_icon:
     type: image
@@ -36,7 +36,7 @@ content:
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
   field_subtitle:
     type: string
@@ -52,6 +52,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

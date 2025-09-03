@@ -1,0 +1,23 @@
+uuid: d5a87697-3b2c-4922-b763-7431cb200879
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.search
+  module:
+    - views
+  theme:
+    - ts_theme
+id: ts_theme_exposedformsearchsearch_3
+theme: ts_theme
+region: mobile_header_top
+weight: -7
+provider: null
+plugin: 'views_exposed_filter_block:search-search'
+settings:
+  id: 'views_exposed_filter_block:search-search'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility: {  }

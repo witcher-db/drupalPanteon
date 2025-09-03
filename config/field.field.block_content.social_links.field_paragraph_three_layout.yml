@@ -1,0 +1,52 @@
+uuid: 14f4624f-3a7c-47d5-90c1-d493511f6577
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.social_links
+    - field.storage.block_content.field_paragraph_three_layout
+    - paragraphs.paragraphs_type.social_link
+  module:
+    - entity_reference_revisions
+id: block_content.social_links.field_paragraph_three_layout
+field_name: field_paragraph_three_layout
+entity_type: block_content
+bundle: social_links
+label: 'Paragraph three layout'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      social_link: social_link
+    negate: 0
+    target_bundles_drag_drop:
+      icon_card:
+        weight: 9
+        enabled: false
+      item:
+        weight: 3
+        enabled: false
+      news_view:
+        weight: 11
+        enabled: false
+      point_about:
+        weight: 12
+        enabled: false
+      simple_text:
+        weight: 13
+        enabled: false
+      social_link:
+        weight: 14
+        enabled: true
+      text_card:
+        weight: 4
+        enabled: false
+      two_columns:
+        weight: 16
+        enabled: false
+field_type: entity_reference_revisions

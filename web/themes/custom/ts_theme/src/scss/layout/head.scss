@@ -1,0 +1,44 @@
+.region>* {
+  // Adds left and right padding to all child elements of any .region.
+  // Uses !important to override other conflicting styles.
+  padding-left: 1% !important;
+  padding-right: 1% !important;
+}
+
+.region-mobile-header-top > .align-items-center:first-child {
+ // Forces the first child inside the mobile header top region
+  -webkit-box-flex: 1 !important;
+  -webkit-flex-grow: 1 !important;
+  -ms-flex-positive: 1 !important;
+  flex-grow: 1 !important;
+}
+
+.region-mobile-header-bottom {   // Adjusts the menu style specifically for mobile view.
+  background-color: $accent-shade !important;
+
+  a {
+    color: $white !important;
+
+    &:hover {
+      color: $gray-300 !important;
+      background-color: $accent-light !important;
+    }
+  }
+}
+
+.scrolled .header-fixed {
+  // Styles applied to the fixed header when the page is scrolled:
+  // makes it fixed at the top, full width, and ensures it stays on top of other elements.
+
+  background-color: $primary-shade;
+  top: var(--drupal-displace-offset-top);
+  z-index: 10000;
+  max-width: 100%;
+  --bs-gutter-x: 0;
+  left: 0;
+  position: fixed;
+
+  section {
+    border-top: none !important;
+  }
+}

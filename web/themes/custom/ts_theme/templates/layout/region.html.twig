@@ -1,0 +1,12 @@
+{%
+  set classes = [
+    'region',
+    'd-flex justify-content-between align-items-center py-2',
+    'region-' ~ region|clean_class,
+  ]
+%}
+{% if content %}
+  <section{{ attributes.addClass(classes, style).removeClass('row') }}>
+    {{ content }}
+  </section>
+{% endif %}
