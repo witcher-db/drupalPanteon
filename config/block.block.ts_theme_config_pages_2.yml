@@ -9,7 +9,7 @@ dependencies:
 id: ts_theme_config_pages_2
 theme: ts_theme
 region: footer_bottom
-weight: 0
+weight: -6
 provider: null
 plugin: config_pages_block
 settings:

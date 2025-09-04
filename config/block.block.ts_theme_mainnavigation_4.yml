@@ -1,0 +1,25 @@
+uuid: 12342a4d-8f3c-48a3-b82e-e2d233be4754
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - ts_theme
+id: ts_theme_mainnavigation_4
+theme: ts_theme
+region: mobile_header_bottom
+weight: -9
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

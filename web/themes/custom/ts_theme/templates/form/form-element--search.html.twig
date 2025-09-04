@@ -1,0 +1,79 @@
+{%
+  set label_attributes = label_attributes ? label_attributes : create_attribute()
+%}
+
+{% if type == 'checkbox' %}
+  {% set wrapperclass = checkbox_style != 'form-button' ? "form-check" %}
+  {% set labelclass = checkbox_style == 'form-button' ? 'btn btn-outline-primary' : "form-check-label"  %}
+  {% set inputclass = checkbox_style == 'form-button' ? 'btn-check' : "form-check-input" %}
+{% endif %}
+
+{% if type == 'radio' %}
+  {% set wrapperclass = checkbox_style != 'form-button' ? "form-check" %}
+  {% set labelclass = checkbox_style == 'form-button' ? 'btn btn-outline-primary' : "form-check-label"  %}
+  {% set inputclass = checkbox_style == 'form-button' ? 'btn-check' : "form-check-input" %}
+{% endif %}
+
+{%
+  set classes = [
+    'js-form-item',
+    'js-form-type-' ~ type|clean_class,
+    type in ['checkbox', 'radio'] ? type|clean_class : 'form-type-' ~ type|clean_class,
+    type in ['checkbox', 'radio'] ? wrapperclass,
+    checkbox_style == 'form-switch' ? 'form-switch' : '',
+    type in ['checkbox'] ? 'mb-3',
+    'js-form-item-' ~ name|clean_class,
+    'form-item-' ~ name|clean_class,
+    title_display not in ['after', 'before'] ? 'form-no-label',
+    disabled == 'disabled' ? 'disabled',
+    errors ? 'has-error',
+  ]
+%}
+
+{% if title_display == 'invisible' %}
+  {% if labelclass is defined %}
+    {% set labelclass = labelclass ~ ' visually-hidden' %}
+  {% else %}
+    {% set labelclass = 'visually-hidden' %}
+  {% endif %}
+{% endif %}
+
+{%
+  set description_classes = [
+    'description',
+    'text-muted',
+    description_display == 'invisible' ? 'visually-hidden',
+  ]
+%}
+{% if 'form-type-select' not in classes %}
+  <div{{ attributes.addClass(classes, type not in ['date', 'time'] ? 'mb-3', float_label ? 'form-floating') }}>
+    {% if (prefix is not empty) or (suffix is not empty) %}
+      <div class="input-group{{ errors ? ' is-invalid' : '' }}">
+    {% endif %}
+    {% if prefix is not empty %}
+      <span class="input-group-text">{{ prefix }}</span>
+    {% endif %}
+    {% if description_display == 'before' and description.content %}
+      <div{{ description.attributes }}>
+        {{ description.content }}
+      </div>
+    {% endif %}
+    {{ children }}
+    {% if suffix is not empty %}
+      <span class="input-group-text">{{ suffix }}</span>
+    {% endif %}
+    {% if (prefix is not empty) or (suffix is not empty) %}
+      </div>
+    {% endif %}
+    {% if errors %}
+      <div class="invalid-feedback form-item--error-message">
+        {{ errors }}
+      </div>
+    {% endif %}
+    {% if description_display in ['after', 'invisible'] and description.content %}
+      <small{{ description.attributes.addClass(description_classes) }}>
+        {{ description.content }}
+      </small>
+    {% endif %}
+  </div>
+{% endif %}

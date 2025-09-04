@@ -1,8 +1,0 @@
-uuid: a2d8b9e6-1b9e-45c1-8246-671663a9b408
-langcode: en
-status: true
-dependencies: {  }
-id: social_link
-label: 'Social link'
-revision: false
-description: null

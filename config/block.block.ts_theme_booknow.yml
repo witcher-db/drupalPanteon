@@ -1,0 +1,25 @@
+uuid: 595d41ae-b47a-4151-acf5-47367c9eb83e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:button_link:5e0317d4-828f-489f-a285-ad0f80edc1cf'
+  module:
+    - block_content
+  theme:
+    - ts_theme
+id: ts_theme_booknow
+theme: ts_theme
+region: mobile_header_top
+weight: -8
+provider: null
+plugin: 'block_content:5e0317d4-828f-489f-a285-ad0f80edc1cf'
+settings:
+  id: 'block_content:5e0317d4-828f-489f-a285-ad0f80edc1cf'
+  label: 'Book Now'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

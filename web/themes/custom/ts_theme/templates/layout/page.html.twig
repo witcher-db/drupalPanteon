@@ -1,0 +1,15 @@
+<header class="p-0 container-xl d-none d-sm-block">
+  {{ page.header_top }}
+  <div class="header-fixed z-3 container-xl px-0">
+  {{ page.header_bottom }}
+  </div>
+</header>
+<header class="d-block d-sm-none z-3 position-fixed w-100">
+  {{ page.mobile_header_top }}
+  {{ page.mobile_header_bottom }}
+</header>
+{{ page.content }}
+<footer>
+  {{ page.footer_top }}
+  {{ page.footer_bottom }}
+</footer>

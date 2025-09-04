@@ -2,9 +2,9 @@ _core:
   default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
 langcode: en
 uuid: 5c46b0ad-bcd6-47a3-956f-5ef48221189a
-name: TS
+name: 'Trucking '
 mail: drupal-by-Ddev@test.com
-slogan: ''
+slogan: Services
 page:
   403: ''
   404: ''
