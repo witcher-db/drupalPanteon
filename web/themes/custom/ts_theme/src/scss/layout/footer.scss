@@ -1,0 +1,54 @@
+.region-footer-top {
+  ul {
+    flex-direction: column;
+  }
+
+  .field--type-entity-reference {
+    flex-direction: column;
+  }
+
+  h2 {
+    color: $white;
+    font-size: $h4-font-size !important;
+
+    &::before {
+    content: "";
+    background-color: #f17c34;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    padding: 5px;
+    background-clip: content-box;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .block-content-info_taxonomy, .menu--about-company {
+    height: 100%;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .region-footer-top {
+    display: block !important;
+  }
+  .region-footer-bottom {
+    flex-direction: column;
+  }
+}
+
+.block-content-info_taxonomy .content > .field--name-field-info-taxonomy{
+  padding-left: 1rem;
+}
+
+footer {
+  content: "";
+  box-shadow: inset 0 0 0 2000px transparentize($primary-shade, 0.15);
+  background-image: url("../images/xxx_footer_xxx.jpg");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}

@@ -10,6 +10,15 @@
 </header>
 {{ page.content }}
 <footer>
-  {{ page.footer_top }}
-  {{ page.footer_bottom }}
+  <div class="container-xl">
+    <div class="row py-5">
+      <div class="col-md-4 col-12">
+        {{ page.footer_branding }}
+      </div>
+      {{ page.footer_top }}
+    </div>
+    <div class="py-4">
+      {{ page.footer_bottom }}
+    </div>
+  </div>
 </footer>
