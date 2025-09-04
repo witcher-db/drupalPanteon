@@ -11,7 +11,7 @@ dependencies:
 id: ts_theme_mainnavigation_2
 theme: ts_theme
 region: footer_top
-weight: -3
+weight: -9
 provider: null
 plugin: 'system_menu_block:main'
 settings:

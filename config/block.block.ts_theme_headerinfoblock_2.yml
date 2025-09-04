@@ -11,7 +11,7 @@ dependencies:
 id: ts_theme_headerinfoblock_2
 theme: ts_theme
 region: footer_top
-weight: -1
+weight: -7
 provider: null
 plugin: 'block_content:cedc4785-63c2-4464-955b-970db414ea52'
 settings:

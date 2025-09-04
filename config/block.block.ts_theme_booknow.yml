@@ -1,9 +1,9 @@
-uuid: 595d41ae-b47a-4151-acf5-47367c9eb83e
+uuid: bcdec5a5-1d73-4a4e-ba5c-5070855f9990
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:button_link:5e0317d4-828f-489f-a285-ad0f80edc1cf'
+    - 'block_content:button_link:da6d57da-6953-43a5-8ca5-8c9459719442'
   module:
     - block_content
   theme:
@@ -13,9 +13,9 @@ theme: ts_theme
 region: mobile_header_top
 weight: -8
 provider: null
-plugin: 'block_content:5e0317d4-828f-489f-a285-ad0f80edc1cf'
+plugin: 'block_content:da6d57da-6953-43a5-8ca5-8c9459719442'
 settings:
-  id: 'block_content:5e0317d4-828f-489f-a285-ad0f80edc1cf'
+  id: 'block_content:da6d57da-6953-43a5-8ca5-8c9459719442'
   label: 'Book Now'
   label_display: '0'
   provider: block_content

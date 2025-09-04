@@ -1,4 +1,4 @@
-uuid: cde2efe8-cb1a-4e4c-b9f6-0f866af72e05
+uuid: d3869481-fff4-435e-9306-77b3ee5467fd
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ dependencies:
 id: ts_theme_aboutcompany
 theme: ts_theme
 region: footer_top
-weight: -2
+weight: -8
 provider: null
 plugin: 'system_menu_block:about-company'
 settings:
