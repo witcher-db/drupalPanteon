@@ -19,11 +19,23 @@ body {
   }
 }
 
+.field--name-field-info-icon {
+  padding: 5px;
+}
+
 /* COLORS
 --------------------------------------------------*/
 
 a {
   color: $white;
+}
+
+.config_pages {
+  color: $white !important;
+}
+
+.field--name-field-taxonomy-title {
+  color: $white !important;
 }
 
 .bg-inverse {

@@ -8,8 +8,8 @@ dependencies:
     - ts_theme
 id: ts_theme_sitebranding_2
 theme: ts_theme
-region: footer_top
-weight: -5
+region: footer_branding
+weight: -9
 provider: null
 plugin: system_branding_block
 settings:

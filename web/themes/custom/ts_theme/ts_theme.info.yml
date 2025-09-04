@@ -14,5 +14,6 @@ regions:
   mobile_header_top: 'Header mobile top'
   mobile_header_bottom: 'Header mobile bottom'
   content: 'Content'
+  footer_branding: 'Footer branding'
   footer_top: 'Footer top'
   footer_bottom: 'Footer bottoms'

@@ -8,8 +8,8 @@ dependencies:
     - ts_theme
 id: ts_theme_config_pages
 theme: ts_theme
-region: footer_top
-weight: -4
+region: footer_branding
+weight: -8
 provider: null
 plugin: config_pages_block
 settings:
