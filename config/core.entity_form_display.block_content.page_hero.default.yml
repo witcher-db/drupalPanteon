@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - block_content.type.page_hero
+    - field.field.block_content.page_hero.field_background_image
     - field.field.block_content.page_hero.field_button_link
     - field.field.block_content.page_hero.field_info_taxonomy_referens
     - field.field.block_content.page_hero.field_text_body
@@ -15,6 +16,16 @@ targetEntityType: block_content
 bundle: page_hero
 mode: default
 content:
+  field_background_image:
+    type: entity_reference_autocomplete
+    weight: 28
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_button_link:
     type: link_default
     weight: 27

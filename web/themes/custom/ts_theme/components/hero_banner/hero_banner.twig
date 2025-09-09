@@ -1,0 +1,12 @@
+<div style="height: 550px; margin-top: calc(230px - var(--drupal-displace-offset-top, 0)); margin-bottom: 50px" class="container-xl page-hero" {{ attributes }} >
+  <div class="image-wrapper">{{ image }}</div>
+  <div class="container-xl m-0 w-60 p-0">
+    <h2> {{ title }} </h2>
+    {% if description %}
+      <div class="text-slogan"> {{ description }} </div>
+    {% endif %}
+    <div class="m-5 ms-0"> {{ button }} </div>
+    <div> {{ taxonomy }} </div>
+  </div>
+</div>
+{# {{ dd(attributes) }} #}

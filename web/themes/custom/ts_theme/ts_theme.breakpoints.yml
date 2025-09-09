@@ -1,0 +1,21 @@
+ts_theme.modile:
+  label: Modile
+  mediaQuery: 'all'
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x
+ts_theme.tablet:
+  label: Tablet
+  mediaQuery: 'all and (min-width: 800px)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x
+ts_theme.desktop:
+  label: Desktop
+  mediaQuery: 'all and (min-width: 1200px)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x

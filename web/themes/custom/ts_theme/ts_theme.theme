@@ -1,0 +1,16 @@
+<?php
+
+function ts_theme_preprocess_block__block_page_hero(&$variables) {
+  $content = $variables['content'];
+
+  $variables['hero_banner'] = [
+    'title' => $content['field_text_header'] ?? NULL,
+    'description' => $content['field_text_body'] ?? NULL,
+    'button' => $content['field_button_link'] ?? NULL,
+    'taxonomy' => $content['field_info_taxonomy_referens'] ?? NULL,
+    'image' => $content['field_background_image'] ?? NULL,
+  ];
+}
+
+
+

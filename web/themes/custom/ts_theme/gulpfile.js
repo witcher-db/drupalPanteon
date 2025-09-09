@@ -1,6 +1,9 @@
 let gulp = require('gulp'),
+
   sass = require('gulp-sass')(require('sass')),
   sourcemaps = require('gulp-sourcemaps'),
+  cached = require('gulp-cached'),
+  newer = require('gulp-newer'),
   $ = require('gulp-load-plugins')(),
   cleanCss = require('gulp-clean-css'),
   rename = require('gulp-rename'),
@@ -41,13 +44,30 @@ const paths = {
     src: './src/js/custom.js',
     dest: './dest/js',
   },
+  component : {
+    src: './components/**/src/*.scss',
+    watch: './components/**/src/*.scss',
+    dest: './components/',
+  }
 };
+
+function component() {
+  return gulp
+    .src(paths.component.src)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(rename(function(path) {
+      path.dirname = path.dirname.replace('/src', '');
+    }))
+    .pipe(gulp.dest(paths.component.dest));
+}
 
 // Compile sass into CSS & auto-inject into browsers
 function styles() {
   return gulp
     .src([paths.scss.bootstrap, paths.scss.src])
     .pipe(sourcemaps.init())
+    .pipe(cached('styles'))
+    .pipe(newer(paths.scss.dest))
     .pipe(
       sass({
         includePaths: [
@@ -92,16 +112,20 @@ function js() {
 
 // Static Server + watching scss/html files
 function serve() {
-
   gulp
     .watch([paths.scss.watch, paths.scss.bootstrap], styles)
     .on('change', browserSync.reload);
+  gulp
+    .watch(paths.component.watch, component)
+    .on('change', browserSync.reload);
+
 }
 
-const build = gulp.series(styles, gulp.parallel(js, serve));
+const build = gulp.series(styles, gulp.parallel(js, serve, component));
 
 exports.styles = styles;
 exports.js = js;
 exports.serve = serve;
+exports.component = component;
 
 exports.default = build;

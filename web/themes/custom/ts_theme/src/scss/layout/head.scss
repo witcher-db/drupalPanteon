@@ -29,9 +29,8 @@
 .scrolled .header-fixed {
   // Styles applied to the fixed header when the page is scrolled:
   // makes it fixed at the top, full width, and ensures it stays on top of other elements.
-
+  top: var(--drupal-displace-offset-top, 0) !important;
   background-color: $primary-shade;
-  top: var(--drupal-displace-offset-top);
   z-index: 10000;
   max-width: 100%;
   --bs-gutter-x: 0;
@@ -47,4 +46,8 @@
   .container-xl {
     --bs-gutter-x: 0;
   }
+}
+
+header {
+  top: var(--drupal-displace-offset-top, 0) !important;
 }
