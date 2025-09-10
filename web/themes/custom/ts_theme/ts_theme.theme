@@ -1,4 +1,28 @@
 <?php
+/**
+ * @file
+ * TS Theme module file.
+ *
+ * Contains preprocess functions and other hooks to customize the theme behavior.
+ */
+
+/**
+ *
+ * This function prepares a structured array called `hero_banner` which contains
+ * the key fields required by the block template:
+ *   - title
+ *   - description
+ *   - button
+ *   - taxonomy
+ *   - image
+ *
+ *
+ * @param array $variables
+ *   An associative array of variables for the block template:
+ *   - content: The block content render array containing fields.
+ *
+ * @see hero_banner.twig
+ */
 
 function ts_theme_preprocess_block__block_page_hero(&$variables) {
   $content = $variables['content'];
