@@ -1,4 +1,4 @@
-.region>* {
+.region > * {
   // Adds left and right padding to all child elements of any .region.
   // Uses !important to override other conflicting styles.
   padding-left: 1% !important;
@@ -6,14 +6,15 @@
 }
 
 .region-mobile-header-top > .align-items-center:first-child {
- // Forces the first child inside the mobile header top region
+  // Forces the first child inside the mobile header top region
   -webkit-box-flex: 1 !important;
   -webkit-flex-grow: 1 !important;
   -ms-flex-positive: 1 !important;
   flex-grow: 1 !important;
 }
 
-.region-mobile-header-bottom {   // Adjusts the menu style specifically for mobile view.
+.region-mobile-header-bottom {
+  // Adjusts the menu style specifically for mobile view.
   background-color: $accent-shade !important;
 
   a {

@@ -1,6 +1,6 @@
 name: TS theme
 type: theme
-description: 'test drupal theme'
+description: "test drupal theme"
 core_version_requirement: ^10.3 || ^11
 base theme: bootstrap
 
@@ -9,11 +9,11 @@ libraries:
 libraries-override:
   bootstrap/global-styling: false
 regions:
-  header_top: 'Header top'
-  header_bottom: 'Header bottom'
-  mobile_header_top: 'Header mobile top'
-  mobile_header_bottom: 'Header mobile bottom'
-  content: 'Content'
-  footer_branding: 'Footer branding'
-  footer_top: 'Footer top'
-  footer_bottom: 'Footer bottoms'
+  header_top: "Header top"
+  header_bottom: "Header bottom"
+  mobile_header_top: "Header mobile top"
+  mobile_header_bottom: "Header mobile bottom"
+  content: "Content"
+  footer_branding: "Footer branding"
+  footer_top: "Footer top"
+  footer_bottom: "Footer bottoms"

@@ -1,4 +1,7 @@
 .page-hero {
+  margin-bottom: 50px;
+  height: 550px;
+
   img {
     width: 100%;
     height: 100%;
@@ -10,19 +13,23 @@
     max-width: none;
     overflow: hidden;
   }
+
   .vocabulary-info .content {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
     div {
       margin-right: 0.5rem;
     }
+
     .field--name-field-taxonomy-title {
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 700;
       font-size: 18px;
     }
+
     .field--name-field-subtitle {
       font-size: 16px;
       font-weight: 600;
@@ -32,8 +39,8 @@
   .field--name-field-info-taxonomy {
     justify-content: space-between;
   }
-
 }
+
 .image-wrapper {
   z-index: -1;
   width: 100%;
@@ -51,6 +58,11 @@
     position: absolute;
     content: "";
     background: #181923;
-    background: linear-gradient(180deg,rgba(24, 25, 35, 1) 0%, rgba(24, 25, 35, 0) 30%, rgba(255, 255, 255, 0.02) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(24, 25, 35, 1) 0%,
+      rgba(24, 25, 35, 0) 30%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
   }
 }

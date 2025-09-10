@@ -1,0 +1,15 @@
+uuid: 96d33a09-e072-48f9-b50d-4eba52b01dd8
+langcode: en
+status: true
+dependencies: {  }
+name: modile_x2
+label: 'Modile X2'
+effects:
+  18e4eb7f-64ba-4dc7-b9c8-9c83dec9f704:
+    uuid: 18e4eb7f-64ba-4dc7-b9c8-9c83dec9f704
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 640
+      height: 480
+      anchor: center-center

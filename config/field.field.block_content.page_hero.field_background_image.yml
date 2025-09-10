@@ -5,7 +5,7 @@ dependencies:
   config:
     - block_content.type.page_hero
     - field.storage.block_content.field_background_image
-    - media.type.image
+    - media.type.banner
 id: block_content.page_hero.field_background_image
 field_name: field_background_image
 entity_type: block_content
@@ -20,7 +20,7 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      image: image
+      banner: banner
     sort:
       field: _none
       direction: ASC

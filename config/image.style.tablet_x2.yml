@@ -1,0 +1,15 @@
+uuid: ef3ea67a-373f-4863-ba80-a5fb3e2a1d54
+langcode: en
+status: true
+dependencies: {  }
+name: tablet_x2
+label: 'Tablet X2'
+effects:
+  a2b125c6-c858-47f0-8abe-cc5ba5f56919:
+    uuid: a2b125c6-c858-47f0-8abe-cc5ba5f56919
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1600
+      height: 1200
+      anchor: center-center

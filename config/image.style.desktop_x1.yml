@@ -1,0 +1,15 @@
+uuid: 0eb648df-0abe-4ae7-a1a8-8cadf89c775b
+langcode: en
+status: true
+dependencies: {  }
+name: desktop_x1
+label: 'Desktop X1'
+effects:
+  3a80d327-3f12-4151-a423-a078893e3c0a:
+    uuid: 3a80d327-3f12-4151-a423-a078893e3c0a
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1240
+      height: 1000
+      anchor: center-center

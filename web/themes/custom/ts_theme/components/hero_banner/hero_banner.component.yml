@@ -14,10 +14,3 @@ slots:
     title: Button
   taxonomy:
     title: Taxonome reference
-
-libraryOverrides:
-  # Once you add a key in the overrides, you take control of it. What you
-  # type here is what will end up in the library component.
-  dependencies:
-    - core/drupal
-    - core/once
