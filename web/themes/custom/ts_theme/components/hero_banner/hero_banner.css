@@ -1,0 +1,56 @@
+.page-hero {
+  margin-bottom: 50px;
+  height: 550px;
+}
+.page-hero img {
+  width: 100%;
+  height: 100%;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  object-fit: cover;
+  max-width: none;
+  overflow: hidden;
+}
+.page-hero .vocabulary-info .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.page-hero .vocabulary-info .content div {
+  margin-right: 0.5rem;
+}
+.page-hero .vocabulary-info .content .field--name-field-taxonomy-title {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 18px;
+}
+.page-hero .vocabulary-info .content .field--name-field-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+}
+.page-hero .field--name-field-info-taxonomy {
+  justify-content: space-between;
+}
+
+.image-wrapper {
+  z-index: -1;
+  width: 100%;
+  height: 800px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.image-wrapper::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  content: "";
+  background: #181923;
+  background: linear-gradient(180deg, #181923 0%, rgba(24, 25, 35, 0) 30%, rgba(255, 255, 255, 0.02) 100%);
+}

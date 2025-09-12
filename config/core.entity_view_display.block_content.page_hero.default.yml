@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - block_content.type.page_hero
+    - field.field.block_content.page_hero.field_background_image
     - field.field.block_content.page_hero.field_button_link
     - field.field.block_content.page_hero.field_info_taxonomy_referens
     - field.field.block_content.page_hero.field_text_body
@@ -15,6 +16,19 @@ targetEntityType: block_content
 bundle: page_hero
 mode: default
 content:
+  field_background_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: '1'
+    weight: 2
+    region: content
   field_button_link:
     type: link
     label: hidden
@@ -51,4 +65,5 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

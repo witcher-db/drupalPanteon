@@ -60,3 +60,9 @@ $btn-border-radius: 0;
 $nav-link-color: $white;
 $btn-padding-y: 16px;
 $btn-line-height: 14px;
+
+$container-max-widths: (
+  sm: 750px,
+  lg: 1380px,
+  xl: 1140px,
+);

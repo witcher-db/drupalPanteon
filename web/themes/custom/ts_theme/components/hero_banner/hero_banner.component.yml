@@ -1,0 +1,16 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+# The human readable name.
+name: Hero banner
+
+# Slots always hold arbitrary markup. We know that beforehand, so no need
+# for a schema for slots.
+slots:
+  title:
+    title: Title
+  description:
+    title: Description
+  button:
+    title: Button
+  taxonomy:
+    title: Taxonome reference

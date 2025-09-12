@@ -7,7 +7,11 @@ Description: Bootstrap 4 with Sass
 @import "import";
 
 /* GENERAL STYLES
--------------------------------------------------*/
+------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
 
 body {
   background: $body-bg;
@@ -23,8 +27,70 @@ body {
   padding: 5px;
 }
 
+.node--type-landing-page.contextual-region {
+  position: static !important;
+}
+
+.h-0 {
+  height: 0;
+}
+
+.w-60 {
+  width: 60% !important;
+}
+
+@include media-breakpoint-down(sm) {
+  .w-60 {
+    width: 100% !important;
+  }
+
+  .field--name-field-info-taxonomy {
+    flex-direction: column;
+
+    & > * {
+      padding: 0.5rem;
+    }
+  }
+
+  .m-5 {
+    margin: 1rem !important;
+    margin-left: 0 !important;
+  }
+
+  .node__content {
+    padding: 10px;
+  }
+}
+
+.node__content {
+  margin: 0;
+}
+
+h2 {
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 800;
+  color: $white;
+  line-height: clamp(32px, 5vw, 74px);
+}
+
+.text-slogan {
+  font-size: 18px;
+  font-weight: 400;
+  color: $white;
+  line-height: 32px;
+}
+
+.vocabulary-info {
+  color: $white;
+}
+
+.tabs {
+  position: fixed;
+  bottom: 0;
+}
+
 /* COLORS
---------------------------------------------------*/
+-------------------------------------------------- */
 
 a {
   color: $white;
@@ -57,13 +123,17 @@ a {
 }
 
 .card-group .field--type-image {
-  margin: 0
+  margin: 0;
 }
 
 .slick {
   width: 100%;
 }
 
-.slick>div {
+.slick > div {
   margin: 0 15px;
+}
+
+.contextual-region {
+  position: static;
 }

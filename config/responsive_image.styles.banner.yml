@@ -1,0 +1,48 @@
+uuid: 8a16e1d1-6590-4969-91ec-19b076dc5ccc
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.desktop_x1
+    - image.style.desktop_x2
+    - image.style.modile_x1
+    - image.style.modile_x2
+    - image.style.tablet_x1
+    - image.style.tablet_x2
+  theme:
+    - ts_theme
+id: banner
+label: Banner
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: desktop_x1
+    breakpoint_id: ts_theme.desktop
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: tablet_x1
+    breakpoint_id: ts_theme.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: modile_x1
+    breakpoint_id: ts_theme.modile
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: desktop_x2
+    breakpoint_id: ts_theme.desktop
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: tablet_x2
+    breakpoint_id: ts_theme.tablet
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: modile_x2
+    breakpoint_id: ts_theme.modile
+    multiplier: 2x
+breakpoint_group: ts_theme
+fallback_image_style: modile_x1

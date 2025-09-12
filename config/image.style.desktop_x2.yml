@@ -1,0 +1,15 @@
+uuid: a20300f5-3b79-4d33-b42e-6eec1daaaa64
+langcode: en
+status: true
+dependencies: {  }
+name: desktop_x2
+label: 'Desktop x2'
+effects:
+  5f062410-264b-4ff1-a13e-f1f96ef5d76e:
+    uuid: 5f062410-264b-4ff1-a13e-f1f96ef5d76e
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 2560
+      height: 1000
+      anchor: center-center
