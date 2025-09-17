@@ -14,7 +14,7 @@ global-styling:
 statistic-block:
   css:
     theme:
-      ./dest/css/content/block/statistic_block.css: {}
+      dest/css/content/block/statistic_block.css: {}
   js:
-    ./dest/js/content/statistic_block.js: {}
+    dest/js/content/statistic_block.js: {}
 

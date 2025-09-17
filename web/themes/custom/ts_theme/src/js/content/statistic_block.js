@@ -4,8 +4,6 @@
     attach: (context, settings) => {
       once('statisticBlock', '.statistic-block-layout', context)
         .forEach((element) => {
-          let block;
-
           const options = {
             root: null,
             rootMargin: '0px',
@@ -15,16 +13,15 @@
           const callback = (entries, observer) => {
             entries.forEach(entry => {
               if (entry.isIntersecting) {
-                block.style.opacity = 1;
+                element.style.opacity = 1;
               } else {
-                block.style.opacity = 0;
+                element.style.opacity = 0;
               }
             });
           };
 
-          block = element;
           const observer = new IntersectionObserver(callback, options);
-          observer.observe(block);
+          observer.observe(element);
       });
     }
   };
