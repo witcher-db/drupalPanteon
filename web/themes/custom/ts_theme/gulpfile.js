@@ -11,6 +11,7 @@ let gulp = require("gulp"),
   postcssInlineSvg = require("postcss-inline-svg"),
   browserSync = require("browser-sync").create(),
   pxtorem = require("postcss-pxtorem"),
+  uglify = require('gulp-uglify');
   postcssProcessors = [
     postcssInlineSvg({
       removeFill: true,
@@ -73,6 +74,7 @@ function component() {
 function drupalBehavior() {
   return gulp
     .src(paths.drupalBehavior.src)
+    .pipe(uglify())
     .pipe(gulp.dest(paths.drupalBehavior.dest, { sourcemaps: true }));
 }
 
