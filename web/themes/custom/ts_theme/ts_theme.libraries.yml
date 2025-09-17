@@ -11,3 +11,10 @@ global-styling:
   dependencies:
     - core/jquery
     - core/drupal
+statistic-block:
+  css:
+    theme:
+      ./dest/css/content/block/statistic_block.css: {}
+  js:
+    ./dest/js/content/statistic_block.js: {}
+

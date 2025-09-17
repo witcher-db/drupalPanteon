@@ -48,6 +48,14 @@ const paths = {
     watch: "./components/**/src/*.scss",
     dest: "./components/",
   },
+  content: {
+    sass: "./src/scss/content/**/*.scss",
+    dest: "./dest/css/content/",
+  },
+  drupalBehavior: {
+    src: "./src/js/content/*.js",
+    dest: "./dest/js/content/",
+  }
 };
 
 function component() {
@@ -60,6 +68,21 @@ function component() {
       }),
     )
     .pipe(gulp.dest(paths.component.dest));
+}
+
+function drupalBehavior() {
+  return gulp
+    .src(paths.drupalBehavior.src)
+    .pipe(gulp.dest(paths.drupalBehavior.dest, { sourcemaps: true }));
+}
+
+function content() {
+  return gulp
+    .src(paths.content.sass)
+    .pipe(cached("content"))
+    .pipe(newer(paths.scss.dest))
+    .pipe(sass().on("error", sass.logError))
+    .pipe(gulp.dest(paths.content.dest, { sourcemaps: true }));
 }
 
 // Compile sass into CSS & auto-inject into browsers
@@ -117,13 +140,17 @@ function serve() {
     .watch([paths.scss.watch, paths.scss.bootstrap], styles)
     .on("change", browserSync.reload);
   gulp.watch(paths.component.watch, component).on("change", browserSync.reload);
+  gulp.watch(paths.content.sass, content).on("change", browserSync.reload);
+  gulp.watch(paths.drupalBehavior.src, drupalBehavior).on("change", browserSync.reload);
 }
 
-const build = gulp.series(styles, gulp.parallel(js, serve, component));
+const build = gulp.series(styles, gulp.parallel(drupalBehavior, js, serve, component, content));
 
 exports.styles = styles;
 exports.js = js;
 exports.serve = serve;
 exports.component = component;
+exports.content = content;
+exports.drupalBehavior = drupalBehavior;
 
 exports.default = build;
