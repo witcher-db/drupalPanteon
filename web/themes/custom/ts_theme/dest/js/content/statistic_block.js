@@ -1,0 +1,1 @@
+((t,s)=>{t.behaviors.statisticBlock={attach:(t,o)=>{s("statisticBlock",".statistic-block-layout",t).forEach(s=>{new IntersectionObserver((t,o)=>{t.forEach(t=>{t.isIntersecting?s.style.opacity=1:s.style.opacity=0})},{root:null,rootMargin:"0px",threshold:.9}).observe(s)})}}})(Drupal,once);

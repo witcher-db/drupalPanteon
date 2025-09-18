@@ -1,0 +1,14 @@
+@mixin square-dot-before {
+  &::before {
+    margin-right: 5px;
+    content: "";
+    background-color: #f17c34;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    padding: 5px;
+    background-clip: content-box;
+  }
+}
