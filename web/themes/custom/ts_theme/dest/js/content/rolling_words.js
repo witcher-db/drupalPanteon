@@ -1,0 +1,1 @@
+((e,l)=>{e.behaviors.rollingWords={attach:(e,r)=>{l("rollingWords",".field--name-field-text-slider",e).forEach(r=>{var l=r.innerText;for(let e=0;e<4;e++)r.innerText+=l})}}})(Drupal,once);
