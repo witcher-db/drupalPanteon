@@ -1,17 +1,16 @@
-uuid: 3f7bd897-5a3b-48ec-b83a-050bbf702902
+uuid: 71f01390-8410-40a5-b91c-bae1b247cb73
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.image_block
-    - field.storage.block_content.field_background_image
+    - field.storage.block_content.field_back_image
     - media.type.banner
-    - media.type.image
-id: block_content.image_block.field_background_image
-field_name: field_background_image
+id: block_content.image_block.field_back_image
+field_name: field_back_image
 entity_type: block_content
 bundle: image_block
-label: 'Background image'
+label: 'Back image'
 description: ''
 required: false
 translatable: false
@@ -22,10 +21,9 @@ settings:
   handler_settings:
     target_bundles:
       banner: banner
-      image: image
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: banner
+    auto_create_bundle: ''
 field_type: entity_reference

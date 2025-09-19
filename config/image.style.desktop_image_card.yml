@@ -1,0 +1,15 @@
+uuid: 7e212d66-b85d-40c5-b355-c1d140c1d73d
+langcode: en
+status: true
+dependencies: {  }
+name: desktop_image_card
+label: 'Desktop (Image card)'
+effects:
+  397301ed-a09d-411e-a1bf-88ae3a52e848:
+    uuid: 397301ed-a09d-411e-a1bf-88ae3a52e848
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 500
+      height: 560
+      anchor: center-center

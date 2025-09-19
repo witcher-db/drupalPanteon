@@ -1,0 +1,15 @@
+uuid: 45060c28-83fc-402a-8612-139afa855603
+langcode: en
+status: true
+dependencies: {  }
+name: mobile_image_card
+label: 'Mobile (Image card)'
+effects:
+  9c6761a6-ce32-4ce0-b4ed-cbc00888d3d4:
+    uuid: 9c6761a6-ce32-4ce0-b4ed-cbc00888d3d4
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 330
+      height: 370
+      anchor: center-center
