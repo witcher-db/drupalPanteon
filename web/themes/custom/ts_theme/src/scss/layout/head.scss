@@ -31,7 +31,7 @@
   // makes it fixed at the top, full width, and ensures it stays on top of other elements.
 
   background-color: $primary-shade;
-  top: var(--drupal-displace-offset-top);
+  top: var(--drupal-displace-offset-top, 0px);
   z-index: 10000;
   max-width: 100%;
   --bs-gutter-x: 0;
