@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .layout--twocol-section--50-50:has(.block-content-information_block) {
   max-width: map.get($container-max-widths, xl);
   margin-left: auto;
