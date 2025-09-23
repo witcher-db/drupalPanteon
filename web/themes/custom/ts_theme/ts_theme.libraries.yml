@@ -11,3 +11,7 @@ global-styling:
   dependencies:
     - core/jquery
     - core/drupal
+    - core/once
+swiper:
+  js:
+    node_modules/swiper/swiper-bundle.min.js: {}

@@ -11,9 +11,12 @@ dependencies:
     - field.field.node.person.field_subtitle
     - field.field.node.person.field_team_member
     - field.field.node.person.field_title
+    - image.style.thumbnail
     - node.type.person
   module:
-    - link
+    - media
+    - nomarkup
+    - options
     - user
 id: node.person.default
 targetEntityType: node
@@ -21,13 +24,26 @@ bundle: person
 mode: default
 content:
   field_profile_photo:
-    type: entity_reference_entity_view
+    type: media_thumbnail
     label: hidden
     settings:
-      view_mode: default
-      link: false
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      nomarkup:
+        enabled: false
+        separator: '|'
+        referenced_entity: ''
+    weight: 0
+    region: content
+  field_quantity_of_stars:
+    type: list_key
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_short_text:
     type: string
@@ -35,28 +51,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 5
-    region: content
-  field_social_links:
-    type: link
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 3
-    region: content
-  field_social_links_icons:
-    type: entity_reference_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    weight: 4
+    weight: 2
     region: content
   field_subtitle:
     type: string
@@ -64,7 +59,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 4
     region: content
   field_title:
     type: string
@@ -72,9 +67,12 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    weight: 3
     region: content
 hidden:
-  field_quantity_of_stars: true
+  addtoany: true
+  field_social_links: true
+  field_social_links_icons: true
   field_team_member: true
   links: true
+  search_api_excerpt: true
