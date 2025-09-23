@@ -1,5 +1,7 @@
 /* VARIABLES */
 .block-content-rolling_words {
+  position: relative;
+  z-index: 2;
   text-wrap: nowrap;
   font-size: 48px;
   font-style: italic;
@@ -8,6 +10,7 @@
   overflow: hidden;
   padding-top: 30px;
   padding-bottom: 30px;
+  margin-bottom: 30px;
   border-bottom: var(--bs-border-color) 1px solid;
 }
 .block-content-rolling_words .field--name-field-text-slider {
