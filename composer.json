@@ -38,7 +38,8 @@
         "drupal/search_api": "^1.38",
         "drupal/bootstrap": "^5.0",
         "drupal/nomarkup": "^1.0",
-        "drupal/focal_point": "^2.1"
+        "drupal/focal_point": "^2.1",
+        "drupal/media_responsive_thumbnail": "^2.0"
     },
     "require-dev": {
         "drupal/core-dev": "^11"
