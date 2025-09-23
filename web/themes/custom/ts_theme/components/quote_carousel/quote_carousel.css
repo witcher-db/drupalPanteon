@@ -1,10 +1,4 @@
 /* VARIABLES */
-:root {
-  --swiper-theme-color: $black;
-  --swiper-navigation-size: 50px;
-}
-
-/* file for css variables */
 .layout__region--content:has(.block-content-reviews_block) {
   background-color: rgba(241, 124, 52, 0.05);
   padding-top: 30px;

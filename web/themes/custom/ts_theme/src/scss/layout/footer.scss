@@ -11,17 +11,7 @@
     color: $white;
     font-size: $h4-font-size !important;
 
-    &::before {
-    content: "";
-    background-color: #f17c34;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    position: relative;
-    top: 3px;
-    padding: 5px;
-    background-clip: content-box;
-    }
+    @include square-dot-before;
   }
 }
 
@@ -35,6 +25,7 @@
   .region-footer-top {
     display: block !important;
   }
+
   .region-footer-bottom {
     flex-direction: column;
   }

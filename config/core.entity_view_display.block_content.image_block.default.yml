@@ -4,21 +4,45 @@ status: true
 dependencies:
   config:
     - block_content.type.image_block
+    - field.field.block_content.image_block.field_back_image
     - field.field.block_content.image_block.field_background_image
     - field.field.block_content.image_block.field_subtitle
     - field.field.block_content.image_block.field_title
+    - responsive_image.styles.image_card
+  module:
+    - media_responsive_thumbnail
+    - nomarkup
 id: block_content.image_block.default
 targetEntityType: block_content
 bundle: image_block
 mode: default
 content:
-  field_background_image:
+  field_back_image:
     type: entity_reference_entity_view
     label: hidden
     settings:
-      view_mode: default
+      view_mode: full
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      nomarkup:
+        enabled: false
+        separator: '|'
+        referenced_entity: '0'
+    weight: 3
+    region: content
+  field_background_image:
+    type: media_responsive_thumbnail
+    label: hidden
+    settings:
+      responsive_image_style: image_card
+      image_link: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      nomarkup:
+        enabled: false
+        separator: '|'
+        referenced_entity: ''
     weight: 2
     region: content
   field_subtitle:
@@ -27,7 +51,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_title:
     type: string
@@ -35,6 +59,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

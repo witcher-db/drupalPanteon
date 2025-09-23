@@ -15,3 +15,15 @@ global-styling:
 swiper:
   js:
     node_modules/swiper/swiper-bundle.min.js: {}
+statistic-block:
+  css:
+    theme:
+      dest/css/content/block/statistic_block.css: {}
+  js:
+    dest/js/content/statistic_block.js: {}
+rolling-words:
+  css:
+    theme:
+      dest/css/content/block/rolling_words.css: {}
+  js:
+    dest/js/content/rolling_words.js: {}

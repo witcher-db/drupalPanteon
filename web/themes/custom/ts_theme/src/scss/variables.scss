@@ -1,8 +1,5 @@
 /* VARIABLES */
 
-@import "root"; /* file for css variables */
-
-
 // colors
 $primary-shade: #181923;
 $primary-light: tint-color($primary-shade, 37%);
@@ -70,3 +67,11 @@ $container-max-widths: (
   xl: 1140px,
 );
 
+$grid-breakpoints: (
+  xs: 0,
+  sm: 650px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
