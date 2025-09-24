@@ -1,7 +1,20 @@
+# Schema reference for validation.
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 
-# The human readable name.
+# Human-readable name of the component.
 name: Quote layout carousel
+
+# Optional description.
+description: A Swiper-based carousel for displaying quotes.
+
+# Library dependencies.
 libraryOverrides:
   dependencies:
     - ts_theme/swiper
+
+# Slots allow content injection into the component.
+slots:
+  item:
+    title: Item
+    description: The slides/content of the carousel
+    required: true

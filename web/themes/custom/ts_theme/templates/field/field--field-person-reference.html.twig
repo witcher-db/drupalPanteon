@@ -1,1 +1,8 @@
-{{ include('ts_theme:quote_carousel') }}
+{{ include('ts_theme:quote_carousel', {
+  items: items,
+  field_name: field_name,
+  field_type: field_type,
+  label_display: label_display,
+  multiple: multiple,
+  attributes: create_attribute()
+}, only) }}
