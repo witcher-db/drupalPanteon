@@ -2,4 +2,6 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schema
 
 # The human readable name.
 name: Quote layout carousel
-
+libraryOverrides:
+  dependencies:
+    - ts_theme/swiper
