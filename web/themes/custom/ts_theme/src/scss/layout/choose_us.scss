@@ -1,0 +1,30 @@
+@use "../mixins";
+
+
+.layout--twocol-section--50-50:has(.block-content-highlights) {
+  .block-content-highlights {
+    .field--name-field-tag {
+      max-width: fit-content;
+      border-left: solid;
+      margin-left: 0;
+    }
+
+    .field--name-field-short-text {
+      color: $gray-600;
+    }
+  }
+
+  .paragraph--type--text-card {
+    .field--name-field-lebel {
+      @include mixins.square-dot-before;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .field--name-field-text-paragraph {
+      color: $gray-600;
+    }
+  }
+}
