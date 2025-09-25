@@ -4,6 +4,7 @@ Description: Bootstrap 4 with Sass
 */
 
 // import files
+@use "sass:map";
 @import "import";
 
 /* GENERAL STYLES
@@ -88,6 +89,34 @@ h2 {
   position: fixed;
   bottom: 0;
 }
+
+.field--name-field-tag {
+  color: $primary;
+  background-color: transparentize($primary, 0.95);
+  padding: 10px;
+  margin: 10px;
+  border: $primary, 5px;
+  font-size: clamp(14px, 1vw, 18px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.layout--twocol-section--50-50 {
+  max-width: map.get($container-max-widths, xl);
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 3rem;
+  padding-bottom: 3px;
+}
+
+.field--name-field-label {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: clamp(26px, 5vw, 36px);
+  font-weight: 800;
+  line-height: clamp(24px, 5vw, 42px);
+}
+
 
 /* COLORS
 -------------------------------------------------- */
