@@ -4,6 +4,7 @@ Description: Bootstrap 4 with Sass
 */
 
 // import files
+@use "sass:map";
 @import "import";
 
 /* GENERAL STYLES
