@@ -9,14 +9,7 @@
 
 
   .field--name-field-tag {
-    color: $primary;
-    background-color: transparentize($primary, 0.95);
-    padding: 10px;
-    margin: 10px;
-    border: $primary, 5px;
     border-bottom: solid;
-    font-size: clamp(14px, 1vw, 18px);
-    font-weight: 700;
   }
 
   .field--name-field-label {
