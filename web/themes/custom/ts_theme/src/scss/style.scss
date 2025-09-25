@@ -4,6 +4,7 @@ Description: Bootstrap 4 with Sass
 */
 
 // import files
+@use "sass:map";
 @import "import";
 
 /* GENERAL STYLES
@@ -116,7 +117,6 @@ h2 {
   line-height: clamp(24px, 5vw, 42px);
 }
 
-
 /* COLORS
 -------------------------------------------------- */
 
@@ -125,10 +125,6 @@ a {
 }
 
 .config_pages {
-  color: $white !important;
-}
-
-.field--name-field-taxonomy-title {
   color: $white !important;
 }
 
