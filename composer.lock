@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a79efa8b6f76f64fd19036c8c2ffc316",
+    "content-hash": "e6b3784d3e0723c8d280d3687c8cf371",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2202,6 +2202,56 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/layout_builder_restrictions",
                 "issues": "https://www.drupal.org/project/issues/layout_builder_restrictions"
+            }
+        },
+        {
+            "name": "drupal/media_responsive_thumbnail",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/media_responsive_thumbnail.git",
+                "reference": "2.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/media_responsive_thumbnail-2.0.1.zip",
+                "reference": "2.0.1",
+                "shasum": "2d18bfdee3c4663348c6481e9ccee379b7612bd9"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.1",
+                    "datestamp": "1744023679",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Vidusenko (yoruvo)",
+                    "homepage": "https://www.drupal.org/u/yoruvo",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "yoruvo",
+                    "homepage": "https://www.drupal.org/user/2989799"
+                }
+            ],
+            "description": "Media Responsive Thumbnail",
+            "homepage": "https://www.drupal.org/project/media_responsive_thumbnail",
+            "support": {
+                "source": "https://git.drupalcode.org/project/media_responsive_thumbnail",
+                "issues": "https://www.drupal.org/project/issues/2980066"
             }
         },
         {
@@ -13393,13 +13443,13 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "drupal/viewsreference": 10,
-        "pantheon-upstreams/upstream-configuration": 20
+        "pantheon-upstreams/upstream-configuration": 20,
+        "drupal/viewsreference": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.3.11"
     },

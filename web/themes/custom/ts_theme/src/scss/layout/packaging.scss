@@ -1,12 +1,15 @@
+@use "sass:map";
+
 .layout--twocol-section--50-50:has(.block-content-information_block) {
-  max-width: map.get($container-max-widths, xl);
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 3rem;
-  padding-bottom: 3px;
   outline: solid $white 5rem;
   outline-offset: -1px;
   background: $white;
+
+  .layout__region--second {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+  }
 
   .block-content-information_block {
     height: 100%;
@@ -34,13 +37,17 @@
 
   .field--name-field-background-image {
     height: 560px;
-    max-width: 500px;
+    max-width: 450px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
 
+    picture {
+      height: 100%;
+    }
+
     img {
-      height: auto;
+      height: 100%;
       object-fit: cover;
       overflow: hidden;
     }
@@ -48,8 +55,8 @@
 
   .field--name-field-multi-paragraph {
     display: grid;
-    grid-template-columns: 50% 50%;
-    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(15px, 2vw, 30px);;
 
     & > .field__item {
       background-color: transparentize($primary, 0.95);
@@ -59,6 +66,7 @@
       align-items: center;
       display: flex;
       justify-content: center;
+      text-wrap: nowrap;
 
       & > .paragraph {
         display: flex;
@@ -72,6 +80,7 @@
       }
 
       img {
+        padding: 5px;
         margin: 5px;
         max-width: 50px;
         max-height: 50px;
@@ -102,6 +111,10 @@
     outline: none;
     flex-direction: column-reverse;
     background: none;
+
+    .layout__region--second {
+      align-items: center;
+    }
 
     .field--name-field-background-image {
       height: fit-content;
