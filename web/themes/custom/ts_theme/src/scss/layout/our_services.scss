@@ -51,6 +51,18 @@
       justify-content: center;
       width: fit-content;
       height: 100%;
+
+      &::before {
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 10px);
+        content: "";
+        z-index: 1;
+        background: linear-gradient(0deg,rgba(24, 25, 35, 1) 0%, rgba(24, 25, 35, 0) 50%, rgba(255, 255, 255, 0.12) 100%);
+      }
     }
 
     img {
@@ -58,23 +70,24 @@
       height: -webkit-fill-available;
       width: 460px;
       aspect-ratio: 3 / 4;
+
     }
 
 
     .field--name-field-subtitle, .field--name-field-title {
-      box-shadow: 0px 0px 15px 4px $black;
-      background-color: transparentize($black, 0.29);
+      text-align: center;
       font-size: 16px;
       border-radius: 2px;
       position: absolute;
-      bottom: 20px;
+      bottom: 30px;
       color: $primary;
+      z-index: 2;
     }
 
     .field--name-field-title {
       font-size: clamp(16px, 2vw, 22px);
       color: $white;
-      bottom: 45px;
+      bottom: 55px;
     }
   }
 }
