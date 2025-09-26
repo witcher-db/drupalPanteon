@@ -112,6 +112,10 @@
     flex-direction: column-reverse;
     background: none;
 
+    .layout__region--second {
+      align-items: center;
+    }
+
     .field--name-field-background-image {
       height: fit-content;
 
