@@ -16,11 +16,33 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      twig: 'twig',
+    },
+  },
   plugins: [
     twig({
       namespaces: {
         components: join(__dirname, "../components"),
       },
+      importContext: true, // Enable proper context handling for imports
+      twigOptions: {
+        allowInlineIncludes: true,
+        namespaces: {
+          components: join(__dirname, "../components"),
+        }
+      },
+      // Add explicit twig import handling
+      transformInclude: (id) => id.endsWith('.twig'),
+      transform: (code, id) => {
+        if (id.endsWith('.twig')) {
+          return {
+            code: `import 'twig'; export default ${code}`,
+            map: null
+          };
+        }
+      }
     }),
   ],
 });
