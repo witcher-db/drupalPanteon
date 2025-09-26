@@ -1,0 +1,19 @@
+uuid: 95dc4966-4ef8-418c-bc81-43b4a50770e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.desktop_image_card
+    - image.style.mobile_image_card
+  theme:
+    - ts_theme
+id: image_card
+label: 'Image card'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: desktop_image_card
+    breakpoint_id: ts_theme.tablet
+    multiplier: 1x
+breakpoint_group: ts_theme
+fallback_image_style: mobile_image_card

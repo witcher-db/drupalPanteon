@@ -1,0 +1,37 @@
+@use 'sass:map';
+@use "../../mixins";
+@use "../../variables" as vars;
+
+
+.statistic-block-layout {
+  transition: 0.5s;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  & > *{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .field--name-field-lebel {
+    font-size: 36px;
+    font-weight: 800;
+  }
+
+  .field--name-field-subtitle {
+    @include mixins.square-dot-before;
+  }
+}
+
+
+@media (max-width: map.get(vars.$container-max-widths, sm)) {
+  .statistic-block-layout > * {
+    flex-direction: column;
+
+    .field--name-field-lebel {
+      font-size: 30px;
+    };
+  }
+}
+
+

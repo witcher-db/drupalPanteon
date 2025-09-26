@@ -15,7 +15,8 @@
     "@storybook/addon-docs": "^9.1.5",
     "@storybook/html-vite": "^9.1.5",
     "vite": "^7.1.2",
-    "vite-plugin-twig-drupal": "^1.6.2"
+    "vite-plugin-twig-drupal": "^1.6.2",
+    "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
     "node": "^24.8.0",
@@ -31,6 +32,7 @@
     "gulp-autoprefixer": "^9.0.0",
     "gulp-cached": "^1.1.1",
     "gulp-clean-css": "3.9.4",
+    "gulp-cli": "^3.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-html-replace": "^1.6.2",
     "gulp-load-plugins": "^2.0.4",
@@ -40,7 +42,6 @@
     "gulp-sass": "^5.0.0",
     "gulp-scss-lint": "^1.0.0",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.0",
     "merge-stream": "^1.0.1",
     "postcss-inline-svg": "^6.0.0",
     "postcss-pxtorem": "^6.1.0",

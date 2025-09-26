@@ -5,6 +5,8 @@ dependencies:
   config:
     - block_content.type.reviews_block
     - field.field.block_content.reviews_block.field_person_reference
+  module:
+    - nomarkup
 id: block_content.reviews_block.default
 targetEntityType: block_content
 bundle: reviews_block
@@ -15,8 +17,13 @@ content:
     label: hidden
     settings:
       view_mode: default
-      link: true
-    third_party_settings: {  }
+      link: false
+    third_party_settings:
+      nomarkup:
+        enabled: false
+        separator: '|'
+        referenced_entity: '0'
     weight: 0
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.image_block
     - field.storage.block_content.field_background_image
+    - media.type.banner
     - media.type.image
 id: block_content.image_block.field_background_image
 field_name: field_background_image
@@ -12,7 +13,7 @@ entity_type: block_content
 bundle: image_block
 label: 'Background image'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -20,10 +21,11 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
+      banner: banner
       image: image
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: banner
 field_type: entity_reference

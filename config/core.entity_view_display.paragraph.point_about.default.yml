@@ -6,6 +6,8 @@ dependencies:
     - field.field.paragraph.point_about.field_lebel
     - field.field.paragraph.point_about.field_paragraph_image
     - paragraphs.paragraphs_type.point_about
+  module:
+    - nomarkup
 id: paragraph.point_about.default
 targetEntityType: paragraph
 bundle: point_about
@@ -23,9 +25,14 @@ content:
     type: entity_reference_entity_view
     label: hidden
     settings:
-      view_mode: default
+      view_mode: full
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      nomarkup:
+        enabled: true
+        separator: '|'
+        referenced_entity: '1'
     weight: 0
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

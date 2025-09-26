@@ -1,0 +1,42 @@
+@use 'sass:map';
+@use "../../mixins";
+@use "../../variables" as vars;
+
+
+.block-content-rolling_words {
+  position: relative;
+  z-index: 2;
+  text-wrap: nowrap;
+  font-size: 48px;
+  font-style: italic;
+  font-weight: 800;
+  color: vars.$primary;
+  overflow: hidden;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: var(--bs-border-color) 1px solid;
+
+  .field--name-field-text-slider {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: rolling-Text;
+    animation-duration: 10s;
+  }
+}
+
+@keyframes rolling-Text {
+  from {
+    margin-left: 0%;
+  }
+
+  to {
+    margin-left: -500px;
+  }
+}
+
+@media (max-width: map.get(vars.$container-max-widths, sm)) {
+  .block-content-rolling_words {
+    font-size: 30px;
+  };
+}

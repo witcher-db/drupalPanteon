@@ -1,0 +1,152 @@
+@use "sass:map";
+
+.layout--twocol-section--50-50:has(.block-content-information_block) {
+  outline: solid $white 5rem;
+  outline-offset: -1px;
+  background: $white;
+
+  .layout__region--second {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+  }
+
+  .block-content-information_block {
+    height: 100%;
+
+    .content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+
+  .field--name-field-paragraph-referens .field--name-field-lebel {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: clamp(26px, 5vw, 36px);
+    font-weight: 800;
+    line-height: clamp(24px, 5vw, 42px);
+  }
+
+  .block-content-image_block .content {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .field--name-field-background-image {
+    height: 560px;
+    max-width: 450px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    picture {
+      height: 100%;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      overflow: hidden;
+    }
+  }
+
+  .field--name-field-multi-paragraph {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(15px, 2vw, 30px);;
+
+    & > .field__item {
+      background-color: transparentize($primary, 0.95);
+      background-clip: content-box;
+      height: 150px;
+      width: 100%;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      text-wrap: nowrap;
+
+      & > .paragraph {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      & > * {
+        width: fit-content;
+      }
+
+      img {
+        padding: 5px;
+        margin: 5px;
+        max-width: 50px;
+        max-height: 50px;
+      }
+
+      .field--name-field-lebel {
+        font-size: 17px;
+        font-weight: 700;
+        color: $primary;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.layout--onecol .field--name-field-back-image {
+  img {
+    width: 100%;
+    height: 460px;
+    position: relative;
+    bottom: 100px;
+    z-index: -4;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .layout--twocol-section--50-50:has(.block-content-information_block) {
+    outline: none;
+    flex-direction: column-reverse;
+    background: none;
+
+    .layout__region--second {
+      align-items: center;
+    }
+
+    .field--name-field-background-image {
+      height: fit-content;
+
+    }
+
+    .block-content-image_block .content {
+      justify-content: center;
+    }
+
+    .field--name-field-multi-paragraph {
+      background: $body-bg;
+      padding-top: 30px;
+      padding-bottom: 15px;
+      display: grid;
+      grid-template-columns: 42% 42%;
+      gap: 30px;
+      justify-content: center;
+
+      .field__item .field--name-field-lebel {
+        font-size: 14px !important;
+      }
+    }
+  }
+
+  .layout--onecol .block-content-image_block  .field--name-field-back-image {
+    position: relative;
+    bottom: 100px;
+    right: 10px;
+    max-width: none;
+    width: 100vw;
+    height: 200px;
+    overflow: hidden;
+  }
+}
