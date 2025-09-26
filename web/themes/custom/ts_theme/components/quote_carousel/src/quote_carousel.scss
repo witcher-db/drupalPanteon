@@ -67,4 +67,10 @@
     margin: auto;
     top: -250px;
   }
+
+  .swiper-button-next, .swiper-button-prev {
+    color: variables.$black !important;
+  }
 }
+
+
