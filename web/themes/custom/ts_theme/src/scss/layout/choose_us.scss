@@ -38,7 +38,7 @@
 
   .vocabulary-info .content {
     position: relative;
-    z-index: 11;
+    z-index: 2;
     color: $primary !important;
     display: flex;
     flex-direction: column;
@@ -76,36 +76,33 @@
     width: 90%;
     display: flex;
     align-self: center;
+    position: relative;
   }
 
   .field--name-field-media-image{
-    position: relative;
-
     .field__item {
-      &:first-child {
-        top: 0;
-        left: 0;
+      top: 0;
+      left: 0;
 
-        img {
-          padding: 10px;
-          height: auto;
-          width: auto;
-        }
+      img {
+        padding: 10px;
+        height: auto;
+        width: auto;
       }
+    }
+  }
 
-      &:last-child {
-        position: absolute;
-        bottom: -100px;
-        right: -50px;
-        z-index: 10;
+  .field--name-field-second-image {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    z-index: 1;
 
-        img {
-          outline: solid 20px $white;
-          height: 25vw;
-          max-height: 300px;
-          width: auto;
-        }
-      }
+    img {
+      outline: solid 20px $white;
+      height: 25vw;
+      max-height: 300px;
+      width: auto;
     }
   }
 }
@@ -120,17 +117,17 @@
     }
 
     .field--name-field-media-image  {
-      .field__item:first-child {
+      .field__item {
         margin-left: -20px;
       }
+    }
 
-      .field__item:last-child {
-        bottom: -20px;
-        right: -20px;
+    .field--name-field-second-image {
+      bottom: -20px;
+      right: 0px;
 
-        img {
-          height: 45vw;
-        }
+      img {
+        height: 45vw;
       }
     }
   }

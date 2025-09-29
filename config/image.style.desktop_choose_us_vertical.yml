@@ -1,0 +1,15 @@
+uuid: c916b5cd-e6d5-47d3-a2e4-538ca303aa10
+langcode: en
+status: true
+dependencies: {  }
+name: desktop_choose_us_vertical
+label: 'Desktop(Choose us vertical)'
+effects:
+  63f6ee02-000c-4051-a406-555bf3df18ad:
+    uuid: 63f6ee02-000c-4051-a406-555bf3df18ad
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 200
+      height: 300
+      anchor: center-center

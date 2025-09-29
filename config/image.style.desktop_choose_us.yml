@@ -1,0 +1,15 @@
+uuid: ff7b3f5a-f70d-4b36-ae65-792d6963117d
+langcode: en
+status: true
+dependencies: {  }
+name: desktop_choose_us
+label: 'Desktop(Choose us)'
+effects:
+  08ce8dd2-68aa-4bcc-b6eb-1de7f538d5dc:
+    uuid: 08ce8dd2-68aa-4bcc-b6eb-1de7f538d5dc
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 500
+      height: 450
+      anchor: center-center
