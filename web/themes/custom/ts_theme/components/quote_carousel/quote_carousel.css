@@ -56,3 +56,6 @@
   margin: auto;
   top: -250px;
 }
+.layout__region--content:has(.block-content-reviews_block) .swiper-button-next, .layout__region--content:has(.block-content-reviews_block) .swiper-button-prev {
+  color: #181923 !important;
+}

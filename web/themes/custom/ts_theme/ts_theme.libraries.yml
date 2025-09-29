@@ -13,8 +13,11 @@ global-styling:
     - core/drupal
     - core/once
 swiper:
+  css:
+    theme:
+      https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css : {}
   js:
-    node_modules/swiper/swiper-bundle.min.js: {}
+    https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js: {}
 statistic-block:
   css:
     theme:
