@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.why_choose_us_image_block
     - field.field.block_content.why_choose_us_image_block.field_media_image
+    - field.field.block_content.why_choose_us_image_block.field_second_image
     - field.field.block_content.why_choose_us_image_block.field_taxonomy_reference
 id: block_content.why_choose_us_image_block.default
 targetEntityType: block_content
@@ -14,6 +15,16 @@ content:
   field_media_image:
     type: entity_reference_autocomplete
     weight: 28
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_second_image:
+    type: entity_reference_autocomplete
+    weight: 29
     region: content
     settings:
       match_operator: CONTAINS

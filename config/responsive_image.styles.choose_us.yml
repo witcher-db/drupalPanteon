@@ -1,0 +1,24 @@
+uuid: 39bbfaea-e0d3-40a4-8411-16351027964e
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.desktop_choose_us
+    - image.style.mobile_choose_us
+  theme:
+    - ts_theme
+id: choose_us
+label: 'Choose us'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: desktop_choose_us
+    breakpoint_id: ts_theme.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: mobile_choose_us
+    breakpoint_id: ts_theme.modile
+    multiplier: 1x
+breakpoint_group: ts_theme
+fallback_image_style: mobile_choose_us
