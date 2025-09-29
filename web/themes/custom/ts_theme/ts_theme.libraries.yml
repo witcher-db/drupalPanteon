@@ -30,3 +30,7 @@ rolling-words:
       dest/css/content/block/rolling_words.css: {}
   js:
     dest/js/content/rolling_words.js: {}
+design-solutions:
+  css:
+    theme:
+      dest/css/content/block/design_solutions.css: {}
