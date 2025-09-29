@@ -1,0 +1,70 @@
+@use '../../../src/scss/variables';
+@use 'sass:color';
+
+.layout__region--content:has(.block-content-reviews_block) {
+  background-color: transparentize(variables.$primary, 0.95);
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    header {
+      display: none;
+    }
+
+    article{
+      max-width: 700px;
+      margin: auto;
+    }
+
+    img {
+      height: clamp(100px, 10vw, 150px);
+      width: auto;
+      border-radius: 50%;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .field--name-field-short-text {
+      font-size: 16px;
+      font-style: italic;
+      line-height: 24px;
+    }
+
+    .field--name-field-subtitle {
+      font-size: 14px;
+    }
+
+    .field--name-field-title {
+      font-weight: 800;
+      font-size: clamp(22px, 3.5vw, 26px);;
+    }
+
+    .field--name-field-quantity-of-stars {
+      margin-bottom: 10px;
+      display: none;
+      color: variables.$primary;
+    }
+  }
+
+  .block-inline-blockheading .field--name-field-label {
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: clamp(26px, 5vw, 36px);
+    font-weight: 800;
+    line-height: clamp(24px, 5vw, 42px);
+  }
+
+  .button-wrapper {
+    position: relative;
+    max-width: 750px;
+    margin: auto;
+    top: -250px;
+  }
+}
