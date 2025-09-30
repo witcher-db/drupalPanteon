@@ -1,0 +1,215 @@
+@use "sass:map";
+
+
+.layout__region:has(.block-inline-blocktext-with-button) {
+  max-width: map.get($container-max-widths, xl);
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding: 10px;
+
+  .btn {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+  }
+
+  .field--name-field-label {
+    font-size: clamp(30px, 2.5vw, 36px);
+    padding-bottom: 0;
+  }
+
+  .field--name-field-short-text {
+    font-size: 14px;
+  }
+}
+
+.layout--twocol-section:has(.block-views-blockfeatcherd-new-featcherd-new-block) {
+  max-width: map.get($container-max-widths, xl);
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+
+  .layout__region--first {
+    flex: 0 1 59%;
+  }
+
+  .layout__region--second {
+    flex: 0 1 39%;
+    padding-right: 12px;
+
+    * {
+      height: 100%;
+    }
+  }
+
+  img {
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  .view-content {
+    padding-left: 10px;
+  }
+
+  .views-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .views-field-field-published-date {
+    order: 3;
+    font-size: 13px;
+  }
+
+  .views-field-field-title a {
+    color: $black;
+    font-size: clamp(24px, 2vw, 30px);;
+    line-height: 1.2;
+    font-weight: 800;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  .view-featcherd-new {
+    .views-row > * {
+      background-color: transparentize($primary, 0.9);
+    }
+
+    .views-field-field-title {
+      padding: 30px;
+      padding-bottom: 10px;
+    }
+
+    .views-field-field-published-date {
+      padding: 30px;
+      padding-top: 10px;
+    }
+
+    img {
+      aspect-ratio: 4/3;
+      max-width: 700px;
+      height: 550px;
+    }
+  }
+
+  .view-latest-news {
+    background-color: transparentize($primary, 0.9);
+
+    img {
+      position: absolute;
+      max-width: 140px;
+      max-height: 140px;
+    }
+
+    .view-content {
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+
+    .views-row {
+      padding-right: 0;
+      padding-left: 1.5rem;
+      height: 140px;
+      position: relative;
+    }
+
+    .views-row:not(:first-child)::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 85%;
+      height: 1px;
+      border-bottom: solid 1px $gray-500;
+      top: -20px;
+      left: 0;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .views-field-field-title{
+      line-height: 1.2;
+      padding-top: 0.5rem;
+      margin-left: 150px;
+      margin-right: 20px;
+      height: 100%;
+
+      a {
+        font-size: clamp(12px, 1.75vw, 20px);
+      }
+    }
+
+    .views-field-field-image {
+      height: 0;
+    }
+
+    .views-field-field-published-date {
+      bottom: 0;
+      height: auto;
+      margin-left: 150px;
+      position: absolute;
+    }
+  }
+}
+
+@media (max-width: map.get($grid-breakpoints, lg)) {
+  .view-latest-news {
+    .views-field-field-published-date {
+      display: none;
+    }
+
+    .views-field-field-title {
+      padding-top: 0 !important;
+    }
+  }
+}
+
+@media (max-width: map.get($grid-breakpoints, sm)) {
+  .layout--twocol-section:has(.block-views-blockfeatcherd-new-featcherd-new-block) {
+    flex-direction: column;
+
+    .view-featcherd-new {
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .layout__region {
+      margin-bottom: 5rem;
+    }
+
+    .views-row{
+      padding: 0;
+    }
+
+    .view-latest-news {
+      .views-row{
+        margin: 20px;
+      }
+
+      .views-row:not(:first-child)::before {
+        margin: 0;
+        width: 95%;
+      }
+
+      .field-content {
+        display: flex;
+        align-items: center;
+
+        a {
+          height: fit-content;
+        }
+      }
+
+      .views-field-field-published-date {
+        display: block;
+      }
+    }
+  }
+}

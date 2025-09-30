@@ -7,7 +7,7 @@
 .layout--twocol-section--33-67:has(.block-content-text_with_button)::before {
   content: "";
   height: 700px;
-  width: 100vw;
+  width: 100%;
   background: linear-gradient(0deg, rgba(241, 124, 52, 0.1) 0%, rgba(255, 255, 255, 0.12) 100%);
   position: absolute;
   bottom: 0;
@@ -69,7 +69,7 @@
   line-height: 24px;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .layout--twocol-section--33-67:has(.block-content-text_with_button)::before {
     left: -10px;
   }
