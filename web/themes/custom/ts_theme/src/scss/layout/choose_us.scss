@@ -3,6 +3,8 @@
 
 .layout--twocol-section--50-50:has(.block-content-highlights) {
   .block-content-highlights {
+    padding-left: 5rem;
+
     .field--name-field-tag {
       max-width: fit-content;
       border-left: solid;
@@ -25,6 +27,116 @@
 
     .field--name-field-text-paragraph {
       color: $gray-600;
+    }
+  }
+}
+
+.layout__region:has(.block-content-why_choose_us_image_block) {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 40px;
+
+  .vocabulary-info .content {
+    position: relative;
+    z-index: 2;
+    color: $primary !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 30px;
+
+
+    .field--name-field-info-icon {
+      position: relative;
+      top: 25px;
+      height: 25px;
+
+      img {
+        height: 40px;
+        width: 40px;
+      }
+    }
+
+    .field--name-field-taxonomy-title {
+      margin-left: 50px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .field--name-field-subtitle {
+      margin-left: 50px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  .block-content-why_choose_us_image_block {
+    width: 90%;
+    display: flex;
+    align-self: center;
+    position: relative;
+  }
+
+  .field--name-field-media-image{
+    .field__item {
+      top: 0;
+      left: 0;
+
+      img {
+        padding: 10px;
+        height: auto;
+        width: auto;
+      }
+    }
+  }
+
+  .field--name-field-second-image {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    z-index: 1;
+
+    img {
+      outline: solid 20px $white;
+      height: 25vw;
+      max-height: 300px;
+      width: auto;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .layout__region:has(.block-content-why_choose_us_image_block) {
+    justify-content: center;
+    margin-bottom: 5rem;
+
+    .vocabulary-info .content {
+      margin: 0;
+    }
+
+    .field--name-field-media-image  {
+      .field__item {
+        margin-left: -20px;
+      }
+    }
+
+    .field--name-field-second-image {
+      bottom: -20px;
+      right: 0px;
+
+      img {
+        height: 45vw;
+      }
+    }
+  }
+
+  .layout--twocol-section--50-50:has(.block-content-highlights) {
+    flex-direction: column;
+
+    .block-content-highlights {
+      padding-left: 0;
     }
   }
 }

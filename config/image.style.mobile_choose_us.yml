@@ -1,0 +1,15 @@
+uuid: e36e5b62-94c5-4118-854d-83f51f66f811
+langcode: en
+status: true
+dependencies: {  }
+name: mobile_choose_us
+label: 'Mobile(Choose us)'
+effects:
+  3f6f10dd-52fa-484c-802d-58479e2b9f5c:
+    uuid: 3f6f10dd-52fa-484c-802d-58479e2b9f5c
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 400
+      height: 350
+      anchor: center-center

@@ -1,0 +1,15 @@
+uuid: 83172912-8128-4eca-8f92-58f053da27c7
+langcode: en
+status: true
+dependencies: {  }
+name: mobile_choose_us_vertical
+label: 'Mobile(Choose us vertical)'
+effects:
+  596a368c-36e2-46d0-8662-7cf06885c5cd:
+    uuid: 596a368c-36e2-46d0-8662-7cf06885c5cd
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 130
+      height: 190
+      anchor: center-center
