@@ -6,6 +6,11 @@
   padding-top: 30px;
   padding-bottom: 30px;
 
+  .field--name-field-person-reference {
+    max-width: 600px;
+    overflow: hidden;
+  }
+
   .swiper-slide {
     text-align: center;
     font-size: 18px;
