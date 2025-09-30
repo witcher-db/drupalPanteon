@@ -4,6 +4,10 @@
   padding-top: 30px;
   padding-bottom: 30px;
 }
+.layout__region--content:has(.block-content-reviews_block) .field--name-field-person-reference {
+  max-width: 600px;
+  overflow: hidden;
+}
 .layout__region--content:has(.block-content-reviews_block) .swiper-slide {
   text-align: center;
   font-size: 18px;
