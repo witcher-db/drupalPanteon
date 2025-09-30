@@ -34,3 +34,7 @@ design-solutions:
   css:
     theme:
       dest/css/content/block/design_solutions.css: {}
+news-header:
+  css:
+    theme:
+      dest/css/content/group/news_header.css: {}
