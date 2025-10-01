@@ -34,3 +34,7 @@ design-solutions:
   css:
     theme:
       dest/css/content/block/design_solutions.css: {}
+cke5-style:
+  css:
+    theme:
+      dest/css/content/ckeditor/cke5_style.css: {}
