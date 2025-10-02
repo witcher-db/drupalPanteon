@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - weather
+id: custom_weather_block
+region: content
+weight: 0
+provider: weather
+plugin: weather_block
+settings: {}
+visibility: {}
