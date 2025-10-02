@@ -1,0 +1,20 @@
+uuid: 452707b1-f7c4-4efd-a56e-99f40ac43878
+langcode: en
+status: false
+dependencies:
+  theme:
+    - null
+_core:
+  default_config_hash: XiArLIuaE7CCiAHnExhiG9sl-8HnuFqtsvpEicV_hQc
+id: custom_weather_block
+theme: null
+region: ''
+weight: 0
+provider: weather
+plugin: weather_block
+settings:
+  id: broken
+  label: ''
+  label_display: visible
+  provider: core
+visibility: {  }

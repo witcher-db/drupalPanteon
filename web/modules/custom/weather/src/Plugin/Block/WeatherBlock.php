@@ -9,7 +9,7 @@ use Drupal\Core\Block\BlockBase;
  * Provides a Weather Block.
  *
  * @Block(
- *   id = "weather",
+ *   id = "custom_weather_block",
  *   admin_label = @Translation("Weather Block"),
  *   category = @Translation("Custom")
  * )
@@ -21,7 +21,10 @@ class WeatherBlock extends BlockBase {
    */
 
   public function build() {
-    $markap = '';
+    $markup = '';
+    $weather = "";
+    $city = "";
+    $temp = "";
 
 
     $api_key = '392aa48f176b57093f1a42ab3ad222c1';
@@ -32,18 +35,17 @@ class WeatherBlock extends BlockBase {
     $url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$api_key&units=metric";
 
     $client = \Drupal::httpClient();
-    // $ip = \Drupal::request()->getClientIp();
-    // var_dump($ip); //test
 
-    $response = $client->get($url);
+    try {
+      $response = $client->get($url);
+      $data = json_decode($response->getBody(), TRUE);
+      $weather = $data["weather"][0]["main"];
+      $city = $data["name"];
+      $temp = $data["main"]["temp"];
+    } catch (\Exception $e) {
+      return ['#markup' => json_decode($e->getResponse()->getBody()->getContents())->message,];
+    }
 
-    $data = json_decode($response->getBody(), TRUE);
-
-    // var_dump($data);
-
-    $weather = $data["weather"][0]["main"];
-    $city = $data["name"];
-    $temp = $data["main"]["temp"];
 
     return [
       '#type' => 'container',

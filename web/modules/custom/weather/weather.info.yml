@@ -1,5 +1,5 @@
 name: Weather module
-description: Displays weather)
+description: Displays weather
 package: Custom
 
 type: module
