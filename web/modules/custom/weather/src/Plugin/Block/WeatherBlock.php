@@ -5,14 +5,15 @@ namespace Drupal\weather\Plugin\Block;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 
+use GuzzleHttp\Exception\RequestException;
 /**
  * Provides a Weather Block.
  *
- * @Block(
+ * #[Block(
  *   id = "custom_weather_block",
  *   admin_label = @Translation("Weather Block"),
  *   category = @Translation("Custom")
- * )
+ * )]
  */
 class WeatherBlock extends BlockBase {
 
@@ -39,12 +40,18 @@ class WeatherBlock extends BlockBase {
     try {
       $response = $client->get($url);
       $data = json_decode($response->getBody(), TRUE);
-      $weather = $data["weather"][0]["main"];
-      $city = $data["name"];
-      $temp = $data["main"]["temp"];
+    } catch (RequestException $e) {
+      $responseBody = $e->getResponse() ? $e->getResponse()->getBody()->getContents() : '';
+      $data = !empty($responseBody) ? json_decode($responseBody, TRUE) : [];
+      $message = $data['message'] ?? $e->getMessage();
+      return ['#markup' => $message];
     } catch (\Exception $e) {
-      return ['#markup' => json_decode($e->getResponse()->getBody()->getContents())->message,];
+      return ['#markup' => "API failed"];
     }
+
+    $weather = $data["weather"][0]["main"];
+    $city = $data["name"];
+    $temp = $data["main"]["temp"];
 
 
     return [
