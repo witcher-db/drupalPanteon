@@ -3,6 +3,8 @@ type: theme
 description: 'test drupal theme'
 core_version_requirement: ^10.3 || ^11
 base theme: bootstrap
+ckeditor5-stylesheets:
+  - dest/css/content/ckeditor/cke5_style.css
 
 libraries:
   - ts_theme/global-styling
