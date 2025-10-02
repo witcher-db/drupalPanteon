@@ -4,17 +4,20 @@ namespace Drupal\weather\Plugin\Block;
 
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 use GuzzleHttp\Exception\RequestException;
 /**
  * Provides a Weather Block.
  *
- * #[Block(
- *   id = "custom_weather_block",
- *   admin_label = @Translation("Weather Block"),
- *   category = @Translation("Custom")
- * )]
  */
+
+#[Block(
+ id : "custom_weather_block",
+ admin_label : new TranslatableMarkup("Weather Block"),
+ category : new TranslatableMarkup("Custom")
+)]
+
 class WeatherBlock extends BlockBase {
 
   /**
@@ -27,15 +30,21 @@ class WeatherBlock extends BlockBase {
     $city = "";
     $temp = "";
 
+    $client = \Drupal::httpClient();
+    $ip = \Drupal::request()->getClientIp();
+
+    if ( !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) ) {
+      $ip = file_get_contents('https://api.ipify.org'); //test for local IP if IP is local gives back server global IP
+    }
+
+    $response = unserialize(file_get_contents("http://ip-api.com/php/$ip"));
 
     $api_key = '392aa48f176b57093f1a42ab3ad222c1';
 
-    $lat = 50.7472;
-    $lon = 25.3254;
+    $lat = $response["lat"];
+    $lon = $response["lon"];
 
     $url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$api_key&units=metric";
-
-    $client = \Drupal::httpClient();
 
     try {
       $response = $client->get($url);
