@@ -1,0 +1,8 @@
+name: Weather module
+description: Displays weather)
+package: Custom
+
+type: module
+core_version_requirement: ^11
+dependencies:
+  - block
