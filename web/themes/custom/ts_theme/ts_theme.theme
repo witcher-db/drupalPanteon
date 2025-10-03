@@ -36,5 +36,7 @@ function ts_theme_preprocess_block__block_page_hero(&$variables) {
   ];
 }
 
-
+function ts_theme_preprocess_field_group_html_element(&$variables) {
+  $variables['#attached']['library'][] = 'ts_theme/news-header';
+}
 
