@@ -1,0 +1,22 @@
+block.block.weather_block:
+  type: config_entity
+  label: 'Weather Block configuration'
+  mapping:
+    id:
+      type: string
+      label: 'Block ID'
+    theme:
+      type: string
+      label: 'Theme'
+    region:
+      type: string
+      label: 'Region'
+    status:
+      type: boolean
+      label: 'Published status'
+    provider:
+      type: string
+      label: 'Provider'
+    plugin:
+      type: string
+      label: 'Plugin ID'
