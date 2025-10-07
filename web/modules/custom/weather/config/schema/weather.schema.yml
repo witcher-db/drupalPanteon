@@ -1,4 +1,4 @@
-block.block.weather_block:
+block.block.*:
   type: config_entity
   label: 'Weather Block configuration'
   mapping:

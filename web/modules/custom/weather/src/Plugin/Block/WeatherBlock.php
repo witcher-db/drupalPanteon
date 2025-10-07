@@ -12,16 +12,14 @@ use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * Provides a Weather Block.
+ */
 #[Block(
   id: "custom_weather_block",
   admin_label: new TranslatableMarkup("Weather Block"),
   category: new TranslatableMarkup("Custom")
 )]
-
-
-/**
- * Provides a Weather Block.
- */
 class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface {
   /**
    * The HTTP client service.
@@ -90,20 +88,8 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
    * {@inheritdoc}
    */
   public function build() {
-    $markup = '';
-    $weather = "";
-    $city = "";
-    $temp = "";
-
     $request = $this->requestStack->getCurrentRequest();
     $ip = $request->getClientIp();
-
-    if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
-      // Test for local IP if IP is local gives back server global IP.
-      $ip = file_get_contents('https://api.ipify.org');
-    }
-
-    $response = unserialize(file_get_contents("http://ip-api.com/php/$ip"));
 
     // Test for local IP if IP is local gives back server global IP.
     if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
