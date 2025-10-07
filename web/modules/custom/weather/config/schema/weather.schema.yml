@@ -1,22 +1,12 @@
-block.block.*:
-  type: config_entity
-  label: 'Weather Block configuration'
+weather.settings:
+  type: config_object
+  label: 'Weather module settings'
   mapping:
-    id:
+    api_key:
       type: string
-      label: 'Block ID'
-    theme:
+      label: 'API Key for weather service'
+      default: ''
+    city:
       type: string
-      label: 'Theme'
-    region:
-      type: string
-      label: 'Region'
-    status:
-      type: boolean
-      label: 'Published status'
-    provider:
-      type: string
-      label: 'Provider'
-    plugin:
-      type: string
-      label: 'Plugin ID'
+      label: 'Default city name'
+      default: 'Lutsk'
