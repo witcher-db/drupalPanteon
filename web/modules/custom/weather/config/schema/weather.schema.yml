@@ -10,3 +10,7 @@ weather.settings:
       type: string
       label: 'Default city name'
       default: 'Lutsk'
+    use_ip:
+      type: boolean
+      label: 'Use IP address for location'
+      default: true

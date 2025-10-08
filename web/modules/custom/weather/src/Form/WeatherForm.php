@@ -4,11 +4,28 @@ namespace Drupal\weather\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines a configuration form for the Weather module.
  */
 class WeatherForm extends ConfigFormBase {
+
+  /**
+   * The weather API client service.
+   *
+   * @var \Drupal\weather\Service\OpenWeatherClient
+   */
+  protected $weatherClient;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    $instance = parent::create($container);
+    $instance->weatherClient = $container->get('weather.openweather_client');
+    return $instance;
+  }
 
   /**
    * {@inheritdoc}
@@ -41,8 +58,15 @@ class WeatherForm extends ConfigFormBase {
     $form['city'] = [
       '#type' => 'textfield',
       '#title' => $this->t('City name'),
-      '#default_value' => $config->get('Lutsk') ?: '',
+      '#default_value' => $config->get('city') ?: '',
       '#description' => $this->t('Enter your city name'),
+    ];
+
+    $form['use_ip'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use IP address for location'),
+      '#default_value' => $config->get('use_ip') ?? TRUE,
+      '#description' => $this->t('If checked, the block will attempt to detect the user location by IP. If unchecked, the configured city will be used.'),
     ];
 
     return parent::buildForm($form, $form_state);
@@ -51,9 +75,37 @@ class WeatherForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    $city = $form_state->getValue('city');
+    $api_key = $form_state->getValue('api_key');
+
+    if (empty($api_key)) {
+      $form_state->setErrorByName('custom_weather_block', $this->t('City name is missing'));
+    }
+
+    if (!ctype_alpha($city)) {
+      $form_state->setErrorByName('custom_weather_block', $this->t('City name must contain only letters.'));
+    }
+
+    // Test for valid API key.
+    if ($this->weatherClient->testApiKey($api_key) === "error") {
+      $form_state->setErrorByName('custom_weather_block', $this->t('API key isn`t working'));
+    }
+
+    // Test for support of the city by API.
+    if ($this->weatherClient->getWeatherByCityName($city) === "error") {
+      $form_state->setErrorByName('custom_weather_block', $this->t('City is not sported'));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('weather.settings')
       ->set('api_key', $form_state->getValue('api_key'))
+      ->set('city', $form_state->getValue('city'))
+      ->set('use_ip', (bool) $form_state->getValue('use_ip'))
       ->save();
 
     parent::submitForm($form, $form_state);
