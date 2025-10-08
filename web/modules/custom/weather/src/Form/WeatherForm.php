@@ -88,13 +88,12 @@ class WeatherForm extends ConfigFormBase {
     }
 
     // Test for valid API key.
-    echo empty($this->weatherClient->testApiKey($api_key));
-    if (empty($this->weatherClient->testApiKey($api_key))) {
+    if (!$this->weatherClient->testApiKey($api_key)) {
       $form_state->setErrorByName('custom_weather_block', $this->t('API key isn`t working'));
     }
 
     // Test for support of the city by API.
-    if (empty($this->weatherClient->getWeatherByCityName($city))) {
+    if (!$this->weatherClient->getWeatherByCityName($city)) {
       $form_state->setErrorByName('custom_weather_block', $this->t('City is not sported'));
     }
   }

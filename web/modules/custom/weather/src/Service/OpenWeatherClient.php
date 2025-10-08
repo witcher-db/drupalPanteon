@@ -43,9 +43,9 @@ class OpenWeatherClient {
    * @param float $lon
    *   The longitude coordinate.
    *
-   * @return array|string
+   * @return array|bool
    *   The decoded weather data from the API response,
-   *   or the string 'error' if the request fails.
+   *   or the string FALSE if the request fails.
    */
   public function getWeatherByCoordinates(float $lat, float $lon) {
     $url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=%s&units=metric";
@@ -58,9 +58,9 @@ class OpenWeatherClient {
    * @param string $city
    *   The name of the city.
    *
-   * @return array|string
+   * @return array|bool
    *   The decoded weather data from the API response,
-   *   or the string 'error' if the request fails.
+   *   or the string FALSE if the request fails.
    */
   public function getWeatherByCityName(string $city) {
     $url = "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=%s&units=metric";
@@ -75,8 +75,8 @@ class OpenWeatherClient {
    * @param string $api_key
    *   The API key to test.
    *
-   * @return array|string
-   *   The decoded API response if valid, or 'error' if invalid.
+   * @return array|bool
+   *   The decoded API response if valid, or FALSE if invalid.
    */
   public function testApiKey(string $api_key) {
     $url = "https://api.openweathermap.org/data/2.5/weather?lat=40&lon=40&appid=$api_key&units=metric";
@@ -89,8 +89,8 @@ class OpenWeatherClient {
    * @param string $url
    *   The formatted API request URL, with a placeholder for the API key.
    *
-   * @return array|string
-   *   The decoded response data from the API, or 'error' on failure.
+   * @return array|bool
+   *   The decoded response data from the API, or FALSE on failure.
    */
   protected function openWeatherRequest(string $url) {
     $config = $this->configFactory->get('weather.settings');
