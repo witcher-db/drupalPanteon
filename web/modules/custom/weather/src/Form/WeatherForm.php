@@ -80,20 +80,21 @@ class WeatherForm extends ConfigFormBase {
     $api_key = $form_state->getValue('api_key');
 
     if (empty($api_key)) {
-      $form_state->setErrorByName('custom_weather_block', $this->t('City name is missing'));
+      $form_state->setErrorByName('custom_weather_block', $this->t('API key is missing'));
     }
 
-    if (!ctype_alpha($city)) {
-      $form_state->setErrorByName('custom_weather_block', $this->t('City name must contain only letters.'));
+    if (!preg_match('/^[a-zA-Z\s\-]+$/u', $city)) {
+      $form_state->setErrorByName('custom_weather_block', $this->t('City name must contain only letters'));
     }
 
     // Test for valid API key.
-    if ($this->weatherClient->testApiKey($api_key) === "error") {
+    echo empty($this->weatherClient->testApiKey($api_key));
+    if (empty($this->weatherClient->testApiKey($api_key))) {
       $form_state->setErrorByName('custom_weather_block', $this->t('API key isn`t working'));
     }
 
     // Test for support of the city by API.
-    if ($this->weatherClient->getWeatherByCityName($city) === "error") {
+    if (empty($this->weatherClient->getWeatherByCityName($city))) {
       $form_state->setErrorByName('custom_weather_block', $this->t('City is not sported'));
     }
   }

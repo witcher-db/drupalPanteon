@@ -49,7 +49,7 @@ class OpenWeatherClient {
    */
   public function getWeatherByCoordinates(float $lat, float $lon) {
     $url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=%s&units=metric";
-    return $this->openWeatherRequst($url);
+    return $this->openWeatherRequest($url);
   }
 
   /**
@@ -64,7 +64,7 @@ class OpenWeatherClient {
    */
   public function getWeatherByCityName(string $city) {
     $url = "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=%s&units=metric";
-    return $this->openWeatherRequst($url);
+    return $this->openWeatherRequest($url);
   }
 
   /**
@@ -80,7 +80,7 @@ class OpenWeatherClient {
    */
   public function testApiKey(string $api_key) {
     $url = "https://api.openweathermap.org/data/2.5/weather?lat=40&lon=40&appid=$api_key&units=metric";
-    return $this->openWeatherRequst($url);
+    return $this->openWeatherRequest($url);
   }
 
   /**
@@ -92,12 +92,12 @@ class OpenWeatherClient {
    * @return array|string
    *   The decoded response data from the API, or 'error' on failure.
    */
-  protected function openWeatherRequst(string $url) {
+  protected function openWeatherRequest(string $url) {
     $config = $this->configFactory->get('weather.settings');
     $api_key = $config->get('api_key');
 
     if (empty($api_key)) {
-      return "error";
+      return FALSE;
     }
 
     try {
@@ -105,7 +105,7 @@ class OpenWeatherClient {
       return json_decode($response->getBody()->getContents(), TRUE);
     }
     catch (\Exception) {
-      return "error";
+      return FALSE;
     }
   }
 

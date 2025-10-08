@@ -8,7 +8,6 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\weather\Service\OpenWeatherClient;
-use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -21,12 +20,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
   category: new TranslatableMarkup("Custom")
 )]
 class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface {
-  /**
-   * The HTTP client service.
-   *
-   * @var \GuzzleHttp\ClientInterface
-   */
-  protected ClientInterface $httpClient;
   /**
    * The config factory service.
    *
@@ -55,8 +48,6 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The plugin ID for the block.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \GuzzleHttp\ClientInterface $http_client
-   *   The Guzzle HTTP client service.
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The request stack service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -68,13 +59,11 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $configuration,
     $plugin_id,
     $plugin_definition,
-    ClientInterface $http_client,
     RequestStack $request_stack,
     ConfigFactoryInterface $config_factory,
     OpenWeatherClient $weather_client,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->httpClient = $http_client;
     $this->requestStack = $request_stack;
     $this->configFactory = $config_factory;
     $this->weatherClient = $weather_client;
@@ -88,7 +77,6 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('http_client'),
       $container->get('request_stack'),
       $container->get('config.factory'),
       $container->get('weather.openweather_client')
@@ -102,6 +90,13 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $config = $this->configFactory->get('weather.settings');
     $use_ip = (bool) $config->get('use_ip');
     $city = (string) $config->get('city');
+    $api_key = (string) $config->get('api_key');
+
+    if (empty($api_key)) {
+      return [
+        '#markup' => $this->t('API key is not set. Please configure it in Weather settings.'),
+      ];
+    }
 
     if ($use_ip) {
       $request = $this->requestStack->getCurrentRequest();
@@ -120,7 +115,17 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $data = $this->weatherClient->getWeatherByCoordinates($lat, $lon);
     }
     else {
+      if (empty($city)) {
+        return [
+          '#markup' => $this->t('City name is not set. Please configure it in Weather settings.'),
+        ];
+      }
+
       $data = $this->weatherClient->getWeatherByCityName($city);
+    }
+
+    if (!is_array($data)) {
+      return ['#markup' => 'Unexpected error'];
     }
 
     $weather = $data["weather"][0]["main"];
