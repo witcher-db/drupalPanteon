@@ -23,7 +23,7 @@ class OpenWeatherClient {
   protected ConfigFactoryInterface $configFactory;
 
   /**
-   * Constructs a WeatherBlock instance.
+   * Constructs a OpenWeatherClient instance.
    *
    * @param \GuzzleHttp\ClientInterface $http_client
    *   The Guzzle HTTP client service.

@@ -109,8 +109,8 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
 
       $response = unserialize(file_get_contents("http://ip-api.com/php/$ip"));
 
-      $lat = $response["lat"];
-      $lon = $response["lon"];
+      $lat = $response['lat'];
+      $lon = $response['lon'];
 
       $data = $this->weatherClient->getWeatherByCoordinates($lat, $lon);
     }
@@ -128,9 +128,9 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
       return ['#markup' => 'Unexpected error'];
     }
 
-    $weather = $data["weather"][0]["main"];
-    $city = $data["name"];
-    $temp = $data["main"]["temp"];
+    $weather = $data['weather'][0]['main'];
+    $city = $data['name'];
+    $temp = $data['main']['temp'];
 
     return [
       '#type' => 'container',
