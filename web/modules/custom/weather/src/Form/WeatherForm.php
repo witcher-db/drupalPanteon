@@ -76,25 +76,40 @@ class WeatherForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
+    // Get form input values.
     $city = $form_state->getValue('city');
     $api_key = $form_state->getValue('api_key');
+    $use_ip = $form_state->getValue('use_ip');
 
+    // 1. Ensure API key is provided.
+    // The API key is required for all requests to the OpenWeather API.
     if (empty($api_key)) {
-      $form_state->setErrorByName('custom_weather_block', $this->t('API key is missing'));
+      $form_state->setErrorByName('api_key', $this->t('API key is missing.'));
     }
 
-    if (!preg_match('/^[a-zA-Z\s\-]+$/u', $city)) {
-      $form_state->setErrorByName('custom_weather_block', $this->t('City name must contain only letters'));
+    // 2. Ensure city name is provided when IP detection is disabled.
+    // If the user chooses not to use IP-based location detection,
+    // they must manually specify a city name.
+    if (empty($city) && !$use_ip) {
+      $form_state->setErrorByName('city', $this->t('City name is missing.'));
     }
 
-    // Test for valid API key.
+    // 3. Validate city name format (letters, spaces, hyphens only).
+    // Skip this check if IP detection is enabled.
+    if (!preg_match('/^[a-zA-Z\s\-]+$/u', $city) && !empty($city)) {
+      $form_state->setErrorByName('city', $this->t('City name must contain only letters.'));
+    }
+
+    // 4. Validate API key by sending a test request.
+    // The form uses the OpenWeather client service to confirm the key is valid.
     if (!$this->weatherClient->testApiKey($api_key)) {
-      $form_state->setErrorByName('custom_weather_block', $this->t('API key isn`t working'));
+      $form_state->setErrorByName('api_key', $this->t('API key isn’t working.'));
     }
 
-    // Test for support of the city by API.
-    if (!$this->weatherClient->getWeatherByCityName($city)) {
-      $form_state->setErrorByName('custom_weather_block', $this->t('City is not sported'));
+    // 5. Check whether the provided city is supported by the API.
+    // This step is skipped if IP detection is enabled.
+    if (!$this->weatherClient->getWeatherByCityName($city) && !empty($city)) {
+      $form_state->setErrorByName('city', $this->t('The city is not supported.'));
     }
   }
 
