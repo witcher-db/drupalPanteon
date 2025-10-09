@@ -7,8 +7,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
+use Drupal\weather\Service\OpenWeatherClient;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -22,12 +21,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 )]
 class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface {
   /**
-   * The HTTP client service.
-   *
-   * @var \GuzzleHttp\ClientInterface
-   */
-  protected ClientInterface $httpClient;
-  /**
    * The config factory service.
    *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
@@ -39,6 +32,12 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
    * @var \Symfony\Component\HttpFoundation\RequestStack
    */
   protected RequestStack $requestStack;
+  /**
+   * The weather API client service.
+   *
+   * @var \Drupal\weather\Service\OpenWeatherClient
+   */
+  protected OpenWeatherClient $weatherClient;
 
   /**
    * Constructs a WeatherBlock instance.
@@ -49,25 +48,25 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
    *   The plugin ID for the block.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \GuzzleHttp\ClientInterface $http_client
-   *   The Guzzle HTTP client service.
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The request stack service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The configuration factory service.
+   * @param \Drupal\weather\Service\OpenWeatherClient $weather_client
+   *   Our custom service to call OpenWeather API.
    */
   public function __construct(
     $configuration,
     $plugin_id,
     $plugin_definition,
-    ClientInterface $http_client,
     RequestStack $request_stack,
     ConfigFactoryInterface $config_factory,
+    OpenWeatherClient $weather_client,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->httpClient = $http_client;
     $this->requestStack = $request_stack;
     $this->configFactory = $config_factory;
+    $this->weatherClient = $weather_client;
   }
 
   /**
@@ -78,9 +77,9 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('http_client'),
       $container->get('request_stack'),
-      $container->get('config.factory')
+      $container->get('config.factory'),
+      $container->get('weather.openweather_client')
     );
   }
 
@@ -88,41 +87,50 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
    * {@inheritdoc}
    */
   public function build() {
-    $request = $this->requestStack->getCurrentRequest();
-    $ip = $request->getClientIp();
-
-    // Test for local IP if IP is local gives back server global IP.
-    if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
-      $ip = file_get_contents('https://api.ipify.org');
-    }
-
-    $response = unserialize(file_get_contents("http://ip-api.com/php/$ip"));
-
     $config = $this->configFactory->get('weather.settings');
-    $api_key = $config->get('api_key');
+    $use_ip = (bool) $config->get('use_ip');
+    $city = (string) $config->get('city');
+    $api_key = (string) $config->get('api_key');
 
-    $lat = $response["lat"];
-    $lon = $response["lon"];
-
-    $url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$api_key&units=metric";
-
-    try {
-      $response = $this->httpClient->get($url);
-      $data = json_decode($response->getBody(), TRUE);
-    }
-    catch (RequestException $e) {
-      $responseBody = $e->getResponse() ? $e->getResponse()->getBody()->getContents() : '';
-      $data = !empty($responseBody) ? json_decode($responseBody, TRUE) : [];
-      $message = $data['message'] ?? $e->getMessage();
-      return ['#markup' => $message];
-    }
-    catch (\Exception $e) {
-      return ['#markup' => "API failed"];
+    if (empty($api_key)) {
+      return [
+        '#markup' => $this->t('API key is not set. Please configure it in Weather settings.'),
+      ];
     }
 
-    $weather = $data["weather"][0]["main"];
-    $city = $data["name"];
-    $temp = $data["main"]["temp"];
+    if ($use_ip) {
+      $request = $this->requestStack->getCurrentRequest();
+      $ip = $request->getClientIp();
+
+      // Test for local IP if IP is local gives back server global IP.
+      if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+        $ip = file_get_contents('https://api.ipify.org');
+      }
+
+      $response = unserialize(file_get_contents("http://ip-api.com/php/$ip"));
+
+      $lat = $response['lat'];
+      $lon = $response['lon'];
+
+      $data = $this->weatherClient->getWeatherByCoordinates($lat, $lon);
+    }
+    else {
+      if (empty($city)) {
+        return [
+          '#markup' => $this->t('City name is not set. Please configure it in Weather settings.'),
+        ];
+      }
+
+      $data = $this->weatherClient->getWeatherByCityName($city);
+    }
+
+    if (!is_array($data)) {
+      return ['#markup' => 'Unexpected error'];
+    }
+
+    $weather = $data['weather'][0]['main'];
+    $city = $data['name'];
+    $temp = $data['main']['temp'];
 
     return [
       '#type' => 'container',

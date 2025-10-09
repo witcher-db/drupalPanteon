@@ -1,0 +1,6 @@
+services:
+  weather.openweather_client:
+    class: Drupal\weather\Service\OpenWeatherClient
+    arguments:
+      - '@http_client'
+      - '@config.factory'
