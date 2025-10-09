@@ -3,11 +3,11 @@ langcode: en
 status: false
 dependencies:
   theme:
-    - null
+    - claro
 _core:
   default_config_hash: XiArLIuaE7CCiAHnExhiG9sl-8HnuFqtsvpEicV_hQc
 id: custom_weather_block
-theme: null
+theme: claro
 region: ''
 weight: 0
 provider: weather
