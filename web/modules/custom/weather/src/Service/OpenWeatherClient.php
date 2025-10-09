@@ -48,7 +48,7 @@ class OpenWeatherClient {
    *   or the string FALSE if the request fails.
    */
   public function getWeatherByCoordinates(float $lat, float $lon) {
-    $url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=%s&units=metric";
+    $url = 'https://api.openweathermap.org/data/2.5/weather?lat=' . $lat . '&lon=' . $lon . '&appid=%s&units=metric';
     return $this->openWeatherRequest($url);
   }
 
@@ -63,7 +63,7 @@ class OpenWeatherClient {
    *   or the string FALSE if the request fails.
    */
   public function getWeatherByCityName(string $city) {
-    $url = "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=%s&units=metric";
+    $url = 'https://api.openweathermap.org/data/2.5/weather?q=' . $city . '&appid=%s&units=metric';
     return $this->openWeatherRequest($url);
   }
 
