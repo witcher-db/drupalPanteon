@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Theme hooks for the Weather module.
+ */
+
+/**
+ * Implements hook_theme().
+ *
+ * Defines a theme hook for the weather block. This allows us to create a
+ * Twig template named 'weather-block.html.twig' that will receive the
+ * following variables:
+ * - city_name: Name of the city.
+ * - weather: Current weather description.
+ * - temp: Current temperature.
+ */
+function weather_theme($existing, $type, $theme, $path) {
+  return [
+    'weather_block' => [
+      'variables' => ['city_name' => NULL, 'weather' => NULL, 'temp' => NULL],
+    ],
+  ];
+}

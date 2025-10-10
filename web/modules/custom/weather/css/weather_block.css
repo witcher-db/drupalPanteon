@@ -1,0 +1,43 @@
+.weather-block {
+  margin: 5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 200px;
+  height: 100px;
+  background: #e0f7ff;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.weather-block::before, .weather-block::after {
+  z-index: 0;
+  content: "";
+  position: absolute;
+  background: #e0f7ff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.weather-block::before {
+  top: -50px;
+  left: 20px;
+}
+
+.weather-block::after {
+  top: -30px;
+  right: 20px;
+}
+
+.weather-block h3 {
+  position: relative;
+  z-index: 1;
+  font-weight: 800;
+  font-size: 35px;
+}
+
+.weather-block span {
+  position: relative;
+  z-index: 1;
+  font-size: 21px;
+}

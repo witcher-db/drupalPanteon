@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Weather block template.
+ *
+ * Available variables:
+ * - city_name: Name of the city.
+ * - weather: Weather description.
+ * - temp: Temperature in Celsius.
+ */
+#}
+
+{{ attach_library('weather/weather') }}
+
+<div class="weather-block">
+  <h3>{{ city_name }}:</h3>
+  <span class="weather-type">{{ weather }}</span>
+  <span class="temp">{{ temp }} °C</span>
+</div>

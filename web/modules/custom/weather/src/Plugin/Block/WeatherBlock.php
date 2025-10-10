@@ -133,17 +133,10 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
     $temp = $data['main']['temp'];
 
     return [
-      '#type' => 'container',
-      '#attributes' => ['class' => ['weather-block']],
-      'city' => [
-        '#markup' => "<span> <h3>$city: </h3></span>",
-      ],
-      'weather' => [
-        '#markup' => "<span> $weather </span>",
-      ],
-      'temp' => [
-        '#markup' => "<span> $temp C</span>",
-      ],
+      '#theme' => 'weather_block',
+      '#city_name' => $city,
+      '#weather' => $weather,
+      '#temp' => $temp,
     ];
   }
 
