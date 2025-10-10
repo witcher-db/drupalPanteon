@@ -34,3 +34,11 @@ design-solutions:
   css:
     theme:
       dest/css/content/block/design_solutions.css: {}
+news-header:
+  css:
+    theme:
+      dest/css/content/group/news_header.css: {}
+cke5-style:
+  css:
+    theme:
+      dest/css/content/ckeditor/cke5_style.css: {}

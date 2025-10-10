@@ -1,0 +1,110 @@
+@use "../../variables";
+@use "sass:map";
+
+.node--type-news {
+  .title-group {
+    background-color: variables.$white;
+    position: absolute;
+    top: 560px;
+    left: 20px;
+    width: 65vw;
+    max-width: 800px;
+    padding: 2rem;
+
+    .field--name-field-published-date, .field--name-field-username {
+      display: inline-block;
+      font-size: 13px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .field--name-field-username {
+      font-weight: 800;
+
+      &::before {
+        font-weight: normal;
+        content: "By ";
+      }
+    }
+
+    .field--name-user-picture, .field--name-field-author {
+      display: inline-block;
+    }
+
+    img {
+      height: 40px;
+      width: 40px;
+      border-radius: 100%;
+    }
+
+    & > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    &::before {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      content: "";
+      background-color: variables.$primary;
+      opacity: 0.05;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  }
+
+  .node__content {
+    padding: 0;
+  }
+
+  .field--name-field-title {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: clamp(30px, 4vw, 40px);
+    font-weight: 800;
+    line-height: 38px;
+  }
+
+  .field--name-field-image {
+    z-index: -1;
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 5rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      object-fit: cover;
+      max-width: none;
+      overflow: hidden;
+    }
+  }
+}
+
+@media (max-width: map.get(variables.$grid-breakpoints, sm)) {
+  .node--type-news {
+    .title-group {
+      left: 0;
+      top: 300px;
+      width: fit-content;
+      margin-left: 20px;
+      margin-right: 20px;
+      padding: 0.5rem;
+    }
+
+    .field--name-field-image {
+      height: 400px;
+      margin-bottom: 7rem;
+    }
+  }
+}

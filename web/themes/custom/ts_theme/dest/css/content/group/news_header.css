@@ -1,0 +1,92 @@
+/* VARIABLES */
+.node--type-news .title-group {
+  background-color: #f9f8f2;
+  position: absolute;
+  top: 560px;
+  left: 20px;
+  width: 65vw;
+  max-width: 800px;
+  padding: 2rem;
+}
+.node--type-news .title-group .field--name-field-published-date, .node--type-news .title-group .field--name-field-username {
+  display: inline-block;
+  font-size: 13px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.node--type-news .title-group .field--name-field-username {
+  font-weight: 800;
+}
+.node--type-news .title-group .field--name-field-username::before {
+  font-weight: normal;
+  content: "By ";
+}
+.node--type-news .title-group .field--name-user-picture, .node--type-news .title-group .field--name-field-author {
+  display: inline-block;
+}
+.node--type-news .title-group img {
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+}
+.node--type-news .title-group > * {
+  position: relative;
+  z-index: 1;
+}
+.node--type-news .title-group::before {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  content: "";
+  background-color: #f17c34;
+  opacity: 0.05;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.node--type-news .node__content {
+  padding: 0;
+}
+.node--type-news .field--name-field-title {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 800;
+  line-height: 38px;
+}
+.node--type-news .field--name-field-image {
+  z-index: -1;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  margin-bottom: 5rem;
+}
+.node--type-news .field--name-field-image img {
+  width: 100%;
+  height: 100%;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  object-fit: cover;
+  max-width: none;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .node--type-news .title-group {
+    left: 0;
+    top: 300px;
+    width: fit-content;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 0.5rem;
+  }
+  .node--type-news .field--name-field-image {
+    height: 400px;
+    margin-bottom: 7rem;
+  }
+}

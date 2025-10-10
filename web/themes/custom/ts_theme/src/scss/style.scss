@@ -117,6 +117,21 @@ h2 {
   line-height: clamp(24px, 5vw, 42px);
 }
 
+.field--name-field-paragraph-referens:has(.paragraph--type--two-columns) {
+  max-width: map.get($container-max-widths, sm);
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  .field--name-field-paragraph-title {
+    color: black;
+    font-size: 22px;
+    font-weight: 800;
+    margin-top: 27px;
+    margin-bottom: 17px;
+  }
+}
+
 /* COLORS
 -------------------------------------------------- */
 
