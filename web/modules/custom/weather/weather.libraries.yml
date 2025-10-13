@@ -1,0 +1,4 @@
+weather:
+  css:
+    theme:
+      css/weather_block.css: {}

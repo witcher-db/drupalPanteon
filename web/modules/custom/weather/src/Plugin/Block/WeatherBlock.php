@@ -141,6 +141,7 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
         'max-age' => 3600,
         'tags' => ['config:weather.settings'],
       ],
+
     ];
   }
 
