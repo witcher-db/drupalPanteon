@@ -137,6 +137,11 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
       '#city_name' => $city,
       '#weather' => $weather,
       '#temp' => $temp,
+      '#cache' => [
+        'max-age' => 3600,
+        'tags' => ['config:weather.settings'],
+      ],
+
     ];
   }
 
