@@ -1,0 +1,7 @@
+custom_register.form:
+  path: '/custom-register'
+  defaults:
+    _form: '\Drupal\custom_register\Form\CustomRegisterForm'
+    _title: 'Custom Register'
+  requirements:
+    _permission: 'access content'
