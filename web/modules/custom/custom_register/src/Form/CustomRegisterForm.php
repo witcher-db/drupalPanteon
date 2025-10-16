@@ -194,6 +194,19 @@ class CustomRegisterForm extends FormBase {
   /**
    * {@inheritdoc}
    */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    $email = $form_state->getValue('email');
+    $message = $this->validateEmail($email);
+
+    if (!$message[1]) {
+      $form_state->setErrorByName('email', $this->t($message[0]));
+      return;
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $email = $form_state->getValue('email');
     $username = $form_state->getValue('username');
@@ -201,12 +214,6 @@ class CustomRegisterForm extends FormBase {
     $age = $form_state->getValue('age');
     $country = $form_state->getValue('country');
     $about = $form_state->getValue('about');
-    $message = $this->validateEmail($email);
-
-    if (!$message[1]) {
-      $this->messenger()->addError($this->t($message[0]));
-      return;
-    }
 
     $module = 'custom_register';
     $key = 'registration_confirmation';
