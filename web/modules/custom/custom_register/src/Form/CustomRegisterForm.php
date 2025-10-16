@@ -130,19 +130,44 @@ class CustomRegisterForm extends FormBase {
   }
 
   /**
+   * Validates an email address.
+   *
+   * This method performs two checks:
+   *  1. Checks if the email format is valid using EmailValidator service.
+   *  2. Checks if the email already exists in the user database.
+   *
+   * @param string $email
+   *   The email address to validate.
+   *
+   * @return array
+   *   An array containing:
+   *    -[0]: A message string describing the validation result.
+   *    -[1]: A boolean indicating if the email is valid (TRUE) or not (FALSE).
+   */
+  public function validateEmail($email) {
+    if (!$this->emailValidator->isValid($email)) {
+      return ['Invalid email format.', FALSE];
+    }
+
+    $user_storage = $this->entityTypeManager->getStorage('user');
+    $existing_users = $user_storage->loadByProperties(['mail' => $email]);
+
+    if (empty($existing_users)) {
+      return ['Email is valid.', TRUE];
+    }
+    else {
+      return ['This email is already registered.', FALSE];
+    }
+  }
+
+  /**
    * AJAX callback for validating the email field on blur.
    *
-   * This function is triggered when the user leaves (blurs) the email input.
-   * It performs the following checks:
-   *   1. Validates the email format using Drupal's EmailValidator service.
-   *   2. (To be implemented) Checks the uniqueness of the email in the database.
-   *
-   * Depending on the result, it returns an appropriate message to the user:
-   *   - Red message if the email format is invalid.
-   *   - Green message if the email is valid.
-   *
-   * The message is injected dynamically into the page using an AjaxResponse
-   * and the HtmlCommand, targeting the element with ID 'email-validation-message'.
+   * This method is triggered when the user leaves (blurs) the email input.
+   * It calls validateEmail() to check format and uniqueness, then returns
+   * an AJAX response with a color-coded message:
+   *   - Green for valid email.
+   *   - Red for invalid or already registered email.
    *
    * @param array $form
    *   The form array.
@@ -150,29 +175,19 @@ class CustomRegisterForm extends FormBase {
    *   The current state of the form.
    *
    * @return \Drupal\Core\Ajax\AjaxResponse
-   *   An Ajax response containing the validation message.
+   *   An AjaxResponse object containing the message HTML.
    */
   public function validateEmailAjax(array &$form, FormStateInterface $form_state) {
+    $colorCodes = [TRUE => 'green', FALSE => 'red'];
     $response = new AjaxResponse();
     $email = $form_state->getValue('email');
-    $message = '';
+    $message = $this->validateEmail($email);
 
-    if (!$this->emailValidator->isValid($email)) {
-      $message = '<span style="color:red;">Invalid email format.</span>';
-    }
-    else {
-      $user_storage = $this->entityTypeManager->getStorage('user');
-      $existing_users = $user_storage->loadByProperties(['mail' => $email]);
+    // Wrap the message in a colored <span>.
+    $template = '<span style="color:' . $colorCodes[$message[1]] . ';">' . $message[0] . '.</span>';
 
-      if (empty($existing_users)) {
-        $message = '<span style="color:green;">Email is valid.</span>';
-      }
-      else {
-        $message = '<span style="color:red;">This email is already registered.</span>';
-      }
-    }
+    $response->addCommand(new HtmlCommand('#email-validation-message', $template));
 
-    $response->addCommand(new HtmlCommand('#email-validation-message', $message));
     return $response;
   }
 
@@ -186,17 +201,10 @@ class CustomRegisterForm extends FormBase {
     $age = $form_state->getValue('age');
     $country = $form_state->getValue('country');
     $about = $form_state->getValue('about');
+    $message = $this->validateEmail($email);
 
-    if (!$this->emailValidator->isValid($email)) {
-      $this->messenger()->addError($this->t('Invalid email address.'));
-      return;
-    }
-
-    $user_storage = $this->entityTypeManager->getStorage('user');
-    $existing_users = $user_storage->loadByProperties(['mail' => $email]);
-
-    if ($existing_users) {
-      $this->messenger()->addError($this->t('This email is already registered.'));
+    if (!$message[1]) {
+      $this->messenger()->addError($this->t($message[0]));
       return;
     }
 
@@ -204,6 +212,7 @@ class CustomRegisterForm extends FormBase {
     $key = 'registration_confirmation';
     $lan = 'en';
     $params['subject'] = $this->t('Registration confirmation');
+
     if ($additional) {
       $params['message'] = $this->t('Email: @email, Username: @username, Age: @age Country: @country, About: @about',
         ['@email' => $email, '@username' => $username, '@country' => $country, '@age' => $age, '@about' => $about]
