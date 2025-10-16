@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for User Registration Form module.
+ */
+
+/**
+ * Implements hook_mail().
+ */
+function custom_register_mail($key, &$message, $params) {
+  $message['subject'] = $params['subject'];
+  $message['body'][] = $params['message'];
+}
