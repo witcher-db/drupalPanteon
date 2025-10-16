@@ -1,0 +1,5 @@
+services:
+  custom_register.mail_hook:
+    class: Drupal\custom_register\Hook\MailHook
+    tags:
+      - { name: hook }

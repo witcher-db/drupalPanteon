@@ -26,12 +26,20 @@ class CustomRegisterForm extends FormBase {
   protected $mailManager;
 
   /**
+   * Entity Type Manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     $instance = parent::create($container);
     $instance->emailValidator = $container->get('email.validator');
     $instance->mailManager = $container->get('plugin.manager.mail');
+    $instance->entityTypeManager = $container->get('entity_type.manager');
     return $instance;
   }
 
@@ -140,6 +148,7 @@ class CustomRegisterForm extends FormBase {
    *   The form array.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
+   *
    * @return \Drupal\Core\Ajax\AjaxResponse
    *   An Ajax response containing the validation message.
    */
@@ -148,12 +157,19 @@ class CustomRegisterForm extends FormBase {
     $email = $form_state->getValue('email');
     $message = '';
 
-    // @todo implement uniqueness verification for email
     if (!$this->emailValidator->isValid($email)) {
       $message = '<span style="color:red;">Invalid email format.</span>';
     }
     else {
-      $message = '<span style="color:green;">Email is valid.</span>';
+      $user_storage = $this->entityTypeManager->getStorage('user');
+      $existing_users = $user_storage->loadByProperties(['mail' => $email]);
+
+      if (empty($existing_users)) {
+        $message = '<span style="color:green;">Email is valid.</span>';
+      }
+      else {
+        $message = '<span style="color:red;">This email is already registered.</span>';
+      }
     }
 
     $response->addCommand(new HtmlCommand('#email-validation-message', $message));
@@ -173,6 +189,14 @@ class CustomRegisterForm extends FormBase {
 
     if (!$this->emailValidator->isValid($email)) {
       $this->messenger()->addError($this->t('Invalid email address.'));
+      return;
+    }
+
+    $user_storage = $this->entityTypeManager->getStorage('user');
+    $existing_users = $user_storage->loadByProperties(['mail' => $email]);
+
+    if ($existing_users) {
+      $this->messenger()->addError($this->t('This email is already registered.'));
       return;
     }
 
