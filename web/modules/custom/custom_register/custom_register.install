@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * Install file for custom_register module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function custom_register_install() {
+  $schema = \Drupal::database()->schema();
+
+  if (!$schema->tableExists('custom_user_data')) {
+    $schema->createTable('custom_user_data', [
+      'fields' => [
+        'id' => [
+          'type' => 'serial',
+          'not null' => TRUE,
+        ],
+        'username' => [
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+        ],
+        'email' => [
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+        ],
+        'password' => [
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => TRUE,
+        ],
+        'age' => [
+          'type' => 'int',
+          'size' => 'normal',
+          'not null' => FALSE,
+        ],
+        'country' => [
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => FALSE,
+        ],
+        'about' => [
+          'type' => 'text',
+          'not null' => FALSE,
+        ],
+      ],
+      'primary key' => ['id'],
+      'unique keys' => [
+        'email_unique' => ['email'],
+      ],
+    ]);
+  }
+}
