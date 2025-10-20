@@ -6,52 +6,68 @@
  */
 
 /**
- * Implements hook_install().
+ * Table definition for custom_user_data.
  */
-function custom_register_install() {
+function custom_register_table_definition() {
+  return [
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'username' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'password' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'age' => [
+        'type' => 'int',
+        'size' => 'normal',
+        'not null' => FALSE,
+      ],
+      'country' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'about' => [
+        'type' => 'text',
+        'not null' => FALSE,
+      ],
+    ],
+    'primary key' => ['id'],
+    'unique keys' => [
+      'email_unique' => ['email'],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_schema().
+ */
+function custom_register_schema() {
+  $schema['custom_user_data'] = custom_register_table_definition();
+
+  return $schema;
+}
+
+/**
+ * Creates the `custom_user_data` table if it does not already exist.
+ */
+function custom_register_update_9001() {
   $schema = \Drupal::database()->schema();
 
   if (!$schema->tableExists('custom_user_data')) {
-    $schema->createTable('custom_user_data', [
-      'fields' => [
-        'id' => [
-          'type' => 'serial',
-          'not null' => TRUE,
-        ],
-        'username' => [
-          'type' => 'varchar',
-          'length' => 255,
-          'not null' => TRUE,
-        ],
-        'email' => [
-          'type' => 'varchar',
-          'length' => 255,
-          'not null' => TRUE,
-        ],
-        'password' => [
-          'type' => 'varchar',
-          'length' => 255,
-          'not null' => TRUE,
-        ],
-        'age' => [
-          'type' => 'int',
-          'size' => 'normal',
-          'not null' => FALSE,
-        ],
-        'country' => [
-          'type' => 'varchar',
-          'length' => 255,
-          'not null' => FALSE,
-        ],
-        'about' => [
-          'type' => 'text',
-          'not null' => FALSE,
-        ],
-      ],
-      'primary key' => ['id'],
-      'unique keys' => [
-        'email_unique' => ['email'],
-      ],
-    ]);
+    $schema->createTable('custom_user_data', custom_register_table_definition());
   }
 }
