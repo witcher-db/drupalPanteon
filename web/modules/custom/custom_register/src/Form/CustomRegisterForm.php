@@ -382,7 +382,7 @@ class CustomRegisterForm extends FormBase {
       'username' => $username,
       'password' => password_hash($password, PASSWORD_DEFAULT),
       'email' => $email,
-      'age' => ($age !== '' ? (int) $age : NULL),
+      'age' => (!empty($age) ? (int) $age : NULL),
       'country' => $country ?? NULL,
       'about' => $about ?? NULL,
     ];
