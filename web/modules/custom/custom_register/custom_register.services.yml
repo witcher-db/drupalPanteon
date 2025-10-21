@@ -1,0 +1,4 @@
+services:
+  custom_register.custome_form_validator:
+    class: Drupal\custom_register\Service\CustomeFormValidator
+    arguments: ['@email.validator', '@database', '@string_translation']
