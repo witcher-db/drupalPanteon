@@ -53,27 +53,29 @@ class LoginLinkBlock extends BlockBase implements ContainerFactoryPluginInterfac
    * {@inheritdoc}
    */
   public function build() {
-    if ($this->currentUser->isAuthenticated()) {
-      return [];
+    if (!empty($_COOKIE['custom_user_email'])) {
+      return [
+        '#cache' => [
+          'contexts' => ['cookies:custom_user_email'],
+        ],
+      ];
     }
 
-    $url = Url::fromRoute('custom_register.login_modal');
-    $url->setOptions([
+    $url = Url::fromRoute('custom_register.login_modal')->setOptions([
       'attributes' => [
-        'class' => ['use-ajax', 'login-link'],
+        'class' => ['btn', 'btn-primary', 'px-3', 'use-ajax', 'login-link', 'text-white'],
         'data-dialog-type' => 'modal',
         'data-dialog-options' => json_encode(['width' => 400]),
       ],
     ]);
 
-    $link = Link::fromTextAndUrl($this->t('Login'), $url)->toRenderable();
-
     return [
-      '#type' => 'container',
-      '#attributes' => ['class' => ['login-link-container', 'btn', 'btn-primary', 'px-3']],
-      'link' => $link,
+      'link' => Link::fromTextAndUrl($this->t('Login'), $url)->toRenderable(),
       '#attached' => [
         'library' => ['core/drupal.dialog.ajax'],
+      ],
+      '#cache' => [
+        'contexts' => ['cookies:custom_user_email'],
       ],
     ];
   }

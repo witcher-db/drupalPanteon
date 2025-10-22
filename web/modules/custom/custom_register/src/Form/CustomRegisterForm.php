@@ -6,48 +6,40 @@ use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Database\Connection;
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\custom_register\CustomFormValidator;
 
 /**
  * Provides the basic Custom Register form.
  */
 class CustomRegisterForm extends FormBase {
   /**
-   * Email validation.
-   *
-   * @var Drupal\Core\Mail\EmailValidatorInterface
-   */
-  protected $emailValidator;
-  /**
    * The mail manager service.
-   *
-   * @var \Drupal\Core\Mail\MailManagerInterface
    */
-  protected $mailManager;
+  protected MailManagerInterface $mailManager;
 
   /**
    * The database connection.
-   *
-   * @var \Drupal\Core\Database\Connection
    */
-  protected $database;
-  /**
-   * The custom form validator service.
-   *
-   * @var \Drupal\custom_register\Service\CustomeFormValidator
-   */
-  protected $formValidator;
+  protected Connection $database;
 
   /**
-   * {@inheritdoc}
+   * Custom form validation service.
    */
-  public static function create(ContainerInterface $container) {
-    $instance = parent::create($container);
-    $instance->database = $container->get('database');
-    $instance->emailValidator = $container->get('email.validator');
-    $instance->formValidator = $container->get('custom_register.custome_form_validator');
-    $instance->mailManager = $container->get('plugin.manager.mail');
-    return $instance;
+  protected CustomFormValidator $customFormValidator;
+
+  /**
+   * Constructor with autowired services.
+   */
+  public function __construct(
+    MailManagerInterface $mailManager,
+    Connection $database,
+    CustomFormValidator $customFormValidator,
+  ) {
+    $this->mailManager = $mailManager;
+    $this->database = $database;
+    $this->customFormValidator = $customFormValidator;
   }
 
   /**
@@ -168,14 +160,14 @@ class CustomRegisterForm extends FormBase {
    *   An AjaxResponse object containing the message HTML.
    */
   public function validateEmailAjax(array &$form, FormStateInterface $form_state) {
-    $colorCodes = [TRUE => 'green', FALSE => 'red'];
+    $color_codes = [TRUE => 'green', FALSE => 'red'];
     $response = new AjaxResponse();
     $email = $form_state->getValue('email');
-    $validation_array = $this->formValidator->getEmailValidationInfo($email);
+    $validation_array = $this->customFormValidator->getEmailValidationInfo($email);
 
     // Wrap the message in a colored <span>.
     $template = '<span style="color:' .
-    $colorCodes[$validation_array['is_valid']] .
+    $color_codes[$validation_array['is_valid']] .
     ';">' .
     $validation_array['message'] . '.</span>';
 
@@ -188,18 +180,18 @@ class CustomRegisterForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $validation_array = $this->formValidator->getEmailValidationInfo($form_state->getValue('email'));
+    $validation_array = $this->customFormValidator->getEmailValidationInfo($form_state->getValue('email'));
 
     if (!$validation_array['is_valid']) {
       $form_state->setErrorByName('email', $validation_array['message']);
     }
 
-    $this->formValidator->passwordValidationError($form_state, 'password', 'confirm_password');
-    $this->formValidator->stringValidationError($form_state, 'username', 32, TRUE);
+    $this->customFormValidator->passwordValidationError($form_state, 'password', 'confirm_password');
+    $this->customFormValidator->stringValidationError($form_state, 'username', 32, TRUE);
     if ($form_state->getValue('additional')) {
-      $this->formValidator->ageValidationError($form_state, 'age');
-      $this->formValidator->stringValidationError($form_state, 'country', 32, FALSE);
-      $this->formValidator->stringValidationError($form_state, 'country', 256, FALSE);
+      $this->customFormValidator->ageValidationError($form_state, 'age');
+      $this->customFormValidator->stringValidationError($form_state, 'country', 32, FALSE);
+      $this->customFormValidator->stringValidationError($form_state, 'country', 256, FALSE);
     }
 
   }

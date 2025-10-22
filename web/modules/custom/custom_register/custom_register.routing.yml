@@ -12,4 +12,5 @@ custom_register.login_modal:
     _form: '\Drupal\custom_register\Form\LoginModalForm'
     _title: 'Login'
   requirements:
+    _format: 'drupal_modal'
     _access: 'TRUE'

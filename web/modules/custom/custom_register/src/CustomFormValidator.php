@@ -1,82 +1,71 @@
 <?php
 
-namespace Drupal\custom_register\Service;
+namespace Drupal\custom_register;
 
 use Drupal\Core\Database\Connection;
-use Drupal\Core\StringTranslation\TranslationInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Component\Utility\EmailValidatorInterface;
 
 /**
- * Provides the basic Custom Register form.
+ * Provides custom validation methods for the Custom Register module.
  */
-class CustomeFormValidator {
-  /**
-   * Email validation.
-   *
-   * @var Drupal\Core\Mail\EmailValidatorInterface
-   */
-  protected $emailValidator;
-  /**
-   * The database connection.
-   *
-   * @var \Drupal\Core\Database\Connection
-   */
-  protected $database;
+class CustomFormValidator {
+  use StringTranslationTrait;
 
   /**
-   * The string translation service.
+   * Constructs a CustomFormValidator object.
    *
-   * @var \Drupal\Core\StringTranslation\TranslationInterface
+   * @param \Drupal\Component\Utility\EmailValidatorInterface $emailValidator
+   *   The email validator service used to validate email addresses.
+   * @param \Drupal\Core\Database\Connection $database
+   *   The database connection service used to query the custom_user_data table.
    */
-  protected $stringTranslation;
-
-  /**
-   * {@inheritdoc}
-   */
-  public function __construct($email_validator, Connection $database, TranslationInterface $string_translation) {
-    $this->emailValidator = $email_validator;
-    $this->database = $database;
-    $this->stringTranslation = $string_translation;
-  }
+  public function __construct(
+    protected EmailValidatorInterface $emailValidator,
+    protected Connection $database,
+  ) {}
 
   /**
    * Validates an email address.
    *
    * This method performs two checks:
-   *  1. Checks if the email format is valid using EmailValidator service.
+   *  1. Checks if the email format is valid
+   *  using EmailValidatorInterface service.
    *  2. Checks if the email already exists in the user database.
    *
    * @param string $email
    *   The email address to validate.
    *
-   * @return array
+   * @return array{is_valid: bool, message: string}
    *   An array containing:
-   *    -[0]: A message string describing the validation result.
-   *    -[1]: A boolean indicating if the email is valid (TRUE) or not (FALSE).
+   *    -[is_valid]: A boolean: if the email is valid (TRUE) or not (FALSE).
+   *    -[message]: A message string describing the validation result.
    */
   public function getEmailValidationInfo($email) {
     if (!$this->emailValidator->isValid($email)) {
       return [
         'is_valid' => FALSE,
-        'message' => $this->stringTranslation->translate('Invalid email format'),
+        'message' => $this->t('Invalid email format'),
       ];
     }
 
     $existing_users = $this->database->select('custom_user_data', 'c')
       ->fields('c', ['id'])
       ->condition('email', $email)
+      ->range(0, 1)
       ->execute()
       ->fetchField();
 
-    if (empty($existing_users)) {
+    if (!$existing_users) {
       return [
         'is_valid' => TRUE,
-        'message' => $this->stringTranslation->translate('Email is valid'),
+        'message' => $this->t('Email is valid'),
       ];
     }
     else {
       return [
         'is_valid' => FALSE,
-        'message' => $this->stringTranslation->translate('This email is already registered'),
+        'message' => $this->t('This email is already registered'),
       ];
     }
   }
@@ -98,8 +87,8 @@ class CustomeFormValidator {
    * @param string $confirmPasswordKey
    *   The machine name of the password confirmation field.
    *
-   * @return void
-   *   Adds validation errors to the form state if validation fails.
+   * @return void|bool
+   *   Returns FALSE when password is not valid.
    */
   public function passwordValidationError($form_state, $passwordKey, $confirmPasswordKey) {
     $password = $form_state->getValue($passwordKey);
@@ -108,25 +97,25 @@ class CustomeFormValidator {
     if (strlen($password) < 8 || strlen($password) > 32) {
       $form_state->setErrorByName(
         $passwordKey,
-        $this->stringTranslation->translate('Password must be between 8 and 32 characters long'),
+        $this->t('Password must be between 8 and 32 characters long'),
       );
       $form_state->setErrorByName(
         $confirmPasswordKey,
-        $this->stringTranslation->translate('Password must be between 8 and 32 characters long'),
+        $this->t('Password must be between 8 and 32 characters long'),
       );
-      return;
+      return FALSE;
     }
 
     if ($password !== $confirmPassword) {
       $form_state->setErrorByName(
         $passwordKey,
-        $this->stringTranslation->translate('Passwords do not match. Please confirm your password again'),
+        $this->t('Passwords do not match. Please confirm your password again'),
        );
       $form_state->setErrorByName(
         $confirmPasswordKey,
-        $this->stringTranslation->translate('Passwords do not match. Please confirm your password again'),
+        $this->t('Passwords do not match. Please confirm your password again'),
       );
-      return;
+      return FALSE;
     }
   }
 
@@ -146,8 +135,8 @@ class CustomeFormValidator {
    * @param string $emailKey
    *   The key of the email field in the form.
    *
-   * @return string|null
-   *   Returns a translated error message if validation fails, otherwise NULL.
+   * @return string|bool
+   *   Returns a translated error message if validation fails, otherwise FALSE.
    */
   public function comparePassword($form_state, $passwordKey, $emailKey) {
     $password = $form_state->getValue($passwordKey);
@@ -157,16 +146,19 @@ class CustomeFormValidator {
       $hash = $this->database->select('custom_user_data', 'c')
         ->fields('c', ['password'])
         ->condition('email', $email)
+        ->range(0, 1)
         ->execute()
         ->fetchField();
     }
-    catch (\Exception $e) {
-      return $this->stringTranslation->translate('An unexpected error occurred. Please try again later.');
+    catch (\Exception) {
+      return $this->t('An unexpected error occurred. Please try again later.');
     }
 
     if (!password_verify($password, $hash)) {
-      return $this->stringTranslation->translate('The password you entered is incorrect.');
+      return $this->t('The password you entered is incorrect.');
     }
+
+    return FALSE;
   }
 
   /**
@@ -183,9 +175,9 @@ class CustomeFormValidator {
    * @param string $emailKey
    *   The key of the email field in the form.
    *
-   * @return string|null
+   * @return string|bool
    *   Returns a translated error message if the email is not found
-   *   or if a database error occurs, otherwise NULL.
+   *   or if a database error occurs, otherwise FALSE.
    */
   public function isEmailRegistred($form_state, $emailKey) {
     $email = $form_state->getValue($emailKey);
@@ -195,29 +187,29 @@ class CustomeFormValidator {
       $existing_users = $this->database->select('custom_user_data', 'c')
         ->fields('c', ['id'])
         ->condition('email', $email)
+        ->range(0, 1)
         ->execute()
         ->fetchField();
     }
     catch (\Exception) {
       // If something goes wrong with the database query.
-      return $this->stringTranslation->translate('An unexpected error occurred. Please try again later.');
+      return $this->t('An unexpected error occurred. Please try again later.');
     }
 
-    if (empty($existing_users)) {
-      return $this->stringTranslation->translate('No account found with this email address.');
+    if (!$existing_users) {
+      return $this->t('No account found with this email address.');
     }
+
+    return FALSE;
   }
 
   /**
    * Validates a generic string field.
    *
-   * This method checks whether a string field meets the specified
-   * validation rules:
+   * Checks whether a string field meets the specified validation rules:
    *   - Ensures the field is not empty (if $allowEmpty is FALSE).
    *   - Ensures the string length does not exceed the given limit ($len).
-   *
-   * If validation fails, it sets a corresponding error message in
-   * the form state.
+   * If validation fails, an error message is added to the form state.
    *
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current form state containing submitted values.
@@ -228,8 +220,8 @@ class CustomeFormValidator {
    * @param bool $allowEmpty
    *   Whether the field can be empty (TRUE to allow, FALSE to require).
    *
-   * @return void
-   *   Adds validation errors to the form state if the field is invalid.
+   * @return void|bool
+   *   Returns void or FALSE if validation don't get any errors.
    */
   public function stringValidationError($form_state, $stringKey, $len, $allowEmpty) {
     $string = $form_state->getValue($stringKey);
@@ -237,18 +229,19 @@ class CustomeFormValidator {
     if (!$allowEmpty && empty($string)) {
       $form_state->setErrorByName(
         $stringKey,
-        $this->stringTranslation->translate('This field cannot be empty.'),
+        $this->t('This field cannot be empty.'),
       );
-      return;
+      return FALSE;
     }
 
     if (strlen($string) > $len) {
       $form_state->setErrorByName(
         $stringKey,
-        $this->stringTranslation->translate('This field cannot exceed @len characters.', ['@len' => $len]),
+        $this->t('This field cannot exceed @len characters.', ['@len' => $len]),
       );
-      return;
     }
+
+    return FALSE;
   }
 
   /**
@@ -264,18 +257,19 @@ class CustomeFormValidator {
    * @param string $ageKey
    *   The machine name of the form field representing the age.
    *
-   * @return void
-   *   Adds a form validation error if the age is invalid.
+   * @return void|bool
+   *   Returns void or FALSE if validation don't get any errors.
    */
   public function ageValidationError($form_state, $ageKey) {
     $age = $form_state->getValue($ageKey);
     if (empty($age) || $age > 150) {
       $form_state->setErrorByName(
         $ageKey,
-        $this->stringTranslation->translate('Please enter a valid age (0–150).'),
+        $this->t('Please enter a valid age (0–150).'),
       );
-      return;
     }
+
+    return FALSE;
   }
 
 }
