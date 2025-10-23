@@ -44,7 +44,8 @@
         "drupal/field_group": "^4.0"
     },
     "require-dev": {
-        "drupal/core-dev": "^11"
+        "drupal/core-dev": "^11",
+        "phpro/grumphp": "^2.17"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -103,7 +104,8 @@
             "php-http/discovery": true,
             "tbachert/spi": true,
             "drupal/core-project-message": true,
-            "drupal/core-recipe-unpack": true
+            "drupal/core-recipe-unpack": true,
+            "phpro/grumphp": true
         }
     }
 }
