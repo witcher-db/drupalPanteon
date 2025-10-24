@@ -19,7 +19,7 @@
  *
  * @see hero_banner.twig
  */
-function ts_theme_preprocess_block__block_page_hero(array<string, mixed> &$variables): void {
+function ts_theme_preprocess_block__block_page_hero(array &$variables): void {
   $content = $variables['content'];
 
   $variables['hero_banner'] = [
@@ -36,6 +36,6 @@ function ts_theme_preprocess_block__block_page_hero(array<string, mixed> &$varia
  *
  * Attaches the `ts_theme/news-header` library to the field group element.
  */
-function ts_theme_preprocess_field_group_html_element(array<string, mixed> &$variables): void {
+function ts_theme_preprocess_field_group_html_element(array &$variables): void {
   $variables['#attached']['library'][] = 'ts_theme/news-header';
 }
