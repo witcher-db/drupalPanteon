@@ -1,0 +1,5 @@
+name: 'User Statistics'
+type: module
+description: 'User Statistics module tracks and stores user interactions with Article nodes.'
+package: Custom
+core_version_requirement: ^11
