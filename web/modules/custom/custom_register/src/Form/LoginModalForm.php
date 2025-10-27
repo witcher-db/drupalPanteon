@@ -105,16 +105,11 @@ class LoginModalForm extends FormBase {
     $email_error = $this->customFormValidator->isEmailRegistred($form_state, 'email');
     $password_error = $this->customFormValidator->comparePassword($form_state, 'password', 'email');
 
-    $response->addCommand(new HtmlCommand('#email-validation-message', ''));
-    $response->addCommand(new HtmlCommand('#password-validation-message', ''));
+    $response->addCommand(new HtmlCommand('#email-validation-message', $email_error ? '<div style="color: red;" class="messages messages--error">' . $email_error . '</div>' : ''));
 
-    if ($email_error) {
-      $response->addCommand(new HtmlCommand('#email-validation-message', '<div style="color: red;" class="messages messages--error">' . $email_error . '</div>'));
-      return $response;
-    }
+    $response->addCommand(new HtmlCommand('#password-validation-message', ($password_error && !$email_error) ? '<div style="color: red;" class="messages messages--error">' . $password_error . '</div>' : ''));
 
-    if ($password_error) {
-      $response->addCommand(new HtmlCommand('#password-validation-message', '<div style="color: red;" class="messages messages--error">' . $password_error . '</div>'));
+    if ($password_error || $email_error) {
       return $response;
     }
 
