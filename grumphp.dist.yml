@@ -1,0 +1,31 @@
+grumphp:
+  process_timeout: 300
+  ascii:
+    failed: ~
+    succeeded: ~
+  # Docs at https://github.com/phpro/grumphp/blob/v2.x/doc/tasks.md#tasks-1
+  tasks:
+    git_commit_message:
+      allow_empty_message: false
+      enforce_capitalized_subject: false
+      enforce_no_subject_trailing_period: true
+      enforce_single_lined_subject: true
+      max_body_width: 100
+      max_subject_width: 200
+      case_insensitive: true
+      multiline: true
+    composer: ~
+    phpcs:
+      triggered_by: [ php, inc, module, install, theme, profile, engine, md ]
+      whitelist_patterns:
+        - '#^web/(modules|themes|profiles)/#'
+    phpstan:
+      triggered_by: [ php, inc, module, install, theme, profile, engine ]
+      ignore_patterns:
+        - '#^.ddev/#'
+        - '#^upstream-configuration/#'
+        - '#^web/sites/#'
+      configuration: phpstan.neon
+      memory_limit: '-1'
+
+

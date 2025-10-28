@@ -1,0 +1,25 @@
+includes:
+  - phar://phpstan.phar/conf/bleedingEdge.neon
+
+parameters:
+  level: 2
+  paths:
+    - ./web/modules
+    - ./web/profiles
+    - ./web/themes
+  excludePaths:
+    - vendor (?)
+    - node_modules (?)
+    - .gitlab-ci-local (?)
+    - ./web/modules/contrib (?)
+    - ./web/themes/contrib (?)
+    - ./web/profiles/contrib (?)
+  reportUnmatchedIgnoredErrors: false
+  ignoreErrors:
+    # new static() is a best practice in Drupal, so we cannot fix that.
+    - '#^Unsafe usage of new static#'
+
+rules:
+  - PHPStan\Rules\Functions\MissingFunctionReturnTypehintRule
+  - PHPStan\Rules\Functions\MissingFunctionParameterTypehintRule
+  - PHPStan\Rules\Methods\MissingMethodReturnTypehintRule

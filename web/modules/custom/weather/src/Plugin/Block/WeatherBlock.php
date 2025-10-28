@@ -15,9 +15,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * Provides a Weather Block.
  */
 #[Block(
-  id: "custom_weather_block",
-  admin_label: new TranslatableMarkup("Weather Block"),
-  category: new TranslatableMarkup("Custom")
+  id: 'custom_weather_block',
+  admin_label: new TranslatableMarkup('Weather Block'),
+  category: new TranslatableMarkup('Custom')
 )]
 class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface {
   /**
@@ -85,6 +85,9 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
 
   /**
    * {@inheritdoc}
+   *
+   * @return array<string, mixed>
+   *   A render array representing the block content.
    */
   public function build() {
     $config = $this->configFactory->get('weather.settings');
@@ -107,7 +110,7 @@ class WeatherBlock extends BlockBase implements ContainerFactoryPluginInterface 
         $ip = file_get_contents('https://api.ipify.org');
       }
 
-      $response = unserialize(file_get_contents("http://ip-api.com/php/$ip"));
+      $response = json_decode(file_get_contents("http://ip-api.com/json/$ip"), TRUE);
 
       $lat = $response['lat'];
       $lon = $response['lon'];
