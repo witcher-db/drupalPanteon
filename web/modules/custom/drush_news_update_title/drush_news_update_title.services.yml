@@ -1,0 +1,5 @@
+services:
+  drush_news_update_title.commands:
+    class: Drupal\drush_news_update_title\Commands\DrushNewsUpdateTitleCommands
+    tags:
+      - { name: drush.command }
