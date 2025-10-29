@@ -19,13 +19,3 @@ grumphp:
       triggered_by: [ php, inc, module, install, theme, profile, engine, md ]
       whitelist_patterns:
         - '#^web/(modules|themes|profiles)/#'
-    phpstan:
-      triggered_by: [ php, inc, module, install, theme, profile, engine ]
-      ignore_patterns:
-        - '#^.ddev/#'
-        - '#^upstream-configuration/#'
-        - '#^web/sites/#'
-      configuration: phpstan.neon
-      memory_limit: '-1'
-
-

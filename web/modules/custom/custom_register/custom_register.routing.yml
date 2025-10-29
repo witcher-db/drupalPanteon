@@ -5,3 +5,12 @@ custom_register.form:
     _title: 'Custom Register'
   requirements:
     _permission: 'access content'
+
+custom_register.login_modal:
+  path: '/custom-register/login-modal'
+  defaults:
+    _form: '\Drupal\custom_register\Form\LoginModalForm'
+    _title: 'Login'
+  requirements:
+    _format: 'drupal_modal'
+    _access: 'TRUE'

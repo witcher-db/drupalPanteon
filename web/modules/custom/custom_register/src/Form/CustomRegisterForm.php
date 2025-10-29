@@ -6,49 +6,40 @@ use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Database\Connection;
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\custom_register\CustomFormValidator;
 
 /**
  * Provides the basic Custom Register form.
  */
 class CustomRegisterForm extends FormBase {
   /**
-   * Email validation.
-   *
-   * @var Drupal\Core\Mail\EmailValidatorInterface
-   */
-  protected $emailValidator;
-  /**
    * The mail manager service.
-   *
-   * @var \Drupal\Core\Mail\MailManagerInterface
    */
-  protected $mailManager;
-
-  /**
-   * Entity Type Manager service.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  protected $entityTypeManager;
+  protected MailManagerInterface $mailManager;
 
   /**
    * The database connection.
-   *
-   * @var \Drupal\Core\Database\Connection
    */
-  protected $database;
+  protected Connection $database;
 
   /**
-   * {@inheritdoc}
+   * Custom form validation service.
    */
-  public static function create(ContainerInterface $container) {
-    $instance = parent::create($container);
-    $instance->emailValidator = $container->get('email.validator');
-    $instance->mailManager = $container->get('plugin.manager.mail');
-    $instance->entityTypeManager = $container->get('entity_type.manager');
-    $instance->database = $container->get('database');
-    return $instance;
+  protected CustomFormValidator $customFormValidator;
+
+  /**
+   * Constructor with autowired services.
+   */
+  public function __construct(
+    MailManagerInterface $mailManager,
+    Connection $database,
+    CustomFormValidator $customFormValidator,
+  ) {
+    $this->mailManager = $mailManager;
+    $this->database = $database;
+    $this->customFormValidator = $customFormValidator;
   }
 
   /**
@@ -152,168 +143,6 @@ class CustomRegisterForm extends FormBase {
   }
 
   /**
-   * Validates an email address.
-   *
-   * This method performs two checks:
-   *  1. Checks if the email format is valid using EmailValidator service.
-   *  2. Checks if the email already exists in the user database.
-   *
-   * @param string $email
-   *   The email address to validate.
-   *
-   * @return array
-   *   An array containing:
-   *    -[0]: A message string describing the validation result.
-   *    -[1]: A boolean indicating if the email is valid (TRUE) or not (FALSE).
-   */
-  public function getEmailValidationInfo($email) {
-    if (!$this->emailValidator->isValid($email)) {
-      return [
-        'is_valid' => FALSE,
-        'message' => $this->t('Invalid email format'),
-      ];
-    }
-
-    $existing_users = $this->database->select('custom_user_data', 'c')
-      ->fields('c', ['id'])
-      ->condition('email', $email)
-      ->execute()
-      ->fetchField();
-
-    if (empty($existing_users)) {
-      return [
-        'is_valid' => TRUE,
-        'message' => $this->t('Email is getEmailValidationInfo'),
-      ];
-    }
-    else {
-      return [
-        'is_valid' => FALSE,
-        'message' => $this->t('This email is already registered'),
-      ];
-    }
-  }
-
-  /**
-   * Validates the password and its confirmation field.
-   *
-   * This method ensures that the password meets the required length
-   * and matches the confirmation value. Specifically:
-   *   - The password must be between 8 and 32 characters long.
-   *   - The password and confirmation must be identicalgetEmailValidationInfo
-   * If validation fails, appropriate error messages are added
-   * to both password fields in the form state.
-   *
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The current form state containing submitted values.
-   * @param string $passwordKey
-   *   The machine name of the password field.
-   * @param string $confirmPasswordKey
-   *   The machine name of the password confirmation field.
-   *
-   * @return void
-   *   Adds validation errors to the form state if validation fails.
-   */
-  public function passwordValidationError($form_state, $passwordKey, $confirmPasswordKey) {
-    $password = $form_state->getValue($passwordKey);
-    $confirmPassword = $form_state->getValue($confirmPasswordKey);
-
-    if (strlen($password) < 8 || strlen($password) > 32) {
-      $form_state->setErrorByName(
-        $passwordKey,
-        $this->t('Password must be between 8 and 32 characters long'),
-      );
-      $form_state->setErrorByName(
-        $confirmPasswordKey,
-        $this->t('Password must be between 8 and 32 characters long'),
-      );
-      return;
-    }
-
-    if ($password !== $confirmPassword) {
-      $form_state->setErrorByName(
-        $passwordKey,
-        $this->t('Passwords do not match. Please confirm your password again'),
-       );
-      $form_state->setErrorByName(
-        $confirmPasswordKey,
-        $this->t('Passwords do not match. Please confirm your password again'),
-      );
-      return;
-    }
-  }
-
-  /**
-   * Validates a generic string field.
-   *
-   * This method checks whether a string field meets the specified
-   * validation rules:
-   *   - Ensures the field is not empty (if $allowEmpty is FALSE).
-   *   - Ensures the string length does not exceed the given limit ($len).
-   *
-   * If validation fails, it sets a corresponding error message in
-   * the form state.
-   *
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The current form state containing submitted values.
-   * @param string $stringKey
-   *   The machine name of the string form field.
-   * @param int $len
-   *   The maximum allowed string length.
-   * @param bool $allowEmpty
-   *   Whether the field can be empty (TRUE to allow, FALSE to require).
-   *
-   * @return void
-   *   Adds validation errors to the form state if the field is invalid.
-   */
-  public function stringValidationError($form_state, $stringKey, $len, $allowEmpty) {
-    $string = $form_state->getValue($stringKey);
-
-    if (!$allowEmpty && empty($string)) {
-      $form_state->setErrorByName(
-        $stringKey,
-        $this->t('This field cannot be empty.'),
-      );
-      return;
-    }
-
-    if (strlen($string) > $len) {
-      $form_state->setErrorByName(
-        $stringKey,
-        $this->t('This field cannot exceed @len characters.', ['@len' => $len]),
-      );
-      return;
-    }
-  }
-
-  /**
-   * Validates the user's age field.
-   *
-   * This method ensures that the provided age value is within
-   * an acceptable range. It checks whether the field is empty
-   * or exceeds a logical upper limit (150 years).
-   * If validation fails, an error message is added to the form state.
-   *
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The current form state containing submitted values.
-   * @param string $ageKey
-   *   The machine name of the form field representing the age.
-   *
-   * @return void
-   *   Adds a form validation error if the age is invalid.
-   */
-  public function ageValidationError($form_state, $ageKey) {
-    $age = $form_state->getValue($ageKey);
-    if (empty($age) || $age > 150) {
-      $form_state->setErrorByName(
-        $ageKey,
-        $this->t('Please enter a valid age (0–150).'),
-      );
-      return;
-    }
-  }
-
-  /**
    * AJAX callback for validating the email field on blur.
    *
    * This method is triggered when the user leaves (blurs) the email input.
@@ -331,14 +160,14 @@ class CustomRegisterForm extends FormBase {
    *   An AjaxResponse object containing the message HTML.
    */
   public function validateEmailAjax(array &$form, FormStateInterface $form_state) {
-    $colorCodes = [TRUE => 'green', FALSE => 'red'];
+    $color_codes = [TRUE => 'green', FALSE => 'red'];
     $response = new AjaxResponse();
     $email = $form_state->getValue('email');
-    $validation_array = $this->getEmailValidationInfo($email);
+    $validation_array = $this->customFormValidator->getEmailValidationInfo($email);
 
     // Wrap the message in a colored <span>.
     $template = '<span style="color:' .
-    $colorCodes[$validation_array['is_valid']] .
+    $color_codes[$validation_array['is_valid']] .
     ';">' .
     $validation_array['message'] . '.</span>';
 
@@ -351,18 +180,18 @@ class CustomRegisterForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $validation_array = $this->getEmailValidationInfo($form_state->getValue('email'));
+    $validation_array = $this->customFormValidator->getEmailValidationInfo($form_state->getValue('email'));
 
     if (!$validation_array['is_valid']) {
       $form_state->setErrorByName('email', $validation_array['message']);
     }
 
-    $this->passwordValidationError($form_state, 'password', 'confirm_password');
-    $this->stringValidationError($form_state, 'username', 32, TRUE);
+    $this->customFormValidator->passwordValidationError($form_state, 'password', 'confirm_password');
+    $this->customFormValidator->stringValidationError($form_state, 'username', 32, TRUE);
     if ($form_state->getValue('additional')) {
-      $this->ageValidationError($form_state, 'age');
-      $this->stringValidationError($form_state, 'country', 32, FALSE);
-      $this->stringValidationError($form_state, 'country', 256, FALSE);
+      $this->customFormValidator->ageValidationError($form_state, 'age');
+      $this->customFormValidator->stringValidationError($form_state, 'country', 32, FALSE);
+      $this->customFormValidator->stringValidationError($form_state, 'country', 256, FALSE);
     }
 
   }
