@@ -14,26 +14,10 @@ class UserStatisticsEditForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $entity = $this->entity;
-
+    // Let the parent ContentEntityForm build all fields automatically.
     $form = parent::buildForm($form, $form_state);
 
-    $comment_value = $entity->get('comment')->value ?? '';
-
-    $form['comment'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Comment'),
-      '#default_value' => $comment_value,
-      '#required' => TRUE,
-      '#rows' => 5,
-      '#attributes' => ['placeholder' => $this->t('Enter comment')],
-    ];
-
-    $form['user_statistics_id'] = [
-      '#type' => 'hidden',
-      '#value' => $entity->id(),
-    ];
-
+    // Optionally, modify form actions or add extra attributes.
     $form['actions']['submit']['#value'] = $this->t('Save');
     $form['actions']['submit']['#button_type'] = 'primary';
 

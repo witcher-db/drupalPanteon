@@ -12,6 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\user_statistics\Form\UserStatisticsFilterForm;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\user_statistics\Entity\UserStatistics;
 
 /**
  * Defines the list builder for User Statistics entities.
@@ -74,9 +75,10 @@ class UserStatisticsListBuilder extends EntityListBuilder {
     $header['node'] = $this->t('Node');
     $header['comment'] = $this->t('Comment');
     $header['action_type'] = $this->t('Action');
-    $header['datetime'] = $this->t('Timestamp');
+    $header['timestamp'] = $this->t('Timestamp');
+    $dummy_entity = UserStatistics::create();
 
-    if ($this->currentUser->hasPermission('administer users')) {
+    if ($dummy_entity->access('clear_all', $this->currentUser)) {
       $clear_all_url = Url::fromRoute('user_statistics.clear_all');
       $clear_all_link = Link::fromTextAndUrl($this->t('Clear `Em All'), $clear_all_url)->toRenderable();
       $clear_all_link['#attributes'] = [
@@ -111,7 +113,7 @@ class UserStatisticsListBuilder extends EntityListBuilder {
       $entity_query->condition('action_type', $action_type);
     }
 
-    if (!$this->currentUser->hasPermission('administer users')) {
+    if (!$this->currentUser->hasPermission('view and edit all user statistics')) {
       $entity_query->condition('uid', $this->currentUser->id());
     }
 
@@ -138,7 +140,7 @@ class UserStatisticsListBuilder extends EntityListBuilder {
 
     $row['comment'] = $entity->get('comment')->value ?? '';
     $row['action_type'] = $entity->get('action_type')->value ?? '';
-    $row['datetime'] = date('Y-m-d H:i:s', $entity->get('datetime')->value) ?? '';
+    $row['timestamp'] = date('Y-m-d H:i:s', $entity->get('timestamp')->value) ?? '';
 
     return $row + parent::buildRow($entity);
   }
@@ -164,11 +166,6 @@ class UserStatisticsListBuilder extends EntityListBuilder {
    */
   public function getOperations(EntityInterface $entity) {
     $operations = parent::getOperations($entity);
-
-    if (!$this->currentUser->hasPermission('administer users')) {
-      unset($operations['delete']);
-    }
-
     return $operations;
   }
 

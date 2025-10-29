@@ -5,3 +5,4 @@ services:
 
     tags:
       - { name: 'event_subscriber' }
+

@@ -1,0 +1,6 @@
+user_statistics.collection:
+  title: 'User Statistics'
+  description: 'View all user statistics records'
+  parent: system.admin_content
+  route_name: entity.user_statistics.collection
+  weight: 10

@@ -85,14 +85,14 @@ class UserStatisticsSubscriber implements EventSubscriberInterface {
 
     $storage = $this->entityTypeManager->getStorage('user_statistics');
 
-    $nid = (int) $node->id();
-    $uid = (int) $node->getRevisionUserId();
+    $nid = $node->id();
+    $uid = $node->getRevisionUserId();
 
     $storage->create([
       'uid' => $uid,
       'node_id' => $nid,
       'action_type' => 'edit',
-      'datetime' => $this->time->getRequestTime(),
+      'timestamp' => $this->time->getRequestTime(),
     ])->save();
   }
 
@@ -109,14 +109,14 @@ class UserStatisticsSubscriber implements EventSubscriberInterface {
 
     $storage = $this->entityTypeManager->getStorage('user_statistics');
 
-    $nid = (int) $node->id();
-    $uid = (int) $this->currentUser->id();
+    $nid = $node->id();
+    $uid = $this->currentUser->id();
 
     $storage->create([
       'uid' => $uid,
       'node_id' => $nid,
       'action_type' => 'view',
-      'datetime' => $this->time->getRequestTime(),
+      'timestamp' => $this->time->getRequestTime(),
     ])->save();
   }
 

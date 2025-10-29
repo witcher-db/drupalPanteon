@@ -1,0 +1,8 @@
+view and edit own user statistics:
+  title: 'View own user statistics'
+  description: 'Allows users to view and only their own user_statistics entities.'
+
+view and edit all user statistics:
+  title: 'View and edit all user statistics'
+  description: 'Allows users to view and edit all user_statistics entities.'
+  restrict access: true

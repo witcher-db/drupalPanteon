@@ -7,8 +7,8 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountProxyInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\Core\DependencyInjection\AutowireTrait;
 
 /**
  * Provides a filter form for UserStatistics list.
@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * - Action type (edit/view).
  */
 class UserStatisticsFilterForm extends FormBase {
+  use AutowireTrait;
 
   /**
    * The form builder service.
@@ -42,25 +43,27 @@ class UserStatisticsFilterForm extends FormBase {
   protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
-   * Constructs a new UserStatisticsFilterForm.
+   * Constructor: inject required services.
+   *
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *   The request stack service.
+   * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
+   *   The form builder service.
+   * @param \Drupal\Core\Session\AccountProxyInterface $current_user
+   *   The current user service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager service.
    */
-  public function __construct(RequestStack $request_stack, FormBuilderInterface $form_builder, AccountProxyInterface $current_user, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(
+    RequestStack $request_stack,
+    FormBuilderInterface $form_builder,
+    AccountProxyInterface $current_user,
+    EntityTypeManagerInterface $entity_type_manager,
+  ) {
     $this->requestStack = $request_stack;
     $this->formBuilder = $form_builder;
     $this->currentUser = $current_user;
     $this->entityTypeManager = $entity_type_manager;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('request_stack'),
-      $container->get('form_builder'),
-      $container->get('current_user'),
-      $container->get('entity_type.manager')
-    );
   }
 
   /**

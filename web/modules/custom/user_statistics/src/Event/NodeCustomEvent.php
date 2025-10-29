@@ -23,18 +23,13 @@ class NodeCustomEvent extends Event {
   const VIEW = 'custom_events_node_viewed';
 
   /**
-   * The node object associated with this event.
-   */
-  public Node $node;
-
-  /**
    * Constructs a NodeCustomEvent.
    *
    * @param \Drupal\node\Entity\Node $node
    *   The node object that this event represents.
    */
-  public function __construct(Node $node) {
-    $this->node = $node;
-  }
+  public function __construct(
+    public Node $node,
+  ) {}
 
 }
