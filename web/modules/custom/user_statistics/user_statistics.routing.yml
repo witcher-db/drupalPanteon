@@ -1,0 +1,7 @@
+user_statistics.clear_all:
+  path: '/admin/content/user-edit-stats/clear-all'
+  defaults:
+    _controller: '\Drupal\user_statistics\Controller\UserStatisticsController::clearAll'
+    _title: 'Clear All User Statistics'
+  requirements:
+    _permission: 'administer users'

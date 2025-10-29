@@ -8,6 +8,9 @@ use Drupal\Core\Entity\Attribute\ContentEntityType;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\Routing\AdminHtmlRouteProvider;
+use Drupal\user_statistics\UserStatisticsListBuilder;
+use Drupal\user_statistics\UserStatisticsAccessControlHandler;
 
 /**
  * Defines the UserStatistics entity.
@@ -26,7 +29,24 @@ use Drupal\Core\Entity\EntityTypeInterface;
   entity_keys: [
     'id' => 'id',
     'uid' => 'uid',
-  ]
+  ],
+  handlers: [
+    'access' => UserStatisticsAccessControlHandler::class,
+    'list_builder' => UserStatisticsListBuilder::class,
+    'form' => [
+      'delete' => 'Drupal\user_statistics\Form\UserStatisticsDeleteForm',
+      'edit' => 'Drupal\user_statistics\Form\UserStatisticsEditForm',
+    ],
+    'route_provider' => [
+      'html' => AdminHtmlRouteProvider::class,
+    ],
+  ],
+  links: [
+    'collection' => '/content/user-edit-stats',
+    'delete-form' => '/content/user-edit-stats/{user_statistics}/delete',
+    'edit-form' => '/content/user-edit-stats/{user_statistics}/edit',
+  ],
+  admin_permission: 'view and edit own user statistics',
 )]
 class UserStatistics extends ContentEntityBase implements ContentEntityInterface {
 
@@ -60,16 +80,39 @@ class UserStatistics extends ContentEntityBase implements ContentEntityInterface
       ->setLabel(t('Node'))
       ->setSetting('target_type', 'node');
 
+    $fields['comment'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Comment'))
+      ->setSettings(['max_length' => 128])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textarea',
+        'weight' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => 0,
+      ]);
+
     // Field for the action type, e.g., 'edit' or 'view'.
     $fields['action_type'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Action type'))
       ->setSettings(['max_length' => 16]);
 
     // Field for the timestamp of the action.
-    $fields['datetime'] = BaseFieldDefinition::create('datetime')
-      ->setLabel(t('Datetime'));
+    $fields['timestamp'] = BaseFieldDefinition::create('timestamp')
+      ->setLabel(t('Timestamp'));
 
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * Without this, Drupal might try to use a label and get null,
+   * which could lead to errors or incorrect rendering.
+   */
+  public function label() {
+    return '';
   }
 
 }
