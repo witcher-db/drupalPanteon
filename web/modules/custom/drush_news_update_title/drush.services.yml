@@ -1,0 +1,6 @@
+services:
+  drush_news_update_title.commands:
+    class: Drupal\drush_news_update_title\Commands\DrushNewsUpdateTitleCommands
+    arguments: ['@entity_type.manager', '@cache.discovery']
+    tags:
+      - { name: drush.command }
